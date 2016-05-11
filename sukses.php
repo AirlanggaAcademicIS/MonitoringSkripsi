@@ -1,0 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h1>Terima kasih, Anda berhasil melakukan Login. 
+  <br />
+---------------------------------------------------------<br />
+(Mahasiswa, Kaprodi, TU, Koor Skripsi)</h1>
+</body>
+</html>

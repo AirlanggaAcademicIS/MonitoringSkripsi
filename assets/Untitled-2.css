@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+.banner{
+	background-color:#06F;
+}
+.sidebar{
+	background-color:#333;
+	margin-bottom:20px;
+	height: 1000px;
+	margin-left:-21px;
+}
+.container-fluid .nav-sidebar .img{
+	resize: 175px;
+}
+

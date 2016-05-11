@@ -65,7 +65,7 @@ class Membimbing extends CI_Model{
       }
 
       function getAllMembimbing(){
-          return $this->db->query("SELECT * FROM `membimbing`");
+          return $this->db->query("SELECT * FROM `membimbing`")->result_array();
       }
       
 }

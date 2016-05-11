@@ -1,62 +1,70 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
+<body>
+<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Bimbingan</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
         <form id="laporanDropdown" method="post">
             <select name="laporan">
-                <option value="1">Tanggungan Dosen Pembimbing</option>
-                <option value="2">Minat KBK</option>
-                <option value="3">Status Skripsi</option>
+                <option value="1">Performa Dosen Pembimbing</option>
+                <option value="2">Status Mahasiswa</option>
+                <option value="3">Minat (KBK)</option>
             </select> 
             <input type="submit" name="Submit" value="Submit">
         </form>
         
         <?php
+              
+//            $laporanController = new Laporan();
+//            $laporanController->getData();
         
-            // When I navigate to any_laporan
+        // When I navigate to any_laporan
             if(isset($_POST['laporan'])) {
-            
-                $dosen = array();
-                $ydata = array();
-                
+                         
                 // Then I should see laporan_data
                 switch($_POST['laporan']){
-                    case 1 : echo "Tabel dan Grafik : Tanggungan Dosen Pembimbing";
+                    case 1 : echo "Tabel dan Grafik : Performa Dosen Pembimbing";
+                        if(isset($laporanTanggungan)) {
+                            echo "Tanggungan isset";
+                            $template = array(
+                                'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table">'
+                            );
+
+                            $this->table->set_template($template);
+                            $this->table->set_heading(array('NIK', 'Nama', 'KBK', 'Total Mahasiswa'));
+
+                            // separate row array
+                            foreach($laporanTanggungan as $row){
+                                $this->table->add_row($row);
+                            }
+                            echo $this->table->generate();
+                        } else {
+                            echo "<br><br> No Data Available";
+                        }
+                        break;
+                    case 2 : echo "Tabel dan Grafik : KBK";
                         showLaporan($_POST['laporan'],$dosen,$ydata);
                         break;
-                    case 2 : echo "Tabel dan Grafik : Minat KBK";
-                        showLaporan($_POST['laporan'],$dosen,$ydata);
-                        break;
-                    case 3 : echo "Tabel dan Grafik : Status Skripsi";
+                    case 3 : echo "Tabel dan Grafik : Skripsi Khusus";
                         showLaporan($_POST['laporan'],$dosen,$ydata);
                         break;
                 }
                 
             }
-            
-            function showLaporan($kategori, $dosen,$ydata){
-                $lines = @file($aFile,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-                if( $lines === false ) {
-                    throw new JpGraphException('Can not read dosen bimbing data file.');
-                }
-                foreach( $lines as $line => $datarow ) {
-                    $split = preg_split('/[\s]+/',$datarow);
-                    $aDosens[] = substr(trim($split[0]),0,4);
-                    $aSunspots[] = trim($split[1]);
-                }
-            }
-            
             
         ?>
         
-        
-    </body>
-</html>
+        </div>
+</body>
+

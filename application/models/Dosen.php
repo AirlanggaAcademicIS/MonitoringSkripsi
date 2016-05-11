@@ -81,7 +81,7 @@
       }
       
       function getAllDosen(){
-          return $this->db->query("SELECT * FROM `dosen`");
+          return $this->db->query("SELECT * FROM `dosen`")->result_array();
       }
 
 

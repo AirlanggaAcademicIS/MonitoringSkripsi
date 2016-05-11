@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Laporan extends CI_Controller {
         
+        private $allDosen;
+        private $allMembimbing;
+    
         function __construct(){
             parent::__construct();
             $this->load->model('Dosen');
@@ -25,9 +28,16 @@ class Laporan extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index(){
+        
+        public function index(){
+        
+            $this->allDosen = $this->Dosen->getAllDosen();
+            $this->allMembimbing = $this->Membimbing->getAllMembimbing();
+            
             $data      = array(
-                            'dosen' => $this->Dosen->getAllDosen()
+                            'allDosen' => $this->allDosen,
+                            'allMembimbing' => $this->allMembimbing,
+                            'laporanTanggungan' => $this->generateLaporan($this->allDosen, $this->allMembimbing)
                            );
 //            $data['Dosen'] = $this->Dosen->getAllDosen();
             
@@ -37,38 +47,28 @@ class Laporan extends CI_Controller {
             
 	}
         
-//        function getData(){
-//            $this->arrayDosen = $this->db->query('SELECT * FROM `dosen`');
-//            while($row = mysql_fetch_array($this->arrayDosen, MYSQL_NUM)){    
-//                echo "ID KARYAWAN :{$row[0]}  <br> ".
-//                    "NAMA KARYAWAN : {$row[1]} <br> ".
-//                    "GAJI KARYAWAN : {$row[2]} <br> ".
-//                    "--------------------------------<br>";
-//            }
-//        }
+        function generateLaporan($allDosen, $allMembimbing){
+            $allTanggunganDosen = array();
+            
+            foreach($allDosen as $dosen){
+                $tanggunganDosen = array();
+                $count = 0;
+                $tanggunganDosen[] = $dosen['NIK'];
+                $tanggunganDosen[] = $dosen['Nama'];
+                $tanggunganDosen[] = $dosen['IDKBK'];
+                        
+                foreach($allMembimbing as $membimbing){
+                    if($dosen['NIK'] == $membimbing['NIK']){
+                        $count = $count+1;
+                    }
+                }
+
+                $tanggunganDosen[] = $count;
+                $allTanggunganDosen[] = $tanggunganDosen;
+            }
+            // return array
+            return $allTanggunganDosen;
+        }
         
-        function view($page = 'laporan'){
-            
-//            // When I navigate to any_laporan
-//            if(isset($_POST['laporan'])) {
-//            
-//                $arrayDosen = array();
-//                $ydata = array();
-//                
-//                // Then I should see laporan_data
-//                switch($_POST['laporan']){
-//                    case 1 : echo "Tabel dan Grafik : Performa Dosen Pembimbing";
-//                        $this->getData();
-//                        break;
-//                    case 2 : echo "Tabel dan Grafik : KBK";
-//                        showLaporan($_POST['laporan'],$dosen,$ydata);
-//                        break;
-//                    case 3 : echo "Tabel dan Grafik : Skripsi Khusus";
-//                        showLaporan($_POST['laporan'],$dosen,$ydata);
-//                        break;
-//                }
-//                
-//            }
-            
-        }        
+        
 }

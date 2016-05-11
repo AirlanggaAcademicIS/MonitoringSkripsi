@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <title>Menu Bimbingan Mahasiswa</title>
-<link href="http://localhost/bimbingan/assets/Untitled-2.css"  rel="stylesheet">
-<link href="http://localhost/bimbingan/assets/bootstrap.min.css" rel="stylesheet">
+<link href="http://localhost/MonitoringSkripsi/assets/Untitled-2.css"  rel="stylesheet">
+<link href="http://localhost/MonitoringSkripsi/assets/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 <section class="banner">
 <div class="container">
   <div class="row">
-  <img src="http://localhost/bimbingan/assets/header.png">
+  <img src="http://localhost/MonitoringSkripsi/assets/header.png">
   </div>
   </div>
   </section>
@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-          <li><a href=""><img src="http://localhost/bimbingan/assets/yey.jpg"></a></li>
+          <li><a href=""><img src="http://localhost/MonitoringSkripsi/assets/tara.JPG"></a></li>
           <li style="color:#FFF; text-align:center;">Tara Andini<br> 081311633058</li>
        
            
@@ -71,7 +71,7 @@
       <td>&nbsp;</td>
     </tr>
   </table><br><br>
-<form name="form2" method="post" action="http://localhost/bimbingan/index.php/welcome/tambahan_bimbingan">
+<form name="form2" method="post" action="http://localhost/MonitoringSkripsi/index.php/control_bimbingan/tambahan_bimbingan">
   <input type="submit" name="tambahbimbingan" id="tambahbimbingan" value="Tambah Bimbingan">
 </form>
 </div>

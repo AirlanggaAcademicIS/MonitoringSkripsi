@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Laporan extends CI_Controller {
         
         function __construct(){
@@ -25,16 +24,24 @@ class Laporan extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index(){
-            $data      = array(
-                            'dosen' => $this->Dosen->getAllDosen()
-                           );
-//            $data['Dosen'] = $this->Dosen->getAllDosen();
-            
-            $this->load->view('head');
-            $this->load->view('laporan/laporan', $data);
-            $this->load->view('foot');
-            
+	
+	
+	public function index()
+	{
+		$this->load->view('laporan_page');
+	}
+	public function minatkbk()
+	{
+		$this->load->view('laporan_minatkbk_page');
+	}
+	public function jenis_kbk()
+	{
+		$option = $this->input->post('jenis_laporan');
+		
+		if($option==0)$this->load->view('laporan_minatkbk_page');
+		else if($option==1)$this->load->view('laporan_tanggungandosen_page');
+		else if($option==2)$this->load->view('laporan_statusmhs_page');
+		
 	}
         
 //        function getData(){

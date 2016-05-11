@@ -1,14 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Laporan extends CI_Controller {
         
         private $allDosen;
         private $allMembimbing;
-    
+        private $allMahasiswa;
+        private $dosen;
+        
         function __construct(){
             parent::__construct();
             $this->load->model('Dosen');
+            $this->load->model('KBK');
+            $this->load->model('Mahasiswa');
             $this->load->model('Membimbing');
+            $this->load->model('Skripsi');
             $this->load->library('table');
         }
         
@@ -27,7 +33,6 @@ class Laporan extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-<<<<<<< HEAD
         
         public function index(){
         
@@ -39,26 +44,26 @@ class Laporan extends CI_Controller {
                             'allMembimbing' => $this->allMembimbing,
                             'laporanTanggungan' => $this->generateLaporan($this->allDosen, $this->allMembimbing)
                            );
-//            $data['Dosen'] = $this->Dosen->getAllDosen();
             
             $this->load->view('head');
             $this->load->view('laporan/laporan', $data);
-			$this->load->view('laporan_page');
             $this->load->view('foot');
+            
+	}
         
-		public function minatkbk()
-		{
-			$this->load->view('laporan_minatkbk_page');
-		}
-		public function jenis_kbk()
-		{
-			$option = $this->input->post('jenis_laporan');
-			
-			if($option==0)$this->load->view('laporan_minatkbk_page');
-			else if($option==1)$this->load->view('laporan_tanggungandosen_page');
-			else if($option==2)$this->load->view('laporan_statusmhs_page');
-			
-		}
+        public function minatkbk()
+	{
+		$this->load->view('laporan_minatkbk_page');
+	}
+	public function jenis_kbk()
+	{
+		$option = $this->input->post('jenis_laporan');
+		
+		if($option==0)$this->load->view('laporan_minatkbk_page');
+		else if($option==1)$this->load->view('laporan_tanggungandosen_page');
+		else if($option==2)$this->load->view('laporan_statusmhs_page');
+		
+	}
         
         function generateLaporan($allDosen, $allMembimbing){
             $allTanggunganDosen = array();
@@ -67,7 +72,7 @@ class Laporan extends CI_Controller {
                 $tanggunganDosen = array();
                 $count = 0;
                 $tanggunganDosen[] = $dosen['NIK'];
-                $tanggunganDosen[] = $dosen['Nama'];
+                $tanggunganDosen[] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$dosen['NIK'].'"'.'<font color="blue">'.$dosen['Nama'].'</font>'.'</a>';
                 $tanggunganDosen[] = $dosen['IDKBK'];
                         
                 foreach($allMembimbing as $membimbing){
@@ -83,8 +88,45 @@ class Laporan extends CI_Controller {
             return $allTanggunganDosen;
         }
         
+        // sub page of viewing detail dosen
+        function detail_dosen($NIK){
+            $this->allMahasiswa = $this->Mahasiswa->getAllMahasiswa();
+            $this->allMembimbing = $this->Membimbing->getAllMembimbing();
+            $this->allSkripsi = $this->Skripsi->getAllSkripsi();
+            echo 'NIK',$NIK;
+            $this->dosen = $this->Dosen->getDosen($NIK);
+            
+            $data = array(
+                'detailDosen' => $this->generateDetail($this->dosen, $this->allMembimbing, $this->allSkripsi),
+                'allMahasiswa' => $this->allMahasiswa
+            );
+            
+            $this->load->view('head');
+            $this->load->view('laporan/detail_dosen', $data);
+            $this->load->view('foot');
+            
+        }
         
-}
-
-        }        
+        function generateDetail($dosen, $allMembimbing, $allSkripsi){
+            $mhsBimbing = array();
+            foreach($allMembimbing as $membimbing){
+                if($dosen['NIK'] == $membimbing['NIK']){
+                    $skripsi = $this->Skripsi->getSkripsi($membimbing['IDSkripsi']);
+                    $kbk = $this->KBK->getKBK($skripsi['id_kbk']);
+                    $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi['NIM']);
+                    
+                    $mhsTemp = array();
+                    $mhsTemp[] = $mahasiswa['NIM'];
+                    $mhsTemp[] = $mahasiswa['Nama_Mahasiswa'];
+                    $mhsTemp[] = $skripsi['Judul'];
+                    $mhsTemp[] = $kbk['namaKBK'];
+                    
+                    $mhsBimbing[] = $mhsTemp;
+                }
+            }
+            
+            return mhsBimbing;
+            
+        }
+        
 }

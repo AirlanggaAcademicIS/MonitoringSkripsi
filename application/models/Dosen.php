@@ -80,6 +80,10 @@
           $this->password = $password;
       }
       
+      function getDosen($NIK){
+          return $this->db->query("SELECT * FROM `dosen` WHERE NIK = "+$NIK)->result_array();
+      }
+      
       function getAllDosen(){
           return $this->db->query("SELECT * FROM `dosen`")->result_array();
       }

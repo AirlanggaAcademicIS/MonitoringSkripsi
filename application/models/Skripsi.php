@@ -1,5 +1,5 @@
 <?php
-   class Bimbingan extends CI_Model{
+   class Skripsi extends CI_Model{
       /* Member variables */
       var $idSkripsi;
       var $idKBK;
@@ -71,7 +71,13 @@
           $this->tglSkripsi = $tglSkripsi;
       }
 
-
+      function getSkripsi($id){
+          return $this->db->query("SELECT * FROM `id_skripsi` WHERE id_skripsi = "+$id)->result_array();
+      }
+      
+      function getAllSkripsi(){
+          return $this->db->query("SELECT * FROM `id_skripsi`")->result_array();
+      }
 
    }
 ?>

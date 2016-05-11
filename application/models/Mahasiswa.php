@@ -72,6 +72,14 @@ class Mahasiswa extends CI_Model{
       function setEmail($email) {
           $this->email = $email;
       }
+      
+      function getMahasiswa($NIM){
+          return $this->db->query("SELECT * FROM `mahasiswa` WHERE NIM = "+$NIM)->result_array();
+      }
+      
 
+      function getAllMahasiswa(){
+          return $this->db->query("SELECT * FROM `mahasiswa`")->result_array();
+      }
 
 }

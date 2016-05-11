@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <title>Data Usulan</title>
-<link href="http://localhost/topik/assets/Untitled-2.css"  rel="stylesheet">
-<link href="http://localhost/topik/assets/bootstrap.min.css" rel="stylesheet">
+<link href="http://localhost/MonitoringSkripsi/assets/Untitled-2.css"  rel="stylesheet">
+<link href="http://localhost/MonitoringSkripsi/assets/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 <section class="banner">
 <div class="container">
   <div class="row">
-  <img src="http://localhost/topik/assets/header.png">
+  <img src="http://localhost/MonitoringSkripsi/assets/header.png">
   </div>
   </div>
   </section>
@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-          <li><a href=""><img src="http://localhost/topik/assets/koor.jpg"></a></li>
+          <li><a href=""><img src="http://localhost/MonitoringSkripsi/assets/koor.jpg"></a></li>
            <li style="color:#fff; text-align:center;">Army Justitia S.Kom, M.kom</li>
 		  <li style="color:#fff; text-align:center;">0987654321</li>
        

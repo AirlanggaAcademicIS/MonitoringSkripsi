@@ -1,71 +1,75 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of oMembimbing
- *
- * @author IvenM
- */
 class Membimbing extends CI_Model{
-    /* Member variables */
-      var $idSkripsi;
-      var $nik;
-      var $subjek;
-      var $jenis;
-      var $persetujuan;
-      
-      function __construct() {
+    
+    var $id_bimbingan;
+    var $id_skripsi;
+    var $NIK;
+    var $Subjek;
+    var $Persetujuan;
+    var $Jenis;
+    var $Tanggal;
+    
+    function __construct() {
           parent::__construct();
       }
       
-      /* Member functions */
-      function getIdSkripsi() {
-          return $this->idSkripsi;
-      }
+    function getId_bimbingan() {
+        return $this->id_bimbingan;
+    }
 
-      function getNik() {
-          return $this->nik;
-      }
+    function getId_skripsi() {
+        return $this->id_skripsi;
+    }
 
-      function getSubjek() {
-          return $this->subjek;
-      }
+    function getNIK() {
+        return $this->NIK;
+    }
 
-      function getJenis() {
-          return $this->jenis;
-      }
+    function getSubjek() {
+        return $this->Subjek;
+    }
 
-      function getPersetujuan() {
-          return $this->persetujuan;
-      }
+    function getPersetujuan() {
+        return $this->Persetujuan;
+    }
 
-      function setIdSkripsi($idSkripsi) {
-          $this->idSkripsi = $idSkripsi;
-      }
+    function getJenis() {
+        return $this->Jenis;
+    }
 
-      function setNik($nik) {
-          $this->nik = $nik;
-      }
+    function getTanggal() {
+        return $this->Tanggal;
+    }
 
-      function setSubjek($subjek) {
-          $this->subjek = $subjek;
-      }
+    function setId_bimbingan($id_bimbingan) {
+        $this->id_bimbingan = $id_bimbingan;
+    }
 
-      function setJenis($jenis) {
-          $this->jenis = $jenis;
-      }
+    function setId_skripsi($id_skripsi) {
+        $this->id_skripsi = $id_skripsi;
+    }
 
-      function setPersetujuan($persetujuan) {
-          $this->persetujuan = $persetujuan;
-      }
+    function setNIK($NIK) {
+        $this->NIK = $NIK;
+    }
 
-      function getAllMembimbing(){
-          return $this->db->query("SELECT * FROM `membimbing`")->result_array();
-      }
-      
+    function setSubjek($Subjek) {
+        $this->Subjek = $Subjek;
+    }
+
+    function setPersetujuan($Persetujuan) {
+        $this->Persetujuan = $Persetujuan;
+    }
+
+    function setJenis($Jenis) {
+        $this->Jenis = $Jenis;
+    }
+
+    function setTanggal($Tanggal) {
+        $this->Tanggal = $Tanggal;
+    }
+
+
+    
 }

@@ -93,9 +93,7 @@ class Laporan extends CI_Controller {
             $this->allMahasiswa = $this->Mahasiswa->getAllMahasiswa();
             $this->allMembimbing = $this->Membimbing->getAllMembimbing();
             $this->allSkripsi = $this->Skripsi->getAllSkripsi();
-            echo 'NIK',$NIK;
             $this->dosen = $this->Dosen->getDosen($NIK);
-            
             $data = array(
                 'detailDosen' => $this->generateDetail($this->dosen, $this->allMembimbing, $this->allSkripsi),
                 'allMahasiswa' => $this->allMahasiswa
@@ -110,23 +108,25 @@ class Laporan extends CI_Controller {
         function generateDetail($dosen, $allMembimbing, $allSkripsi){
             $mhsBimbing = array();
             foreach($allMembimbing as $membimbing){
-                if($dosen['NIK'] == $membimbing['NIK']){
-                    $skripsi = $this->Skripsi->getSkripsi($membimbing['IDSkripsi']);
-                    $kbk = $this->KBK->getKBK($skripsi['id_kbk']);
-                    $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi['NIM']);
+                if($dosen->NIK == $membimbing['NIK']){
+                    $skripsi = $this->Skripsi->getSkripsi($membimbing['id_skripsi']);
+//                    $kbk = $this->KBK->getKBK($skripsi->id_kbk);
+                    $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi->nim);
+                    echo "<br>NIM",$mahasiswa->NIM;
                     
                     $mhsTemp = array();
-                    $mhsTemp[] = $mahasiswa['NIM'];
-                    $mhsTemp[] = $mahasiswa['Nama_Mahasiswa'];
-                    $mhsTemp[] = $skripsi['Judul'];
-                    $mhsTemp[] = $kbk['namaKBK'];
+                    $mhsTemp[] = $mahasiswa->NIM;
+                    $mhsTemp[] = $mahasiswa->Nama;
+                    $mhsTemp[] = $skripsi->id_kbk;
+                    $mhsTemp[] = $skripsi->judul;
+//                    $mhsTemp[] = $kbk['namaKBK'];
                     
                     $mhsBimbing[] = $mhsTemp;
                 }
             }
             
-            return mhsBimbing;
-            
+            return $mhsBimbing;
         }
+        
         
 }

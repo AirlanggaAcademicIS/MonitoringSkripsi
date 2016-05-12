@@ -27,7 +27,8 @@
                             $this->table->set_heading(array('NIM', 'Nama', 'KBK', 'Judul Skripsi'));
 
                             // separate row array
-                            foreach($laporanTanggungan as $row){
+
+                            foreach($detailDosen as $row){
                                 $this->table->add_row($row);
                             }
                             echo $this->table->generate();

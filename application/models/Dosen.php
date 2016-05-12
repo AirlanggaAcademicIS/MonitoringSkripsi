@@ -1,14 +1,15 @@
 <?php
    class Dosen extends CI_Model {
       /* Member variables */
-      var $nik;
-      var $nama;
-      var $IDKBK;
-      var $idtahunajar;
-      var $alamat;
-      var $telepon;
-      var $email;
-      var $password;
+      var $NIK;
+      var $Nama;
+      var $Alamat;
+      var $Telepon;
+      var $Email;
+      var $Password;
+      var $Prodi;
+      var $KBK;
+      var $TahunAjar;
       
       function __construct() {
           parent::__construct();
@@ -16,72 +17,85 @@
       
       /* Member functions */
       
-      function getNik() {
-          return $this->nik;
+      function getNIK() {
+          return $this->NIK;
       }
 
       function getNama() {
-          return $this->nama;
-      }
-
-      function getIDKBK() {
-          return $this->IDKBK;
-      }
-
-      function getIdtahunajar() {
-          return $this->idtahunajar;
+          return $this->Nama;
       }
 
       function getAlamat() {
-          return $this->alamat;
+          return $this->Alamat;
       }
 
       function getTelepon() {
-          return $this->telepon;
+          return $this->Telepon;
       }
 
       function getEmail() {
-          return $this->email;
+          return $this->Email;
       }
 
       function getPassword() {
-          return $this->password;
+          return $this->Password;
       }
 
-      function setNik($nik) {
-          $this->nik = $nik;
+      function getProdi() {
+          return $this->Prodi;
       }
 
-      function setNama($nama) {
-          $this->nama = $nama;
+      function getKBK() {
+          return $this->KBK;
       }
 
-      function setIDKBK($IDKBK) {
-          $this->IDKBK = $IDKBK;
+      function getTahunAjar() {
+          return $this->TahunAjar;
       }
 
-      function setIdtahunajar($idtahunajar) {
-          $this->idtahunajar = $idtahunajar;
+      function setNIK($NIK) {
+          $this->NIK = $NIK;
       }
 
-      function setAlamat($alamat) {
-          $this->alamat = $alamat;
+      function setNama($Nama) {
+          $this->Nama = $Nama;
       }
 
-      function setTelepon($telepon) {
-          $this->telepon = $telepon;
+      function setAlamat($Alamat) {
+          $this->Alamat = $Alamat;
       }
 
-      function setEmail($email) {
-          $this->email = $email;
+      function setTelepon($Telepon) {
+          $this->Telepon = $Telepon;
       }
 
-      function setPassword($password) {
-          $this->password = $password;
+      function setEmail($Email) {
+          $this->Email = $Email;
       }
+
+      function setPassword($Password) {
+          $this->Password = $Password;
+      }
+
+      function setProdi($Prodi) {
+          $this->Prodi = $Prodi;
+      }
+
+      function setKBK($KBK) {
+          $this->KBK = $KBK;
+      }
+
+      function setTahunAjar($TahunAjar) {
+          $this->TahunAjar = $TahunAjar;
+      }
+
+            
+      /*
+       * Databse Method helper
+       */
       
       function getDosen($NIK){
-          return $this->db->query("SELECT * FROM `dosen` WHERE NIK = "+$NIK)->result_array();
+          return $this->db->get_where('dosen', array('NIK' => $NIK))->row();
       }
       
       function getAllDosen(){

@@ -13,71 +13,88 @@
  */
 class Mahasiswa extends CI_Model{
     /* Member variables */
-      var $nim;
-      var $nama;
-      var $password;
-      var $alamat;
-      var $telepon;
-      var $email;
+      var $NIM;
+      var $Nama;
+      var $Alamat;
+      var $Telepon;
+      var $Email;
+      var $Password;
+      var $Prodi;
       
       function __construct() {
           parent::__construct();
       }
       /* Member functions */
       
-      function getNim() {
-          return $this->nim;
+      function getNIM() {
+          return $this->NIM;
       }
 
       function getNama() {
-          return $this->nama;
-      }
-
-      function getPassword() {
-          return $this->password;
+          return $this->Nama;
       }
 
       function getAlamat() {
-          return $this->alamat;
+          return $this->Alamat;
       }
 
       function getTelepon() {
-          return $this->telepon;
+          return $this->Telepon;
       }
 
       function getEmail() {
-          return $this->email;
+          return $this->Email;
       }
 
-      function setNim($nim) {
-          $this->nim = $nim;
+      function getPassword() {
+          return $this->Password;
       }
 
-      function setNama($nama) {
-          $this->nama = $nama;
+      function getProdi() {
+          return $this->Prodi;
       }
 
-      function setPassword($password) {
-          $this->password = $password;
+      function setNIM($NIM) {
+          $this->NIM = $NIM;
       }
 
-      function setAlamat($alamat) {
-          $this->alamat = $alamat;
+      function setNama($Nama) {
+          $this->Nama = $Nama;
       }
 
-      function setTelepon($telepon) {
-          $this->telepon = $telepon;
+      function setAlamat($Alamat) {
+          $this->Alamat = $Alamat;
       }
 
-      function setEmail($email) {
-          $this->email = $email;
+      function setTelepon($Telepon) {
+          $this->Telepon = $Telepon;
       }
       
       function getMahasiswa($NIM){
           return $this->db->query("SELECT * FROM `mahasiswa` WHERE NIM = "+$NIM)->result_array();
       }
-      
 
+      function setEmail($Email) {
+          $this->Email = $Email;
+      }
+
+      function setPassword($Password) {
+          $this->Password = $Password;
+      }
+
+      function setProdi($Prodi) {
+          $this->Prodi = $Prodi;
+      }
+
+            
+      /*
+       * Database Method 
+       */
+      
+      function getMahasiswa($NIM){
+          return $this->db->get_where('mahasiswa', array('NIM' => $NIM))->row();
+      }
+      
       function getAllMahasiswa(){
           return $this->db->query("SELECT * FROM `mahasiswa`")->result_array();
       }

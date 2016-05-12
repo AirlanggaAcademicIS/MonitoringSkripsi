@@ -1,78 +1,117 @@
 <?php
    class Skripsi extends CI_Model{
       /* Member variables */
-      var $idSkripsi;
-      var $idKBK;
-      var $judul;
-      var $nim;
-      var $tglTopik;
-      var $tglProposal;
-      var $tglSkripsi;
-      
+      var $id_skripsi;
+      var $Tanggal;
+      var $KBK;
+      var $Topik;
+      var $NIM;
+      var $NIK1;
+      var $NIK2;
+      var $TahunAjar;
+      var $TanggalTopik;
+      var $TanggalProposal;
+      var $TanggalSkripsi;
       
       function __construct() {
           parent::__construct();
       }
       /* Member functions */
       
-      function getIdSkripsi() {
-          return $this->idSkripsi;
-      }
-
-      function getIdKBK() {
-          return $this->idKBK;
+      function getId_skripsi() {
+          return $this->id_skripsi;
       }
 
       function getJudul() {
-          return $this->judul;
+          return $this->Judul;
       }
 
-      function getNim() {
-          return $this->nim;
+      function getKBK() {
+          return $this->KBK;
       }
 
-      function getTglTopik() {
-          return $this->tglTopik;
+      function getTopik() {
+          return $this->Topik;
       }
 
-      function getTglProposal() {
-          return $this->tglProposal;
+      function getNIM() {
+          return $this->NIM;
       }
 
-      function getTglSkripsi() {
-          return $this->tglSkripsi;
+      function getNIK1() {
+          return $this->NIK1;
       }
 
-      function setIdSkripsi($idSkripsi) {
-          $this->idSkripsi = $idSkripsi;
+      function getNIK2() {
+          return $this->NIK2;
       }
 
-      function setIdKBK($idKBK) {
-          $this->idKBK = $idKBK;
+      function getTahunAjar() {
+          return $this->TahunAjar;
       }
 
-      function setJudul($judul) {
-          $this->judul = $judul;
+      function getTanggalTopik() {
+          return $this->TanggalTopik;
       }
 
-      function setNim($nim) {
-          $this->nim = $nim;
+      function getTanggalProposal() {
+          return $this->TanggalProposal;
       }
 
-      function setTglTopik($tglTopik) {
-          $this->tglTopik = $tglTopik;
+      function getTanggalSkripsi() {
+          return $this->TanggalSkripsi;
       }
 
-      function setTglProposal($tglProposal) {
-          $this->tglProposal = $tglProposal;
+      function setId_skripsi($id_skripsi) {
+          $this->id_skripsi = $id_skripsi;
       }
 
-      function setTglSkripsi($tglSkripsi) {
-          $this->tglSkripsi = $tglSkripsi;
+      function setJudul($Judul) {
+          $this->Judul = $Judul;
       }
 
+      function setKBK($KBK) {
+          $this->KBK = $KBK;
+      }
+
+      function setTopik($Topik) {
+          $this->Topik = $Topik;
+      }
+
+      function setNIM($NIM) {
+          $this->NIM = $NIM;
+      }
+
+      function setNIK1($NIK1) {
+          $this->NIK1 = $NIK1;
+      }
+
+      function setNIK2($NIK2) {
+          $this->NIK2 = $NIK2;
+      }
+
+      function setTahunAjar($TahunAjar) {
+          $this->TahunAjar = $TahunAjar;
+      }
+
+      function setTanggalTopik($TanggalTopik) {
+          $this->TanggalTopik = $TanggalTopik;
+      }
+
+      function setTanggalProposal($TanggalProposal) {
+          $this->TanggalProposal = $TanggalProposal;
+      }
+
+      function setTanggalSkripsi($TanggalSkripsi) {
+          $this->TanggalSkripsi = $TanggalSkripsi;
+      }
+
+      /*
+       * Database Method Caller
+       */
+      
       function getSkripsi($id){
-          return $this->db->query("SELECT * FROM `id_skripsi` WHERE id_skripsi = "+$id)->result_array();
+          return $this->db->get_where('skripsi', array('id_skripsi' => $id))->row();
       }
       
       function getAllSkripsi(){

@@ -35,10 +35,15 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<div id="wrapper">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-custom navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -46,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Skripsiku</a>
+                <a class="navbar-brand ukuranlogo" href="index.html"><img src="<?php echo base_url();?>assets/header.png"></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -231,7 +236,12 @@
                             </a>
                         </li>
                         <li class="divider"></li>
-                       
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
@@ -260,25 +270,28 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
+                                <a href="#"><img class="ukurangambar" src="<?php echo base_url();?>assets/yey.jpg"></a>
                             </div>
+                            
                             <!-- /input-group -->
                         </li>
-                      
-                      
                         <li>
-                            <a href="kuotadosen.html"><i class="fa fa-table fa-fw"></i> Kuota Dosen Pembimbing</a>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
+                        </li>
+                        
+                             
+                        <li>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                         </li>
                         <li>
-                            <a href="bimbingan.html"><i class="fa fa-edit fa-fw"></i> Bimbingan</a>
+                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Progress</a>
                         </li>
-                      
+                                                   </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                        
+                      
+                      
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -288,4 +301,41 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-</head>
+
+		<!--
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Konten kalian disini</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+           
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="<?php echo base_url();?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?php echo base_url();?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<?php echo base_url();?>assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="<?php echo base_url();?>assets/bower_components/raphael/raphael-min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/morrisjs/morris.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="<?php echo base_url();?>assets/dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

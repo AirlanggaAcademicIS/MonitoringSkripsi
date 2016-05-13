@@ -70,10 +70,6 @@ class Mahasiswa extends CI_Model{
           $this->Telepon = $Telepon;
       }
       
-      function getMahasiswa($NIM){
-          return $this->db->query("SELECT * FROM `mahasiswa` WHERE NIM = "+$NIM)->result_array();
-      }
-
       function setEmail($Email) {
           $this->Email = $Email;
       }

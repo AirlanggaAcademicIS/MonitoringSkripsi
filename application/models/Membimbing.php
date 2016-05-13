@@ -69,7 +69,14 @@ class Membimbing extends CI_Model{
     function setTanggal($Tanggal) {
         $this->Tanggal = $Tanggal;
     }
-
+    
+    function getMembimbing($NIM){
+          return $this->db->get_where('membimbing', array('NIM' => $NIM))->row();
+      }
+      
+      function getAllMembimbing(){
+          return $this->db->query("SELECT * FROM `membimbing`")->result_array();
+      }
 
     
 }

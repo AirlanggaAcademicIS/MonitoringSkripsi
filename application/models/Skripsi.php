@@ -115,7 +115,7 @@
       }
       
       function getAllSkripsi(){
-          return $this->db->query("SELECT * FROM `id_skripsi`")->result_array();
+          return $this->db->query("SELECT * FROM `skripsi`")->result_array();
       }
 
    }

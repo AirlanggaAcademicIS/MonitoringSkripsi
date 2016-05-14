@@ -12,7 +12,7 @@ class Laporan extends CI_Controller {
             parent::__construct();
             $this->load->model('Dosen');
             $this->load->model('Mahasiswa');
-            $this->load->model('Membimbing');
+            $this->load->model('Bimbingan');
             $this->load->model('Skripsi');
             $this->load->library('table');
         }

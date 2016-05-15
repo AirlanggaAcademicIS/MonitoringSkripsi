@@ -1,6 +1,6 @@
 <?php
 
-class Membimbing extends CI_Model{
+class Bimbingan extends CI_Model{
     
     var $id_bimbingan;
     var $id_skripsi;

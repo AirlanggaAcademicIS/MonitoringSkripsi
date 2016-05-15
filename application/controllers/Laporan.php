@@ -52,7 +52,7 @@ class Laporan extends CI_Controller {
         
         public function minatkbk()
 	{
-		$this->load->view('laporan_minatkbk_page');
+		$this->load->view('laporan/laporan_minatkbk_page');
 	}
 	public function jenis_kbk()
 	{

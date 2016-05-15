@@ -72,7 +72,7 @@
                         
                              
                         <li>
-                            <a href=""><i class="fa fa-table fa-fw"></i> Bimbingan</a>
+                            <a href="http://localhost/MonitoringSkripsi/Bimbingan/bimbingan_page"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                         </li>
                         <li>
                             <a href=""><i class="fa fa-edit fa-fw"></i> Progress</a>
@@ -93,51 +93,10 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-         <div id="page-wrapper">
+        <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Selamat Datang di Halaman Bimbingan</h1>
-                </div>
-               <div class="col-md-8" style="text-align:center">
-                                      
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Tanggal</th>
-                                            <th>Catatan/Konsultasi</th>
-                                            <th>Dosen Pembimbing</th>
-                                             <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>04-05-2016</td>
-                                            <td>Konsultasi BAB 1</td>
-                                            <td>Dosen Pembimbing 1</td>
-                                            <td>Disetujui</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>04-05-2016</td>
-                                            <td>Konsultasi BAB 1</td>
-                                            <td>Dosen Pembimbing 1</td>
-                                            <td>Disetujui</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>04-05-2016</td>
-                                            <td>Konsultasi BAB 1</td>
-                                            <td>Dosen Pembimbing 1</td>
-                                            <td>Disetujui</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <form name="form2" method="post" action="http://localhost/MonitoringSkripsi/index.php/Bimbingan/tambahan_bimbingan_page">
-  <input type="submit" name="tambahbimbingan" id="tambahbimbingan" value="Tambah Bimbingan">
-</form>
-                            </div>
+                    <h1 class="page-header">Halaman Home Mahasiswa</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

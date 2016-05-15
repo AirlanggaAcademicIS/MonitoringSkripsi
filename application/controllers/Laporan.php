@@ -54,6 +54,12 @@ class Laporan extends CI_Controller {
 	{
 		$this->load->view('laporan/Laporan_Minatkbk');
 	}
+	
+	public function minatkbktabel()
+	{
+		$this->load->view('laporan/Laporan_Minatkbk_Tabel');
+	}
+	
 	public function jenis_kbk()
 	{
 		$option = $this->input->post('jenis_laporan');

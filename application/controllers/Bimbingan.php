@@ -24,4 +24,14 @@ class Bimbingan extends CI_Controller {
             $this->load->view('bimbingan/bimbingan');
 //            $this->load->view('footer');
 	}
+	public function bimbingan_page()
+	{
+		$this->load->view('bimbingan/mahasiswa_bimbingan');
+	}
+	public function tambahan_bimbingan_page()
+	{
+		$this->load->view('bimbingan/mahasiswa_tambahan_bimbingan');
+	}
+	
+	
 }

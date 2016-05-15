@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Laporan extends CI_Controller {
         
         private $allDosen;
-        private $allMembimbing;
+        private $allBimbingan;
         private $allMahasiswa;
         private $dosen;
         
@@ -36,23 +36,23 @@ class Laporan extends CI_Controller {
         public function index(){
         
             $this->allDosen = $this->Dosen->getAllDosen();
-            $this->allMembimbing = $this->Membimbing->getAllMembimbing();
+            $this->allBimbingan = $this->Bimbingan->getAllbimbingan();
             
             $data      = array(
                             'allDosen' => $this->allDosen,
-                            'allMembimbing' => $this->allMembimbing,
-                            'laporanTanggungan' => $this->generateLaporan($this->allDosen, $this->allMembimbing)
+                            'allBimbingan' => $this->allBimbingan,
+                            'laporanTanggungan' => $this->generateLaporan($this->allDosen, $this->allBimbingan)
                            );
             
-            $this->load->view('head');
-            $this->load->view('laporan/laporan', $data);
-            $this->load->view('foot');
+            
+            $this->load->view('laporan/Laporan_Home', $data);
+           
             
 	}
         
         public function minatkbk()
 	{
-		$this->load->view('laporan/laporan_minatkbk_page');
+		$this->load->view('laporan/Laporan_Minatkbk');
 	}
 	public function jenis_kbk()
 	{
@@ -64,7 +64,7 @@ class Laporan extends CI_Controller {
 		
 	}
         
-        function generateLaporan($allDosen, $allMembimbing){
+        function generateLaporan($allDosen, $allBimbingan){
             $allTanggunganDosen = array();
             
             foreach($allDosen as $dosen){
@@ -74,8 +74,8 @@ class Laporan extends CI_Controller {
                 $tanggunganDosen[] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$dosen['NIK'].'"'.'<font color="blue">'.$dosen['Nama'].'</font>'.'</a>';
                 $tanggunganDosen[] = $dosen['IDKBK'];
                         
-                foreach($allMembimbing as $membimbing){
-                    if($dosen['NIK'] == $membimbing['NIK']){
+                foreach($allBimbingan as $bimbingan){
+                    if($dosen['NIK'] == $bimbingan['NIK']){
                         $count = $count+1;
                     }
                 }
@@ -90,11 +90,11 @@ class Laporan extends CI_Controller {
         // sub page of viewing detail dosen
         function detail_dosen($NIK){
             $this->allMahasiswa = $this->Mahasiswa->getAllMahasiswa();
-            $this->allMembimbing = $this->Membimbing->getAllMembimbing();
+            $this->allBimbingan = $this->Bimbingan->getAllBimbingan();
             $this->allSkripsi = $this->Skripsi->getAllSkripsi();
             $this->dosen = $this->Dosen->getDosen($NIK);
             $data = array(
-                'detailDosen' => $this->generateDetail($this->dosen, $this->allMembimbing, $this->allSkripsi),
+                'detailDosen' => $this->generateDetail($this->dosen, $this->allBimbingan, $this->allSkripsi),
                 'allMahasiswa' => $this->allMahasiswa
             );
             
@@ -104,11 +104,11 @@ class Laporan extends CI_Controller {
             
         }
         
-        function generateDetail($dosen, $allMembimbing, $allSkripsi){
+        function generateDetail($dosen, $allBimbingan, $allSkripsi){
             $mhsBimbing = array();
-            foreach($allMembimbing as $membimbing){
-                if($dosen->NIK == $membimbing['NIK']){
-                    $skripsi = $this->Skripsi->getSkripsi($membimbing['id_skripsi']);
+            foreach($allBimbingan as $bimbingan){
+                if($dosen->NIK == $bimbingan['NIK']){
+                    $skripsi = $this->Skripsi->getSkripsi($bimbingan['id_skripsi']);
 //                    $kbk = $this->KBK->getKBK($skripsi->id_kbk);
                     $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi->nim);
                     echo "<br>NIM",$mahasiswa->NIM;

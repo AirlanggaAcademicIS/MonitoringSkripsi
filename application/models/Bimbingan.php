@@ -70,12 +70,12 @@ class Bimbingan extends CI_Model{
         $this->Tanggal = $Tanggal;
     }
     
-    function getMembimbing($NIM){
-          return $this->db->get_where('membimbing', array('NIM' => $NIM))->row();
+    function getBimbingan($NIM){
+          return $this->db->get_where('bimbingan', array('id_bimbingan' => $NIM))->row();
       }
       
-      function getAllMembimbing(){
-          return $this->db->query("SELECT * FROM `membimbing`")->result_array();
+      function getAllBimbingan(){
+          return $this->db->query("SELECT * FROM `bimbingan`")->result_array();
       }
 
     

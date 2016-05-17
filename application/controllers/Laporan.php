@@ -50,7 +50,7 @@ class Laporan extends CI_Controller {
                             'laporanTanggungan' => $this->laporanTanggungan
                             );
             
-            $this->load->view('head'); // basic UI
+//            $this->load->view('head'); // basic UI
             $this->load->view('laporan/Laporan_Tanggungan_Dosen', $data);
         }
         
@@ -128,16 +128,21 @@ class Laporan extends CI_Controller {
                     $skripsi = $this->Skripsi->getSkripsi($membimbing['id_skripsi']);
 //                    $kbk = $this->KBK->getKBK($skripsi->id_kbk);
                     $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi->NIM);
-                    echo "<br>NIM",$mahasiswa->NIM;
+                    if(isset($mahasiswa)){
+                        echo "<br>NIM".$mahasiswa->NIM;
                     
-                    $mhsTemp = array();
-                    $mhsTemp[] = $mahasiswa->NIM;
-                    $mhsTemp[] = $mahasiswa->Nama;
-                    $mhsTemp[] = $skripsi->id_kbk;
-                    $mhsTemp[] = $skripsi->judul;
-//                    $mhsTemp[] = $kbk['namaKBK'];
+                        $mhsTemp = array();
+                        $mhsTemp[] = $mahasiswa->NIM;
+                        $mhsTemp[] = $mahasiswa->Nama;
+                        $mhsTemp[] = $skripsi->KBK;
+                        $mhsTemp[] = $skripsi->Judul;
+    //                    $mhsTemp[] = $kbk['namaKBK'];
+
+                        $mhsBimbing[] = $mhsTemp;
+                    } else {
+                        echo "Mahasiswa kosong";
+                    }
                     
-                    $mhsBimbing[] = $mhsTemp;
                 }
             }
             

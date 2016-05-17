@@ -18,10 +18,11 @@ class kuotaDosen extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-            $this->load->view('header');
-            $this->load->view('kuotaDosen/kuotaDosen');
-            $this->load->view('footer');
-	}
+	
+    public function kuota()
+    {
+        
+      $this->load->view('kuotadosen/mahasiswa_kuota_dosen');  
+        
+    }
 }

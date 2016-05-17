@@ -67,7 +67,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
+                            <a href="http://localhost/MonitoringSkripsi/kuotadosen/kuota"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
                         </li>
                         
                              

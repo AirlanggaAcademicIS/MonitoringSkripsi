@@ -4,15 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Laporan extends CI_Controller {
         
         private $allDosen;
-        private $allBimbingan;
+        private $allSkripsi;
+        private $allMembimbing;
         private $allMahasiswa;
+        private $laporanTanggungan;
+//        private $laporanGrafik;
         private $dosen;
         
         function __construct(){
             parent::__construct();
             $this->load->model('Dosen');
             $this->load->model('Mahasiswa');
-            $this->load->model('Membimbing');
+            $this->load->model('Bimbingan');
             $this->load->model('Skripsi');
             $this->load->library('table');
         }
@@ -34,21 +37,22 @@ class Laporan extends CI_Controller {
 	 */
         
         public function index(){
+            $this->load->view('laporan/Laporan_Home');
+	}
         
+        public function tanggungandosen(){
             $this->allDosen = $this->Dosen->getAllDosen();
-            $this->allBimbingan = $this->Bimbingan->getAllbimbingan();
+            $this->allSkripsi = $this->Skripsi->getAllSkripsi();
+            $this->allMembimbing = $this->Bimbingan->getAllBimbingan();
+            $this->laporanTanggungan = $this->generateLaporan($this->allDosen, $this->allSkripsi);
             
             $data      = array(
-                            'allDosen' => $this->allDosen,
-                            'allBimbingan' => $this->allBimbingan,
-                            'laporanTanggungan' => $this->generateLaporan($this->allDosen, $this->allBimbingan)
-                           );
+                            'laporanTanggungan' => $this->laporanTanggungan
+                            );
             
-            
-            $this->load->view('laporan/Laporan_Home', $data);
-           
-            
-	}
+            $this->load->view('head'); // basic UI
+            $this->load->view('laporan/Laporan_Tanggungan_Dosen', $data);
+        }
         
         public function minatkbk()
 	{
@@ -70,23 +74,31 @@ class Laporan extends CI_Controller {
 		
 	}
         
-        function generateLaporan($allDosen, $allBimbingan){
+        function generateLaporan($allDosen, $allSkripsi){
             $allTanggunganDosen = array();
             
             foreach($allDosen as $dosen){
                 $tanggunganDosen = array();
-                $count = 0;
-                $tanggunganDosen[] = $dosen['NIK'];
-                $tanggunganDosen[] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$dosen['NIK'].'"'.'<font color="blue">'.$dosen['Nama'].'</font>'.'</a>';
-                $tanggunganDosen[] = $dosen['IDKBK'];
+                $count1 = 0;
+                $count2 = 0;
+                
+                $tanggunganDosen['NIK'] = $dosen['NIK']; // 1. NIK
+                // 2. Nama , a href url folder views
+                $tanggunganDosen['Nama'] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$dosen['NIK'].'"'.'<font color="blue">'.$dosen['Nama'].'</font>'.'</a>';
+                $tanggunganDosen['KBK'] = $dosen['KBK']; // 3. KBK
                         
-                foreach($allBimbingan as $bimbingan){
-                    if($dosen['NIK'] == $bimbingan['NIK']){
-                        $count = $count+1;
+                foreach($allSkripsi as $skripsi){
+                    if($dosen['NIK'] == $skripsi['NIK1']){
+                        $count1 = $count1+1;
+                    }
+                    if($dosen['NIK'] == $skripsi['NIK2']){
+                        $count2 = $count2+1;
                     }
                 }
 
-                $tanggunganDosen[] = $count;
+                $tanggunganDosen['count1'] = $count1; // 4. Count1
+                $tanggunganDosen['count2'] = $count2; // 5. Count2
+                $tanggunganDosen['allCount'] = $count1+$count2; // 6. Count Total
                 $allTanggunganDosen[] = $tanggunganDosen;
             }
             // return array
@@ -96,27 +108,26 @@ class Laporan extends CI_Controller {
         // sub page of viewing detail dosen
         function detail_dosen($NIK){
             $this->allMahasiswa = $this->Mahasiswa->getAllMahasiswa();
-            $this->allBimbingan = $this->Bimbingan->getAllBimbingan();
+            $this->allMembimbing = $this->Bimbingan->getAllBimbingan();
             $this->allSkripsi = $this->Skripsi->getAllSkripsi();
             $this->dosen = $this->Dosen->getDosen($NIK);
             $data = array(
-                'detailDosen' => $this->generateDetail($this->dosen, $this->allBimbingan, $this->allSkripsi),
+                'detailDosen' => $this->generateDetail($this->dosen, $this->allMembimbing, $this->allSkripsi),
                 'allMahasiswa' => $this->allMahasiswa
             );
             
             $this->load->view('head');
             $this->load->view('laporan/detail_dosen', $data);
             $this->load->view('foot');
-            
         }
         
-        function generateDetail($dosen, $allBimbingan, $allSkripsi){
+        function generateDetail($dosen, $allMembimbing, $allSkripsi){
             $mhsBimbing = array();
-            foreach($allBimbingan as $bimbingan){
-                if($dosen->NIK == $bimbingan['NIK']){
-                    $skripsi = $this->Skripsi->getSkripsi($bimbingan['id_skripsi']);
+            foreach($allMembimbing as $membimbing){
+                if($dosen->NIK == $membimbing['NIK']){
+                    $skripsi = $this->Skripsi->getSkripsi($membimbing['id_skripsi']);
 //                    $kbk = $this->KBK->getKBK($skripsi->id_kbk);
-                    $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi->nim);
+                    $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi->NIM);
                     echo "<br>NIM",$mahasiswa->NIM;
                     
                     $mhsTemp = array();
@@ -132,6 +143,5 @@ class Laporan extends CI_Controller {
             
             return $mhsBimbing;
         }
-        
         
 }

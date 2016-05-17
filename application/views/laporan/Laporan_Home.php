@@ -72,7 +72,7 @@
                         
                              
                         <li>
-                            <a href=""> Tanggungan Dosen</a>
+                            <a href="http://localhost/MonitoringSkripsi/laporan/tanggungandosen"> Tanggungan Dosen</a>
                         </li>
                         <li>
                             <a href=""> Status Mahasiswa</a>

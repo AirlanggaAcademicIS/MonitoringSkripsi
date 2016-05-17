@@ -20,11 +20,13 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Home');
-	}
-	public function bimbingan_home()
-	{
-		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Page');
+		$this->load->model('menyetujui');
+		$data['mahasiswa']=$this menyetujui->getMahasiswa();
+		$this->load->view('menyetujuibimbingan_Page');
 	}
 	
+	public function getDataMahasiswa()
+	{
+		$nim = $this->input->get->
+	}
 }

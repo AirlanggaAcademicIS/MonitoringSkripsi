@@ -28,6 +28,15 @@
 
     <!-- Custom Fonts -->
     <link href="http://localhost/MonitoringSkripsi/assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+	<link href="http://localhost/MonitoringSkripsi/assets/css/jquery.dataTables.min.css" type="text/css">
+	 <link href="http://localhost/MonitoringSkripsi/assets/css/jquery.dataTables.css" type="text/css">
+	 <link href="http://localhost/MonitoringSkripsi/assets/css/datatables.css" type="text/css">
+	 <link href="http://localhost/MonitoringSkripsi/assets/css/jquery.dataTables.min.css" type="text/css">
+	 <link href="http://localhost/MonitoringSkripsi/assets/jquery.min.js">
+	  <link href="http://localhost/MonitoringSkripsi/assets/bower_components/bootstrap/dist/js/boostrap.min.js" type="text/css">
+	 <link href="http://localhost/MonitoringSkripsi/assets/jquery.js" type="text/javascript">
+	 <link href="http://localhost/MonitoringSkripsi/assets/jquery.dataTables.min.css" type="text/javascript">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,7 +48,7 @@
 </head>
 
 <body>
-
+	 
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -112,12 +121,13 @@
           </table>
 </style><table width="1050" height="186" border="1" id="tampilan">
 	        <tr>
+			  <th width="50" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>NO</strong></th>
 	          <th width="112" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>NIM</strong></th>
 	          <td width="252" align="center" bordercolor="#000000" bgcolor="#999999"><strong>Nama Mahasiswa </strong></td>
-	          <td width="517" align="center" bordercolor="#000000" bgcolor="#999999"><strong>Judul</strong></td>
-              <td width="165" align="center" bordercolor="#000000" bgcolor="#999999"><strong>Persetujuan</strong></td>
+	         <!-- <td width="517" align="center" bordercolor="#000000" bgcolor="#999999"><strong>Judul</strong></td> -->
+             <!--<td width="165" align="center" bordercolor="#000000" bgcolor="#999999"><strong>Persetujuan</strong></td> -->
 	        </tr>
-	        
+	        <!--
 	        <tr>
 	          <th height="27" align="center" bordercolor="#000000" scope="row">081311633013</th>
 	          <td align="center" bordercolor="#000000">Eka Rachmawati </td>
@@ -147,9 +157,24 @@
 	          <td align="center" bordercolor="#000000">&nbsp;</td>
 	          <td align="center" bordercolor="#000000">&nbsp;</td>
               <td align="center" bordercolor="#000000">&nbsp;</td>
-			</tr> 
-          </table>
+			</tr> -->
+			</tbody>
+			<?php 
+			$count = 1;
+			foreach ($mahasiswa as $row) {?>
+			<tr>
+			<td><?php echo $count; ?></td>
+			<td><?php echo $row->NIM; ?></td>
+			<td><?php echo $row->Nama; ?></td>
+		<!--	<td><?php echo $row->Judul; ?></td> -->
+			</tr>
+			
+			<?php $count++;}?>
+			</tbody>
+			
+          </table> 
 		  </div>
+		 
 </div>
         </div>
         <!-- /#page-wrapper -->
@@ -169,11 +194,12 @@
     <!-- Morris Charts JavaScript -->
     <script src="http://localhost/MonitoringSkripsi/assets/bower_components/raphael/raphael-min.js"></script>
     <script src="http://localhost/MonitoringSkripsi/assets/bower_components/morrisjs/morris.min.js"></script>
-    <script src="http://localhost/MonitoringSkripsi/assets/js/morris-data.js"></script>
+   <!-- <script src="http://localhost/MonitoringSkripsi/assets/js/morris-data.js"></script> -->
 
     <!-- Custom Theme JavaScript -->
     <script src="http://localhost/MonitoringSkripsi/assets/dist/js/sb-admin-2.js"></script>
 
+    <link href="http://localhost/MonitoringSkripsi/assets/mahasiswa.js" type="text/javascript">
 </body>
 
 </html>

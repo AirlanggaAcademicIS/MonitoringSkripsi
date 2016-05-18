@@ -45,25 +45,37 @@
         <!-- Navigation -->
         <nav class="navbar navbar-custom navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-            <img src="http://localhost/MSTopik/assets/header.png">
+            <img src="http://localhost/MonitoringSkripsi/assets/header.png">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>                </button>
+                    <span class="sr-only">Toggle navigation</span>
+                    
+                </button>
+                
             </div>
             
 
             <div class="navbar-default sidebar" role="navigation">
-              <div class="sidebar-nav navbar-collapse">
+                <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
                                <h3> Selamat Datang!
-                                <br><br> KOOR SKRIPSI
-                                <br>
-                                1234567890
-                               </h3>
+                                <br><br>KOOR SKRIPSI
+                                <br>081313222773</h3>
                             </div>
                             
                             <!-- /input-group -->
+                        </li>
+                        <li>
+                            
+                        </li>
+                        
+                             
+                        <li>
+                            
+                        </li>
+                        <li>
+                           
                         </li>
                   </ul>
                             <!-- /.nav-second-level -->
@@ -75,41 +87,56 @@
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
-              </div>
+                </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        <div id="page-wrapper"><div class="row"><div class="col-lg-12">
-          <h1 class="page-header">DATA USULAN TOPIK </h1>
-          <form name="form1" method="post" action="">
-                  <label>Tahun Ajar 
-                  <select name="tahunajar">
-				  <option value="2012">2011</option>
-				  <option value="2012">2012</option>
-				  <option value="2012">2013</option>
-				  <option value="2012">2014</option>
-				  <option value="2012">2015</option>
-				  <option value="2012">2016</option>
-				  <option value="2012">2017</option>
-                  </select>
-          </label>
-    </form>
-                	<p>&nbsp;</p>
-                	<table>
-                  	<thead>
-                  	<th width="20">No</th>
-                   	<th width="39">NIM</th>
-                    <th width="179">Nama</th>
-                    <th width="119">KBK</th>
-                    <th width="119">Topik</th>
-                    <th width="276">Judul</th>
-                    <th width="120">Dosen Pembimbing 1</th>
-                    <th width="119">Dosen Pembimbing 2</th>
-                    <th width="78">Kontrol</th>
-                  <tbody>
-                 
-                  <a href="<?php echo site_url('data_topik/input');?>">INPUT DATA</a>
+
+         <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">TOPIK SKRIPSI </h1>
+                </div>
+</div>
+           <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          Topik Skripsi
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form role="form">
+               <div class="col-md-8" style="text-align:center">
+                                      
+                                <form name="form1" method="post" action="">
+                                  <label for="select">Tahun Ajar</label>
+                                  <select name="select" id="select">
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                  </select>
+                                </form>
+                                <p align="justify">&nbsp;</p>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+										
+                  	<th width="20"><div align="center">No</div></th>
+                     <th width="39"><div align="center">Tanggal</div></th>
+                   	<th width="39"><div align="center">NIM</div></th>
+                    <th width="179"><div align="center">Nama</div></th>
+                    <th width="119"><div align="center">KBK</div></th>
+                    <th width="119"><div align="center">Topik</div></th>
+                    <th width="276"><div align="center">Judul</div></th>
+                    <th width="120"><div align="center">Dosen Pembimbing 1</div></th>
+                    <th width="119"><div align="center">Dosen Pembimbing 2</div></th>
+                    <th width="78"><div align="center">Kontrol</div></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                 
 <?php
 $no = 1;
 
@@ -117,7 +144,8 @@ foreach($skripsi as $value)
 {
                 ?>
                   <tr>
-                    <td><?= $no;?></td>
+                    <td><?php echo $no++ ;?></td>
+					<td><?= $value->TanggalTopik;?></td>
                     <td><?= $value->NIM;?></td>
                     <td><?= $value->Nama;?></td>
                     <td><?= $value->KBK;?></td>
@@ -131,13 +159,18 @@ foreach($skripsi as $value)
 }
                 ?>
           </table>
-                </div>
-				<!-- /.col-lg-12 -->
+		  <form name="form2" method="post" action="http://localhost/MSTopik1/index.php/data_topik/input">
+              <input type="submit" name="TambahData id="TambahData" value="Tambah Data">
+		  </form>
+         
 </div>
+       </div>
+                <!-- /.col-lg-12 -->
+            </div>
             <!-- /.row -->
            
             <!-- /.row -->
-      </div>
+        </div>
         <!-- /#page-wrapper -->
 
     </div>

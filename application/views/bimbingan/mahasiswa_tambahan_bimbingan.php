@@ -67,15 +67,15 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
+                            <a href=""><i class=""></i> Kuota Dosen Pembimbing</a>
                         </li>
                         
                              
                         <li>
-                            <a href=""><i class="fa fa-table fa-fw"></i> Bimbingan</a>
+                            <a href=""><i class=""></i> Bimbingan</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-edit fa-fw"></i> Progress</a>
+                            <a href=""><i class=""></i> Progress</a>
                         </li>
                   </ul>
                             <!-- /.nav-second-level -->
@@ -107,7 +107,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                <form id="form1" name="form1" method="post" action="http://localhost/MonitoringSkripsi/index.php/Bimbingan/bimbingan_insert">
+                                    <!-- / <form role="form">-->
 <div class="form-group">
   <label>Tanggal Bimbingan</label> 
   <input class="form-control" name="tanggal" placeholder="03-05-2016">
@@ -129,6 +130,7 @@
                                                 </label>
                                             </div> 
                                             <button type="submit" class="btn btn-default">Submit Button</button>
+                                            </form>
                 </div>
                 
                 <!-- /.col-lg-12 -->

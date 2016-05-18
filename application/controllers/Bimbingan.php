@@ -32,6 +32,21 @@ class Bimbingan extends CI_Controller {
 	{
 		$this->load->view('bimbingan/mahasiswa_tambahan_bimbingan');
 	}
-	
-	
+	public function bimbingan_insert()
+	{
+		$Tanggal=$this->input->post('tanggal');
+		$Subjek=$this->input->post('catatan');
+		
+		$this->load->model('Bimbingan1');
+		$this->Bimbingan1->insert_tambahan($Subjek,$Tanggal);
+	}
+	public function tabel_bimbingan()
+	{
+		$this->load->model('Bimbingan1');
+		$data = array(
+			'annn' => $this->Bimbingan1->getAllBimbingan()
+			);
+		
+		$this->load->view("bimbingan/mahasiswa_bimbingan",$data);
+	}
 }

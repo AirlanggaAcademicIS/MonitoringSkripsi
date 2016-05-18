@@ -8,7 +8,7 @@ class Laporan extends CI_Controller {
         private $allMembimbing;
         private $allMahasiswa;
         private $laporanTanggungan;
-//        private $laporanGrafik;
+        private $laporanGrafik;
         private $dosen;
         
         function __construct(){
@@ -45,12 +45,13 @@ class Laporan extends CI_Controller {
             $this->allSkripsi = $this->Skripsi->getAllSkripsi();
             $this->allMembimbing = $this->Bimbingan->getAllBimbingan();
             $this->laporanTanggungan = $this->generateLaporan($this->allDosen, $this->allSkripsi);
+            $this->laporanGrafik = $this->generateGrafik($this->allDosen, $this->allSkripsi);
             
             $data      = array(
-                            'laporanTanggungan' => $this->laporanTanggungan
+                            'laporanTanggungan' => $this->laporanTanggungan,
+                            'laporanGrafik' => $this->laporanGrafik
                             );
             
-//            $this->load->view('head'); // basic UI
             $this->load->view('laporan/Laporan_Tanggungan_Dosen', $data);
         }
         
@@ -104,6 +105,36 @@ class Laporan extends CI_Controller {
             // return array
             return $allTanggunganDosen;
         }
+
+        function generateGrafik($allDosen, $allSkripsi){
+            $allTanggunganDosen = array();
+            
+            foreach($allDosen as $dosen){
+                $tanggunganDosen = array();
+                $count1 = 0;
+                $count2 = 0;
+                
+                // 2. Nama , a href url folder views
+                $tanggunganDosen['Nama'] = $dosen['Nama'];
+                        
+                foreach($allSkripsi as $skripsi){
+                    if($dosen['NIK'] == $skripsi['NIK1']){
+                        $count1 = $count1+1;
+                    }
+                    if($dosen['NIK'] == $skripsi['NIK2']){
+                        $count2 = $count2+1;
+                    }
+                }
+
+                $tanggunganDosen['count1'] = $count1; // 4. Count1
+                $tanggunganDosen['count2'] = $count2; // 5. Count2
+                $tanggunganDosen['allCount'] = $count1+$count2; // 6. Count Total
+                $allTanggunganDosen[] = $tanggunganDosen;
+            }
+            // return array
+            return $allTanggunganDosen;
+        }
+
         
         // sub page of viewing detail dosen
         function detail_dosen($NIK){

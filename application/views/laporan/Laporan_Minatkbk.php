@@ -112,7 +112,7 @@
                         <div class="panel-body">
                          <div class="col-lg-6">
                             <div class="row">
-                            <form role="form">
+                            <form role="form" method="post" action="http://localhost/MonitoringSkripsi/laporan/minatkbktabel">
                             <div class="form-group">
                                             <label>Jenis KBK</label>
                                             <select class="form-control" name="jeniskbk">
@@ -125,7 +125,7 @@
                             <div class="form-group">
                                             <label>Tahun</label>
                                             <select class="form-control" name="tahun">
-                                            <option value="semua">Semua Tahun</option>
+                                            <option value="0">Semua Tahun</option>
                                             <option value="2015">2015</option>
                                             <option value="2014">2014</option>
                                             <option value="2013">2013</option>
@@ -133,7 +133,7 @@
                                             <option value="2011">2011</option>
                                             </select>
                                        </div>
-                                       <button type="submit" class="btn btn-default"><a href="http://localhost/MonitoringSkripsi/laporan/minatkbktabel">Submit</a></button>
+                                       <button type="submit" class="btn btn-default">Submit</button>
                                          </form>
                             </div></div></div>
                         </div>

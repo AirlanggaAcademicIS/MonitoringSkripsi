@@ -62,7 +62,30 @@ class Laporan extends CI_Controller {
 	
 	public function minatkbktabel()
 	{
-		$this->load->view('laporan/Laporan_Minatkbk_Tabel');
+		$jeniskbk = $this->input->post('jeniskbk');
+		$tahun = $this->input->post('tahun');
+		$this->load->model('skripsi');
+		
+		if($jeniskbk==0 && $tahun==0){
+		$allkbkalltahun = $this->skripsi->getallkbkalltahun();
+		$data = array(
+			'jumlah'=>sizeof($allkbkalltahun),
+			'isitabel'=> $allkbkalltahun
+			);
+			}
+			else if($jeniskbk!=0 && $tahun==0){
+				if($jeniskbk==1){$kbkalltahun = $this->skripsi->getkbkalltahun("'Data Mining'");}
+				else if($jeniskbk==2){$kbkalltahun = $this->skripsi->getkbkalltahun("'Sistem Pendukung Keputusan'");}
+				else if($jeniskbk==3){$kbkalltahun = $this->skripsi->getkbkalltahun("'Rekayasa Sistem Informasi'");}
+		
+		$data = array(
+			'jumlah'=>sizeof($kbkalltahun),
+			'isitabel'=> $kbkalltahun
+			);
+			}
+			
+		$this->load->view('laporan/Laporan_Minatkbk_Tabel',$data);
+		
 	}
 	
 	public function jenis_kbk()

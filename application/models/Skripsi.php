@@ -105,6 +105,125 @@
       function setTanggalSkripsi($TanggalSkripsi) {
           $this->TanggalSkripsi = $TanggalSkripsi;
       }
+	  
+	  function getkbkalltahun($jenisKBK){
+		 $sql ="SELECT q2.Nama, q1.NIM, q1.KBK, q1.TahunAjar, q1.Judul, q1.TanggalTopik, q1.TanggalProp, q1.TanggalSkripsi FROM skripsi as q1, mahasiswa as q2 where q1.NIM=q2.NIM and q1.KBK =".$jenisKBK." ";
+		  
+		  $query = $this->db->query($sql);
+        $i = 0;
+        foreach ($query->result_array() as $row)
+         {
+        	$user[$i]['nama'] = $row['Nama'];
+            $user[$i]['nim'] = $row['NIM'];
+            $user[$i]['kbk'] = $row['KBK'];
+			$user[$i]['tahunajar'] = $row['TahunAjar'];
+			$user[$i]['judul'] = $row['Judul'];
+			if($row['TanggalSkripsi'] != 0000-00-00){
+				$user[$i]['status'] = "Lulus";			
+			}
+			else if($row['TanggalProp'] != 0000-00-00){
+				$user[$i]['status'] = "Skripsi";			
+			}
+			else if($row['TanggalTopik'] != 0000-00-00){
+				$user[$i]['status'] = "Proposal";			
+			}
+			else {
+				$user[$i]['status'] = "Belum usulan topik";
+			}
+            $i++;
+        }
+        return $user;
+		  
+		  }
+		  
+		  function getallkbktahun($tahun){
+		 $sql ="SELECT q2.Nama, q1.NIM, q1.KBK, q1.TahunAjar, q1.Judul, q1.TanggalTopik, q1.TanggalProp, q1.TanggalSkripsi FROM skripsi as q1, mahasiswa as q2 where q1.NIM=q2.NIM and q1.TahunAjar =".$tahun." ";
+		  
+		  $query = $this->db->query($sql);
+        $i = 0;
+        foreach ($query->result_array() as $row)
+         {
+        	$user[$i]['nama'] = $row['Nama'];
+            $user[$i]['nim'] = $row['NIM'];
+            $user[$i]['kbk'] = $row['KBK'];
+			$user[$i]['tahunajar'] = $row['TahunAjar'];
+			$user[$i]['judul'] = $row['Judul'];
+			if($row['TanggalSkripsi'] != 0000-00-00){
+				$user[$i]['status'] = "Lulus";			
+			}
+			else if($row['TanggalProp'] != 0000-00-00){
+				$user[$i]['status'] = "Skripsi";			
+			}
+			else if($row['TanggalTopik'] != 0000-00-00){
+				$user[$i]['status'] = "Proposal";			
+			}
+			else {
+				$user[$i]['status'] = "Belum usulan topik";
+			}
+            $i++;
+        }
+        return $user;
+		  
+		  }
+		  
+		  
+		    function getallkbkalltahun(){
+		  $query = $this->db->query(' SELECT q2.Nama, q1.NIM, q1.KBK, q1.TahunAjar, q1.Judul, q1.TanggalTopik, q1.TanggalProp, q1.TanggalSkripsi FROM skripsi as q1, mahasiswa as q2 where q1.NIM=q2.NIM');
+        $i = 0;
+        foreach ($query->result_array() as $row)
+        {
+        	$user[$i]['nama'] = $row['Nama'];
+            $user[$i]['nim'] = $row['NIM'];
+            $user[$i]['kbk'] = $row['KBK'];
+			$user[$i]['tahunajar'] = $row['TahunAjar'];
+			$user[$i]['judul'] = $row['Judul'];
+			if($row['TanggalSkripsi'] != 0000-00-00){
+				$user[$i]['status'] = "Lulus";			
+			}
+			else if($row['TanggalProp'] != 0000-00-00){
+				$user[$i]['status'] = "Skripsi";			
+			}
+			else if($row['TanggalTopik'] != 0000-00-00){
+				$user[$i]['status'] = "Proposal";			
+			}
+			else {
+				$user[$i]['status'] = "Belum usulan topik";
+			}
+            $i++;
+        }
+        return $user;
+		 }
+		 
+		 function getkbktahun($jenisKBK, $tahun){
+		 $sql ="SELECT q2.Nama, q1.NIM, q1.KBK, q1.TahunAjar, q1.Judul, q1.TanggalTopik, q1.TanggalProp, q1.TanggalSkripsi FROM skripsi as q1, mahasiswa as q2 where q1.NIM=q2.NIM and q1.TahunAjar =".$tahun." and q1.KBK=".$jenisKBK." ";
+		  
+		  $query = $this->db->query($sql);
+        $i = 0;
+        foreach ($query->result_array() as $row)
+         {
+        	$user[$i]['nama'] = $row['Nama'];
+            $user[$i]['nim'] = $row['NIM'];
+            $user[$i]['kbk'] = $row['KBK'];
+			$user[$i]['tahunajar'] = $row['TahunAjar'];
+			$user[$i]['judul'] = $row['Judul'];
+			if($row['TanggalSkripsi'] != 0000-00-00){
+				$user[$i]['status'] = "Lulus";			
+			}
+			else if($row['TanggalProp'] != 0000-00-00){
+				$user[$i]['status'] = "Skripsi";			
+			}
+			else if($row['TanggalTopik'] != 0000-00-00){
+				$user[$i]['status'] = "Proposal";			
+			}
+			else {
+				$user[$i]['status'] = "Belum usulan topik";
+			}
+            $i++;
+        }
+        return $user;
+		  
+		  }
+		  
 
       /*
        * Database Method Caller

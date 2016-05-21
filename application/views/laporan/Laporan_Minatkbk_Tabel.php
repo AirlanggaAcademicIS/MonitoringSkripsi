@@ -112,11 +112,34 @@
                             <div class="dataTable_wrapper">
                                 <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
                                     <thead>
-                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">Nama</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 204px;">NIM</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Judul</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Status</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">Jenis KBK</th></tr>
+                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">Nama</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 204px;">NIM</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">Jenis KBK</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">Tahun</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Judul</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Status</th></tr>
                                     </thead>
                                     <tbody>
-                                      
-                                        
+                                    <?php 
+									for($i=0; $i<$jumlah; $i++){
+                                      echo "<tr>";
+                                      echo "<td>".$isitabel[$i]['nama']."</td>";
+									   echo "<td>".$isitabel[$i]['nim']."</td>";
+									    echo "<td>".$isitabel[$i]['kbk']."</td>";
+										echo "<td>".$isitabel[$i]['tahunajar']."</td>";
+										echo "<td>".$isitabel[$i]['judul']."</td>";
+										echo "<td>".$isitabel[$i]['status']."</td>";										
+									  /* if($isitabel['tgl3'] != 0000-00-00){
+											echo "<td>Lulus</td>";		
+											}
+											else if($isitabel['tgl2'] != 0000-00-00){
+												echo "<td>Skripsi</td>";			
+											}
+											else if($isitabel['tgl1'] != 0000-00-00){
+																echo "<td>Proposal</td>";
+			
+											}
+											else {
+												echo "<td>Belum usulan topik</td>";
+											}*/
+                                      echo "</tr>";
+									}
+									  ?>
                                       </tbody>
                                 </table></div></div></div>
                             </div>

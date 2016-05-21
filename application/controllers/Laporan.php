@@ -60,6 +60,11 @@ class Laporan extends CI_Controller {
 		$this->load->view('laporan/Laporan_Minatkbk');
 	}
 	
+	 public function minatkbk()
+	{
+		$this->load->view('laporan/Laporan_Minatkbk');
+	}
+	
 	public function minatkbktabel()
 	{
 		$jeniskbk = $this->input->post('jeniskbk');
@@ -83,6 +88,24 @@ class Laporan extends CI_Controller {
 			'isitabel'=> $kbkalltahun
 			);
 			}
+			else if($jeniskbk==0 && $tahun!=0){
+				$allkbktahun = $this->skripsi->getallkbktahun($tahun);
+		$data = array(
+			'jumlah'=>sizeof($allkbktahun),
+			'isitabel'=> $allkbktahun
+			);
+			}
+			else if($jeniskbk!=0 && $tahun!=0){
+				if($jeniskbk==1){$kbktahun = $this->skripsi->getkbktahun("'Data Mining'", $tahun );}
+				else if($jeniskbk==2){$kbktahun = $this->skripsi->getkbktahun("'Sistem Pendukung Keputusan'", $tahun);}
+				else if($jeniskbk==3){$kbktahun = $this->skripsi->getkbktahun("'Rekayasa Sistem Informasi'", $tahun);}
+		
+		$data = array(
+			'jumlah'=>sizeof($kbktahun),
+			'isitabel'=> $kbktahun
+			);
+			}
+			
 			
 		$this->load->view('laporan/Laporan_Minatkbk_Tabel',$data);
 		

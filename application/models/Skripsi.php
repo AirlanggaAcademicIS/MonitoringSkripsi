@@ -224,7 +224,18 @@
 		  
 		  }
 		  
-
+function getnik1nik2($nim){
+			$sql = "SELECT NIK1, NIK2 FROM `skripsi` WHERE NIM='".$nim."'";
+    	$query = $this->db->query($sql);
+		
+		foreach ($query->result_array() as $row)
+		{
+        	$users['nik1']=$row['NIK1'];
+            $users['nik2']=$row['NIK2'];
+		}
+        
+       return $users;
+		}
       /*
        * Database Method Caller
        */

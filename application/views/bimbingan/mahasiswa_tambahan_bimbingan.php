@@ -111,7 +111,7 @@
                                     <!-- / <form role="form">-->
 <div class="form-group">
   <label>Tanggal Bimbingan</label> 
-  <input class="form-control" name="tanggal" placeholder="03-05-2016">
+  <input class="form-control" name="tanggal" placeholder="2016-05-03">
                                     </div>
 <div class="form-group">
   <label>Catatan/konsultasi</label>
@@ -121,15 +121,15 @@
                                             <label>Dosen Pembimbing</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Dosen Pembimbing 1
+                                                    <input type="radio" name="nik" id="optionsRadios1" value="1" checked>Dosen Pembimbing 1
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Dosen Pembimbing 2
+                                                    <input type="radio" name="nik" id="optionsRadios2" value="2">Dosen Pembimbing 2
                                                 </label>
                                             </div> 
-                                            <button type="submit" class="btn btn-default">Submit Button</button>
+                                            <button type="submit" class="btn btn-default">Save</button>
                                             </form>
                 </div>
                 

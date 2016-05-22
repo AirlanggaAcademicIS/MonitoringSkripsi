@@ -36,11 +36,33 @@ class Bimbingan extends CI_Controller {
 	{
 		$Tanggal=$this->input->post('tanggal');
 		$Subjek=$this->input->post('catatan');
+		$option=$this->input->post('nik');
+		$Jenis="Proposal";
+		$Persetujuan="Belum disetujui";
+		
+		$this->load->model('Skripsi');
+		$nik1nik2 = $this->Skripsi->getnik1nik2("081313222773");
+		
+				if($option==1){
+					$NIK = $nik1nik2['nik1'];
+				}
+				else if($option==2){
+					$NIK = $nik1nik2['nik2'];				
+				}
 		
 		$this->load->model('Bimbingan1');
-		$this->Bimbingan1->insert_tambahan($Subjek,$Tanggal);
+		$this->Bimbingan1->insert_tambahan($Subjek, $Tanggal, $Jenis, $NIK ,$Persetujuan) ;
+		
+		$allbimbingan = $this->Bimbingan1->getsemuabimbingan();
+		$data = array(
+			'jumlah'=>sizeof($allbimbingan),
+			'isitabel'=>$allbimbingan
+			);
+			
+		$this->load->view('bimbingan/mahasiswa_bimbingan',$data);
+	
 	}
-	public function tabel_bimbingan()
+	/*public function tabel_bimbingan()
 	{
 		$this->load->model('Bimbingan1');
 		$data = array(
@@ -48,5 +70,19 @@ class Bimbingan extends CI_Controller {
 			);
 		
 		$this->load->view("bimbingan/mahasiswa_bimbingan",$data);
+	}
+	*/
+		public function bimbingantabel()
+	{
+		
+		$this->load->model('Bimbingan1');
+		$allbimbingan = $this->Bimbingan1->getsemuabimbingan();
+		$data = array(
+			'jumlah'=>sizeof($allbimbingan),
+			'isitabel'=>$allbimbingan
+			);
+			
+		$this->load->view('bimbingan/mahasiswa_bimbingan',$data);
+		
 	}
 }

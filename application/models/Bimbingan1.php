@@ -78,12 +78,30 @@ class Bimbingan1 extends CI_Model{
       function getAllBimbingan(){
           return $this->db->query("SELECT * FROM `bimbingan`");
       }
-public function insert_tambahan($Subjek, $Tanggal){
+public function insert_tambahan($Subjek, $Tanggal, $Jenis, $NIK ,$Persetujuan){
           $data = array (
 		  'Subjek' => $Subjek,
 		  'Tanggal' => $Tanggal,
+		  'Jenis' => $Jenis,
+		  'NIK' => $NIK,
+		  'Persetujuan' => $Persetujuan
 		  );
 		  $this->db->insert('bimbingan',$data);
       }
-    
+     function getsemuabimbingan(){
+		 $sql ="SELECT  NIK, Subjek, Persetujuan, Tanggal FROM bimbingan";
+		  
+		  $query = $this->db->query($sql);
+        $i = 0;
+        foreach ($query->result_array() as $row)
+         {
+			$user[$i]['tanggal'] = $row['Tanggal'];
+            $user[$i]['NIK'] = $row['NIK'];
+            $user[$i]['subjek'] = $row['Subjek'];
+			$user[$i]['persetujuan'] = $row['Persetujuan'];
+			$i++;
+        }
+        return $user;
+		  
+		  }
 }

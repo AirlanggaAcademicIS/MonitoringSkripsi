@@ -72,7 +72,7 @@
                         
                              
                         <li>
-                            <a href="http://localhost/MonitoringSkripsi/Bimbingan/bimbingan_page"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
+                            <a href="http://localhost/MonitoringSkripsi/Bimbingan/bimbingantabel"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                         </li>
                         <li>
                             <a href=""><i class="fa fa-edit fa-fw"></i> Progress</a>

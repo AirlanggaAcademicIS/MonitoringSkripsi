@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Menyetujuibimbingan extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -21,12 +21,14 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('menyetujui');
-		$data['mahasiswa']=$this menyetujui->getMahasiswa();
-		$this->load->view('menyetujuibimbingan_Page');
+		$data['mahasiswa']=$this->menyetujui->m_lihat();
+		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Page',$data);	
+
+		}
+	public function pindah()
+	{
+		$this->load->view('menyetujuibimbingan_	Home');
+		$this->load->view('menyetujuibimbingan_	Page');
 	}
 	
-	public function getDataMahasiswa()
-	{
-		$nim = $this->input->get->
-	}
 }

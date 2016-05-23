@@ -119,61 +119,28 @@
 				
 				
           </table>
-</style><table width="1050" height="186" border="1" id="tampilan">
+		</style>
+			<table width="1050" height="30" border="1">
 	        <tr>
 			  <th width="50" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>NO</strong></th>
 	          <th width="112" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>NIM</strong></th>
-	          <td width="252" align="center" bordercolor="#000000" bgcolor="#999999"><strong>Nama Mahasiswa </strong></td>
-	         <!-- <td width="517" align="center" bordercolor="#000000" bgcolor="#999999"><strong>Judul</strong></td> -->
-             <!--<td width="165" align="center" bordercolor="#000000" bgcolor="#999999"><strong>Persetujuan</strong></td> -->
-	        </tr>
-	        <!--
-	        <tr>
-	          <th height="27" align="center" bordercolor="#000000" scope="row">081311633013</th>
-	          <td align="center" bordercolor="#000000">Eka Rachmawati </td>
-	          <td align="center" bordercolor="#000000">Rancang Bangun Pemilihan Jurusan pada SMA Bhakti </td>
-              <td align="center" bordercolor="#000000">belum disetujui </td>
-  </tr>
-	        <tr>
-	          <th height="27" align="center" bordercolor="#000000" scope="row">081311633001</th>
-	          <td align="center" bordercolor="#000000">Ratna Galih </td>
-	          <td align="center" bordercolor="#000000">Pengambilan keputusan dalam pemilihan bidang minat </td>
-              <td align="center" bordercolor="#000000">sudah disetujui </td>
-	        </tr>
-	        <tr>
-	          <th align="center" bordercolor="#000000" scope="row">081311633004</th>
-	          <td align="center" bordercolor="#000000">Sari </td>
-	          <td align="center" bordercolor="#000000">Audit Sistem Informasi </td>
-              <td align="center" bordercolor="#000000">sudah disetujui </td>
-	        </tr>
-	        <tr>
-	          <th align="center" bordercolor="#000000" scope="row">&nbsp;</th>
-	          <td align="center" bordercolor="#000000">&nbsp;</td>
-	          <td align="center" bordercolor="#000000">&nbsp;</td>
-              <td align="center" bordercolor="#000000">&nbsp;</td>
-	        </tr>
-			<tr>
-	          <th align="center" bordercolor="#000000" scope="row">&nbsp;</th>
-	          <td align="center" bordercolor="#000000">&nbsp;</td>
-	          <td align="center" bordercolor="#000000">&nbsp;</td>
-              <td align="center" bordercolor="#000000">&nbsp;</td>
-			</tr> -->
-			</tbody>
-			<?php 
-			$count = 1;
-			foreach ($mahasiswa as $row) {?>
-			<tr>
-			<td><?php echo $count; ?></td>
-			<td><?php echo $row->NIM; ?></td>
-			<td><?php echo $row->Nama; ?></td>
-		<!--	<td><?php echo $row->Judul; ?></td> -->
+	          <td width="252" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>Nama Mahasiswa</strong></td>
+			
 			</tr>
+			<?php 
+			$no = 1;
+			foreach($mahasiswa as $lihat){
+			?>
+			<tr>
+			<td><?= $no;?></td>
+			<td><?php echo $lihat-> NIM; ?></td>
+			<td><?php echo $lihat->Nama; ?></td>
 			
-			<?php $count++;}?>
-			</tbody>
-			
-          </table> 
-		  </div>
+			</tr>
+			<?php
+			$no++;
+			}
+			?>
 		 
 </div>
         </div>

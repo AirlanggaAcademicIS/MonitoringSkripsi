@@ -125,7 +125,7 @@
 			  <th width="50" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>NO</strong></th>
 	          <th width="112" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>NIM</strong></th>
 	          <td width="252" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>Nama Mahasiswa</strong></td>
-			
+			  <td width="252" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>Judul Skripsi</strong></td>
 			</tr>
 			<?php 
 			$no = 1;
@@ -134,7 +134,7 @@
 			<tr>
 			<td><?= $no;?></td>
 			<td><?php echo $lihat-> NIM; ?></td>
-			<td><?php echo $lihat->Nama; ?></td>
+			<td><?php echo $lihat-> Nama; ?></td>
 			
 			</tr>
 			<?php

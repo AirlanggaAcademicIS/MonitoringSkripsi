@@ -73,7 +73,7 @@
                         
                              
                         <li>
-                            <a href="menyetujuibimbingan_Page.php"> Bimbingan</a>
+                            <a href="http://localhost/MonitoringSkripsi/index.php/menyetujuibimbingan/bimbingan">Bimbingan</a></li>
                         </li>
                                                    </ul>
                             <!-- /.nav-second-level -->

@@ -20,15 +20,16 @@ class Menyetujuibimbingan extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->model('menyetujui');
-		$data['mahasiswa']=$this->menyetujui->m_lihat();
-		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Page',$data);	
+		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Home');	
 
 		}
-	public function pindah()
+	public function bimbingan()
 	{
-		$this->load->view('menyetujuibimbingan_	Home');
-		$this->load->view('menyetujuibimbingan_	Page');
+		$this->load->model('menyetujui');
+		$data['mahasiswa']=$this->menyetujui->m_lihat();
+		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Page',$data);
+		
 	}
+	
 	
 }

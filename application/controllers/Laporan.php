@@ -41,6 +41,10 @@ class Laporan extends CI_Controller {
 	}
         
         public function tanggungandosen(){
+            $this->load->view('laporan/Laporan_Tanggungan_Dosen');
+        }
+        
+        public function tanggungandosentabel(){
             $this->allDosen = $this->Dosen->getAllDosen();
             $this->allSkripsi = $this->Skripsi->getAllSkripsi();
             $this->allMembimbing = $this->Bimbingan->getAllBimbingan();
@@ -52,73 +56,23 @@ class Laporan extends CI_Controller {
                             'laporanGrafik' => $this->laporanGrafik
                             );
             
-            $this->load->view('laporan/Laporan_Tanggungan_Dosen', $data);
+            $this->load->view('laporan/Laporan_Tanggungan_Dosen_Tabel', $data);
         }
         
-        public function minatkbk()
-	{
+        public function minatkbk(){
 		$this->load->view('laporan/Laporan_Minatkbk');
 	}
 	
-	 public function minatkbk()
-	{
-		$this->load->view('laporan/Laporan_Minatkbk');
+	public function minatkbktabel(){
+		$this->load->view('laporan/Laporan_Minatkbk_Tabel');
 	}
 	
-	public function minatkbktabel()
-	{
-		$jeniskbk = $this->input->post('jeniskbk');
-		$tahun = $this->input->post('tahun');
-		$this->load->model('skripsi');
-		
-		if($jeniskbk==0 && $tahun==0){
-		$allkbkalltahun = $this->skripsi->getallkbkalltahun();
-		$data = array(
-			'jumlah'=>sizeof($allkbkalltahun),
-			'isitabel'=> $allkbkalltahun
-			);
-			}
-			else if($jeniskbk!=0 && $tahun==0){
-				if($jeniskbk==1){$kbkalltahun = $this->skripsi->getkbkalltahun("'Data Mining'");}
-				else if($jeniskbk==2){$kbkalltahun = $this->skripsi->getkbkalltahun("'Sistem Pendukung Keputusan'");}
-				else if($jeniskbk==3){$kbkalltahun = $this->skripsi->getkbkalltahun("'Rekayasa Sistem Informasi'");}
-		
-		$data = array(
-			'jumlah'=>sizeof($kbkalltahun),
-			'isitabel'=> $kbkalltahun
-			);
-			}
-			else if($jeniskbk==0 && $tahun!=0){
-				$allkbktahun = $this->skripsi->getallkbktahun($tahun);
-		$data = array(
-			'jumlah'=>sizeof($allkbktahun),
-			'isitabel'=> $allkbktahun
-			);
-			}
-			else if($jeniskbk!=0 && $tahun!=0){
-				if($jeniskbk==1){$kbktahun = $this->skripsi->getkbktahun("'Data Mining'", $tahun );}
-				else if($jeniskbk==2){$kbktahun = $this->skripsi->getkbktahun("'Sistem Pendukung Keputusan'", $tahun);}
-				else if($jeniskbk==3){$kbktahun = $this->skripsi->getkbktahun("'Rekayasa Sistem Informasi'", $tahun);}
-		
-		$data = array(
-			'jumlah'=>sizeof($kbktahun),
-			'isitabel'=> $kbktahun
-			);
-			}
-			
-			
-		$this->load->view('laporan/Laporan_Minatkbk_Tabel',$data);
-		
-	}
-	
-	public function jenis_kbk()
-	{
+	public function jenis_kbk(){
 		$option = $this->input->post('jenis_laporan');
 		
 		if($option==0)$this->load->view('laporan_minatkbk_page');
 		else if($option==1)$this->load->view('laporan_tanggungandosen_page');
 		else if($option==2)$this->load->view('laporan_statusmhs_page');
-		
 	}
         
         function generateLaporan($allDosen, $allSkripsi){
@@ -203,7 +157,6 @@ class Laporan extends CI_Controller {
             foreach($allMembimbing as $membimbing){
                 if($dosen->NIK == $membimbing['NIK']){
                     $skripsi = $this->Skripsi->getSkripsi($membimbing['id_skripsi']);
-//                    $kbk = $this->KBK->getKBK($skripsi->id_kbk);
                     $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi->NIM);
                     if(isset($mahasiswa)){
                         echo "<br>NIM".$mahasiswa->NIM;
@@ -213,8 +166,7 @@ class Laporan extends CI_Controller {
                         $mhsTemp[] = $mahasiswa->Nama;
                         $mhsTemp[] = $skripsi->KBK;
                         $mhsTemp[] = $skripsi->Judul;
-    //                    $mhsTemp[] = $kbk['namaKBK'];
-
+    
                         $mhsBimbing[] = $mhsTemp;
                     } else {
                         echo "Mahasiswa kosong";

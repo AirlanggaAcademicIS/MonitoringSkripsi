@@ -1,77 +1,5 @@
 <html>
     <head>
-        <?php 
-            $hits = $laporanGrafik;
-            //this counter will be used later on the foreach
-            $counter = count($hits);
-        ?>
-        
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript">
-            google.charts.load('current', {'packages':['bar']});
-            google.charts.setOnLoadCallback(drawChart);
-            
-//            google.setOnLoadCallback(initialize);
-//            google.load("visualization", "1", {packages:["bar"]});
-            
-//            google.load("visualization", "1", {packages:["corechart"], "callback": drawChart});
-//            google.setOnLoadCallback(drawChart);
-            var chart;
-            
-            function drawChart() {
-//                var data = google.visualization.arrayToDataTable([
-//                    ['A','B'],
-//                    ['aku',50],
-//                    
-//                ]);
-                var data = google.visualization.arrayToDataTable([
-                  ['Nama','Pembimbing 1', 'Pembimbing 2','Total'],
-                    <?php foreach ($hits as $key =>$hit):?>
-                      <?php /*if the key is equal to the counter-1 it means we've reached
-          the end of our array in that case the javascript array,
-          won't have a comma at the end, or else it'll give a
-          unexpected identifier error*/
-                           if(($counter-1)==$key):?>
-                        ['<?=$hit["Nama"]?>', <?=$hit["count1"]?>, <?=$hit["count2"]?>, <?=$hit["allCount"]?>]
-                      <?php else:?>
-                        ['<?=$hit["Nama"]?>', <?=$hit["count1"]?>, <?=$hit["count2"]?>, <?=$hit["allCount"]?>],
-                      <?php endif;?>
-                      <?php endforeach;?>
-                  ]);
-//                var data = google.visualization.DataTable();
-                var options = {
-                  chart: {
-                    title: 'Company Performance',
-                    subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-                  },
-                  bars: 'vertical' // Required for Material Bar Charts.
-                };
-                var chart = new google.charts.Bar(document.getElementById('myChart'));
-                chart.draw(data, options);
-            }
-
-//            $('html, body').click(function() {
-//                drawChart();
-//              });
-
-//            //This is the code block you need
-//            document.getElementById('btn1').onclick = function () {
-//                //Redraw the chart
-//                data = google.visualization.arrayToDataTable([
-//                  ['Nama','Pembimbing 1', 'Pembimbing 2','Total'],
-//                  ["BIP", 4, 2, 6]
-//                  ]);
-//                chart.draw(data, options);
-//            };
-
-//            function initialize () {
-//                document.getElementById('btn1').click(function() {
-//                    drawChart();
-//                });
-//            }
-            
-      </script>
         
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -175,7 +103,7 @@
                     );
 
                     $this->table->set_template($template);
-                    $this->table->set_heading(array('NIK', 'Nama', 'KBK', 'Total 1', 'Total 2', 'Total Seluruhnya'));
+                    $this->table->set_heading(array('NIK', 'Nama', 'KBK', 'Tahun', 'Total 1', 'Total 2', 'Total Seluruhnya'));
 
                     // separate row array
                     foreach($laporanTanggungan as $row){
@@ -189,9 +117,7 @@
                 
             ?>
             
-            <input type="button" value="Grafik" id="btn1"/>
-            
-            
+            <a href="http://localhost/MonitoringSkripsi/laporan/tanggungandosengrafik"> Grafik</a>
             
             <div id="myChart" style="width: 900px; height: 500px;">        </div>
         
@@ -213,9 +139,5 @@
     <!-- Custom Theme JavaScript -->
     <script src="http://localhost/MonitoringSkripsi/assets/dist/js/sb-admin-2.js"></script>
     
-            </div>
-
-            
-
     </body>
 </html>

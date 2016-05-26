@@ -109,20 +109,21 @@
                         <div class="panel-body">
                          <div class="col-lg-6">
                             <div class="row">
-                            <form role="form">
+                            <form role="form" method="post" action="http://localhost/MonitoringSkripsi/laporan/tanggungandosentabel">
                             <div class="form-group">
                                             <label>Tanggungan Dosen</label>
                                             <select class="form-control" name="jeniskbk">
                                                 <option value="0">Semua KBK</option>
-                                                <option value="1">Data Mining</option>
-        					<option value="2">Sistem Pendukung Keputusan</option>
+   						<option value="1">Data Mining</option>
+						<option value="2">Sistem Pendukung Keputusan</option>
                                                 <option value="3">Rekayasa Sistem Informasi</option>
                                             </select>
                                         </div>
                             <div class="form-group">
                                             <label>Tahun</label>
                                             <select class="form-control" name="tahun">
-                                            <option value="semua">Semua Tahun</option>
+                                            <option value="0">Semua Tahun</option>
+                                            <option value="2016">2016</option>
                                             <option value="2015">2015</option>
                                             <option value="2014">2014</option>
                                             <option value="2013">2013</option>
@@ -130,8 +131,8 @@
                                             <option value="2011">2011</option>
                                             </select>
                                        </div>
-                                       <button type="submit" class="btn btn-default" href="http://localhost/MonitoringSkripsi/laporan/tanggungandosentabel">Submit</a></button>
-                                       </form>
+                                       <button type="submit" class="btn btn-default">Submit</button>
+                                         </form>
                             </div></div></div>
                         </div>
                         

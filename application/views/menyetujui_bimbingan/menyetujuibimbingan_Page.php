@@ -124,9 +124,37 @@
 	        <tr>
 			  <th width="50" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>NO</strong></th>
 	          <th width="112" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>NIM</strong></th>
-	          <td width="252" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>Nama Mahasiswa</strong></td>
-			  <td width="252" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>Judul Skripsi</strong></td>
+	          <td width="150" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>Nama Mahasiswa</strong></td>
+			  <td width="150" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>Judul Skripsi</strong></td>
+			  
 			</tr>
+		<!--	<?php 
+			$no = 1;
+			foreach($mahasiswa as $data){
+			?>
+			<tr>
+			<td><?= $no;?></td>
+			<td><?php echo $data-> NIM; ?></td>
+			<td><?php echo $data-> Nama; ?></td>
+			<td><?php echo $data-> Judul; ?></td>
+		
+			</tr>
+			<?php
+			$no++;
+		
+			}
+			?>	-->
+		<!--	<?php 
+									for($i=0; $i<$jumlah; $i++){
+                                      echo "<tr>";
+                                      echo "<td>".($i+1)."</td>";
+									   echo "<td>".$isitabel[$i]['NIM']."</td>";
+									    echo "<td>".$isitabel[$i]['Nama']."</td>";
+										echo "<td>".$isitabel[$i]['Judul']."</td>";
+										echo "<td>".$isitabel[$i]['persetujuan']."</td>";										
+									   echo "</tr>";
+									}
+									  ?>	-->
 			<?php 
 			$no = 1;
 			foreach($mahasiswa as $lihat){

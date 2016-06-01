@@ -16,16 +16,16 @@
             
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                  ['Nama','Pembimbing 1', 'Pembimbing 2','Total'],
+                  ['Status','Total'],
                     <?php foreach ($hits as $key =>$hit):?>
                       <?php /*if the key is equal to the counter-1 it means we've reached
           the end of our array in that case the javascript array,
           won't have a comma at the end, or else it'll give a
           unexpected identifier error*/
                            if(($counter-1)==$key):?>
-                        ['<?=$hit["Nama"]?>', <?=$hit["count1"]?>, <?=$hit["count2"]?>, <?=$hit["allCount"]?>]
+                        ['<?=$hit["Status"]?>', <?=$hit["count"]?>]
                       <?php else:?>
-                        ['<?=$hit["Nama"]?>', <?=$hit["count1"]?>, <?=$hit["count2"]?>, <?=$hit["allCount"]?>],
+                        ['<?=$hit["Status"]?>', <?=$hit["count"]?>],
                       <?php endif;?>
                       <?php endforeach;?>
                   ]);

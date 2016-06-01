@@ -73,10 +73,10 @@
                         
                              
                         <li>
-                            <a href=""> Tanggungan Dosen</a>
+                            <a href="http://localhost/MonitoringSkripsi/laporan/tanggungandosen"> Tanggungan Dosen</a>
                         </li>
                         <li>
-                            <a href=""> Status Mahasiswa</a>
+                            <a href="http://localhost/MonitoringSkripsi/laporan/statusmahasiswa"> Status Mahasiswa</a>
                         </li>
                                                    </ul>
                             <!-- /.nav-second-level -->
@@ -117,8 +117,8 @@
                                             <label>Jenis KBK</label>
                                             <select class="form-control" name="jeniskbk">
                                             <option value="0">Semua KBK</option>
-   										    <option value="1">Data Mining</option>
-											<option value="2">Sistem Pendukung Keputusan</option>
+                                            <option value="1">Data Mining</option>
+                                            <option value="2">Sistem Pendukung Keputusan</option>
                                             <option value="3">Rekayasa Sistem Informasi</option>
                                             </select>
                                         </div>

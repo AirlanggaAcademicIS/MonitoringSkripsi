@@ -1,45 +1,5 @@
-        
-
 <html>
     <head>
-        <?php 
-            $hits = $laporanGrafik;
-            //this counter will be used later on the foreach
-            $counter = count($hits);
-        ?>
-
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript">
-            google.charts.load('current', {'packages':['bar']});
-            google.charts.setOnLoadCallback(drawChart);
-            
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                  ['Nama','Pembimbing 1', 'Pembimbing 2','Total'],
-                    <?php foreach ($hits as $key =>$hit):?>
-                      <?php /*if the key is equal to the counter-1 it means we've reached
-          the end of our array in that case the javascript array,
-          won't have a comma at the end, or else it'll give a
-          unexpected identifier error*/
-                           if(($counter-1)==$key):?>
-                        ['<?=$hit["Nama"]?>', <?=$hit["count1"]?>, <?=$hit["count2"]?>, <?=$hit["allCount"]?>]
-                      <?php else:?>
-                        ['<?=$hit["Nama"]?>', <?=$hit["count1"]?>, <?=$hit["count2"]?>, <?=$hit["allCount"]?>],
-                      <?php endif;?>
-                      <?php endforeach;?>
-                  ]);
-                var options = {
-                  chart: {
-                    title: 'Tanggungan Dosen Pembimbing',
-                    subtitle: 'Pembimbing 1, Pembimbing 2, Semua',
-                  },
-                  bars: 'vertical' // Required for Material Bar Charts.
-                };
-                var chart = new google.charts.Bar(document.getElementById('myChart'));
-                chart.draw(data, options);
-            }
-      </script>
         
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -132,15 +92,50 @@
         </nav>
         
         <div id="page-wrapper">
-        
-            <?php
-                echo "<br>Grafik : Performa Dosen Pembimbing<br>";
-            ?>
-            <div id="myChart" style="width: 900px; height: 500px;">        </div>
-        
-        </div></div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Laporan Tanggungan Dosen</h2>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Silahkan Pilih
+                        </div>
                         
- <!-- jQuery -->
+                        <div class="panel-body">
+                         <div class="col-lg-6">
+                            <div class="row">
+                            <form role="form" method="post" action="http://localhost/MonitoringSkripsi/laporan/statusmahasiswatabel">
+                            <div class="form-group">
+                                            <label>Tahun</label>
+                                            <select class="form-control" name="tahun">
+                                            <option value="0">Semua Tahun</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2011">2011</option>
+                                            </select>
+                                       </div>
+                                       <button type="submit" class="btn btn-default">Submit</button>
+                                         </form>
+                            </div></div></div>
+                        </div>
+                        
+                        </div>
+                        
+                        </div>
+                        
+                        </div>
+                        
+                        </div>
+                        
+    <!-- jQuery -->
     <script src="http://localhost/MonitoringSkripsi/assets/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -149,12 +144,14 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="http://localhost/MonitoringSkripsi/assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- DataTables JavaScript -->
-    <script src="http://localhost/MonitoringSkripsi/assets/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="http://localhost/MonitoringSkripsi/assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="http://localhost/MonitoringSkripsi/assets/bower_components/raphael/raphael-min.js"></script>
+    <script src="http://localhost/MonitoringSkripsi/assets/bower_components/morrisjs/morris.min.js"></script>
+    <script src="http://localhost/MonitoringSkripsi/assets/js/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="http://localhost/MonitoringSkripsi/assets/dist/js/sb-admin-2.js"></script>
     
     </body>
+    
 </html>

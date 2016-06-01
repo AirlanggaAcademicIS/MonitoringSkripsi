@@ -75,7 +75,7 @@
                             <a href="http://localhost/MonitoringSkripsi/laporan/tanggungandosen"> Tanggungan Dosen</a>
                         </li>
                         <li>
-                            <a href=""> Status Mahasiswa</a>
+                            <a href="http://localhost/MonitoringSkripsi/laporan/statusmahasiswa"> Status Mahasiswa</a>
                         </li>
                                                    </ul>
                             <!-- /.nav-second-level -->

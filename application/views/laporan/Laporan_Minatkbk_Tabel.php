@@ -73,10 +73,10 @@
                         
                              
                         <li>
-                            <a href=""> Tanggungan Dosen</a>
+                            <a href="http://localhost/MonitoringSkripsi/laporan/minatkbk"> Tanggungan Dosen</a>
                         </li>
                         <li>
-                            <a href=""> Status Mahasiswa</a>
+                            <a href="http://localhost/MonitoringSkripsi/laporan/statusmahasiswa"> Status Mahasiswa</a>
                         </li>
                                                    </ul>
                             <!-- /.nav-second-level -->

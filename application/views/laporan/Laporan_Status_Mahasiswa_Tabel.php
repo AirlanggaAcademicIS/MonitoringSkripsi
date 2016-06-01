@@ -1,45 +1,5 @@
-        
-
 <html>
     <head>
-        <?php 
-            $hits = $laporanGrafik;
-            //this counter will be used later on the foreach
-            $counter = count($hits);
-        ?>
-
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript">
-            google.charts.load('current', {'packages':['bar']});
-            google.charts.setOnLoadCallback(drawChart);
-            
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                  ['Nama','Pembimbing 1', 'Pembimbing 2','Total'],
-                    <?php foreach ($hits as $key =>$hit):?>
-                      <?php /*if the key is equal to the counter-1 it means we've reached
-          the end of our array in that case the javascript array,
-          won't have a comma at the end, or else it'll give a
-          unexpected identifier error*/
-                           if(($counter-1)==$key):?>
-                        ['<?=$hit["Nama"]?>', <?=$hit["count1"]?>, <?=$hit["count2"]?>, <?=$hit["allCount"]?>]
-                      <?php else:?>
-                        ['<?=$hit["Nama"]?>', <?=$hit["count1"]?>, <?=$hit["count2"]?>, <?=$hit["allCount"]?>],
-                      <?php endif;?>
-                      <?php endforeach;?>
-                  ]);
-                var options = {
-                  chart: {
-                    title: 'Tanggungan Dosen Pembimbing',
-                    subtitle: 'Pembimbing 1, Pembimbing 2, Semua',
-                  },
-                  bars: 'vertical' // Required for Material Bar Charts.
-                };
-                var chart = new google.charts.Bar(document.getElementById('myChart'));
-                chart.draw(data, options);
-            }
-      </script>
         
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -134,8 +94,31 @@
         <div id="page-wrapper">
         
             <?php
-                echo "<br>Grafik : Performa Dosen Pembimbing<br>";
+                echo "<br>Tabel dan Grafik : Performa Dosen Pembimbing<br>";
+                
+                
+                if(isset($laporanStatus)) {
+                    $template = array(
+                        'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table">'
+                    );
+
+                    $this->table->set_template($template);
+                    $this->table->set_heading(array('NIM', 'Nama', 'Status'));
+
+                    // separate row array
+                    foreach($laporanStatus as $row){
+                        $this->table->add_row($row);
+                    }
+
+                    echo $this->table->generate();
+                } else {
+                    echo "<br><br> No Data Available";
+                }
+                
             ?>
+            
+            <a href="http://localhost/MonitoringSkripsi/laporan/statusmahasiswagrafik"> Grafik</a>
+            
             <div id="myChart" style="width: 900px; height: 500px;">        </div>
         
         </div></div>

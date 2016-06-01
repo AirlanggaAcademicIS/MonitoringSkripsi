@@ -122,144 +122,40 @@
                                     <tbody>
                                         <tr class="odd gradeX">
                                             <td>1</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
+                                            <td>Army Justitia</td>
+                                            <td>Rekayasa Sistem Informasi</td>
+                                            <td class="center">0</td>
                                            
                                         </tr>
                                         <tr class="even gradeC">
                                             <td>2</td>
-                                            <td>Internet Explorer 5.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5</td>
+                                            <td>Badrus Zaman</td>
+                                            <td>Rekayasa Sistem Informasi</td>
+                                            <td class="center">0</td>
                                            
                                         </tr>
                                         <tr class="odd gradeA">
                                             <td>3</td>
-                                            <td>Internet Explorer 5.5</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5.5</td>
+                                            <td>Eva Harianty</td>
+                                            <td>RSI</td>
+                                            <td class="center">0</td>
                                          
                                         </tr>
                                         <tr class="even gradeA">
                                             <td>4</td>
-                                            <td>Internet Explorer 6</td>
-                                            <td>Win 98+</td>
-                                            <td class="center">6</td>
+                                            <td>Eto Wuryanto</td>
+                                            <td>SPK</td>
+                                            <td class="center">0</td>
                                          
                                         </tr>
                                         <tr class="odd gradeA">
                                             <td>5</td>
-                                            <td>Internet Explorer 7</td>
-                                            <td>Win XP SP2+</td>
-                                            <td class="center">7</td>
+                                            <td>Purbandini</td>
+                                            <td>Data Mining</td>
+                                            <td class="center">0</td>
                                          
                                         </tr>
-                                        <tr class="even gradeA">
-                                            <td>6</td>
-                                            <td>AOL browser (AOL desktop)</td>
-                                            <td>Win XP</td>
-                                            <td class="center">6</td>
-                                           
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>7</td>
-                                            <td>Firefox 1.0</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.7</td>
-                                          
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>8</td>
-                                            <td>Firefox 1.5</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.8</td>
-                                          
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>9</td>
-                                            <td>Firefox 2.0</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.8</td>
-                                      
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>10</td>
-                                            <td>Firefox 3.0</td>
-                                            <td>Win 2k+ / OSX.3+</td>
-                                            <td class="center">1.9</td>
-                                       
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>11</td>
-                                            <td>Camino 1.0</td>
-                                            <td>OSX.2+</td>
-                                            <td class="center">1.8</td>
-                                           
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>12</td>
-                                            <td>Camino 1.5</td>
-                                            <td>OSX.3+</td>
-                                            <td class="center">1.8</td>
-                                     
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>13</td>
-                                            <td>Netscape 7.2</td>
-                                            <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                            <td class="center">1.7</td>
-                                            
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>14</td>
-                                            <td>Netscape Browser 8</td>
-                                            <td>Win 98SE+</td>
-                                            <td class="center">1.7</td>
-                                  
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>15</td>
-                                            <td>Netscape Navigator 9</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.8</td>
-                                     
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>16</td>
-                                            <td>Mozilla 1.0</td>
-                                            <td>Win 95+ / OSX.1+</td>
-                                            <td class="center">1</td>
-                                      
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>17</td>
-                                            <td>Mozilla 1.1</td>
-                                            <td>Win 95+ / OSX.1+</td>
-                                            <td class="center">1.1</td>
                                         
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>18</td>
-                                            <td>Mozilla 1.2</td>
-                                            <td>Win 95+ / OSX.1+</td>
-                                            <td class="center">1.2</td>
-                                     
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>19</td>
-                                            <td>Mozilla 1.3</td>
-                                            <td>Win 95+ / OSX.1+</td>
-                                            <td class="center">1.3</td>
-                                   
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>20</td>
-                                            <td>Mozilla 1.4</td>
-                                            <td>Win 95+ / OSX.1+</td>
-                                            <td class="center">1.4</td>
-                                           
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

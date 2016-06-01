@@ -29,7 +29,48 @@ class Menyetujuibimbingan extends CI_Controller {
 		$data['mahasiswa']=$this->menyetujui->m_lihat();
 		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Page',$data);
 		
+	}	
+	public function tampil()
+	{
+	$this->load->model('menyetujui'); //load model
+    $data['hasilTampil'] = $this->menyetujui->menampilkan(); //membuat data dari hasil transaksi masuk ke $data
+	$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Page',$data);
+	}	
+/*	public function bimbingan_insert()
+	{
+		$this->load->model('Skripsi');
+		$nik1nik2 = $this->Skripsi->getnik1nik2("081313222773");
+		
+				if($option==1){
+					$NIK = $nik1nik2['nik1'];
+				}
+				else if($option==2){
+					$NIK = $nik1nik2['nik2'];				
+				}
+		
+		$this->load->model('menyetujui');
+		$this->menyetujui->insert_tambahan($NIM, $Nama, $Judul, $Persetujuan) ;
+		
+		$allbimbingan = $this->menyetujui->getsemuabimbingan();
+		$data = array(
+			'jumlah'=>sizeof($allbimbingan),
+			'isitabel'=>$allbimbingan
+			);
+			
+		$this->load->view('menyetujui/menyetujuibimbingan_Page',$data);
+	
 	}
-	
-	
+	public function bimbingantabel()
+	{
+		
+		$this->load->model('menyetujui');
+		$allbimbingan = $this->menyetujui->getsemuabimbingan();
+		$data = array(
+			'jumlah'=>sizeof($allbimbingan),
+			'isitabel'=>$allbimbingan
+			);
+			
+		$this->load->view('menyetujui/menyetujuibimbingan_Page',$data);
+		
+	}	*/
 }

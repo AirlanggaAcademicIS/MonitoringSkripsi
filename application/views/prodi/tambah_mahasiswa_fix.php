@@ -107,7 +107,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form id="form1" name="form1" method="post" action="http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/mahasiswa_insert">
 <div class="form-group">
   <label>Nama</label>
   <textarea name="nama" rows="1" class="form-control"></textarea>
@@ -139,6 +139,7 @@
                                            
                                             
                                             <button type="submit" class="btn btn-default">Submit Button</button>
+</form>
                                             </div> 
                 </div>
                 

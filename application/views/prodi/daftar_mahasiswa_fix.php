@@ -146,7 +146,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <form name="form2" method="post" action="http://localhost/MonitoringSkripsi/index.php/Prodi_fix3/tambah_mahasiswa_page">
+                                <form name="form2" method="post" action="http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/tambah_mahasiswa_page">
   <input type="submit" name="tambahmahasiswa" id="tambahmahasiswa" value="Tambah Mahasiswa">
 </form>
                             </div>

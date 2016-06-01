@@ -84,12 +84,14 @@ public function insert_tambahan($Subjek, $Tanggal, $Jenis, $NIK ,$Persetujuan){
 		  'Tanggal' => $Tanggal,
 		  'Jenis' => $Jenis,
 		  'NIK' => $NIK,
-		  'Persetujuan' => $Persetujuan
-		  );
+		  'Persetujuan' => $Persetujuan);
+		  
+		 
 		  $this->db->insert('bimbingan',$data);
       }
+	  
      function getsemuabimbingan(){
-		 $sql ="SELECT  NIK, Subjek, Persetujuan, Tanggal FROM bimbingan";
+		 $sql ="SELECT  NIK, Subjek, Jenis, Persetujuan, Tanggal FROM bimbingan";
 		  
 		  $query = $this->db->query($sql);
         $i = 0;
@@ -98,9 +100,29 @@ public function insert_tambahan($Subjek, $Tanggal, $Jenis, $NIK ,$Persetujuan){
 			$user[$i]['tanggal'] = $row['Tanggal'];
             $user[$i]['NIK'] = $row['NIK'];
             $user[$i]['subjek'] = $row['Subjek'];
+			$user[$i]['jenis'] = $row['Jenis'];
 			$user[$i]['persetujuan'] = $row['Persetujuan'];
 			$i++;
         }
+        return $user;
+		  
+		  }
+		   
+		   function getjenisbimbingan($jenis){
+		 $sql ="SELECT  NIK, Subjek, Jenis, Persetujuan, Tanggal FROM bimbingan where jenis=".$jenis." ";
+		  
+		  $query = $this->db->query($sql);
+        $i = 0;
+        foreach ($query->result_array() as $row)
+         {
+			$user[$i]['tanggal'] = $row['Tanggal'];
+            $user[$i]['NIK'] = $row['NIK'];
+            $user[$i]['subjek'] = $row['Subjek'];
+			$user[$i]['jenis'] = $row['Jenis'];
+			$user[$i]['persetujuan'] = $row['Persetujuan'];
+			$i++;
+        }
+            
         return $user;
 		  
 		  }

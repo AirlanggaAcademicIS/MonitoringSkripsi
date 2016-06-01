@@ -72,7 +72,7 @@
                         
                              
                         <li>
-                            <a href="<?php echo base_url();?>Bimbingan/bimbingantabel"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
+                            <a href="<?php echo base_url();?>Bimbingan/bimbinganpage"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Progress</a>

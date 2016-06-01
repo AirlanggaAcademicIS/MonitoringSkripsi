@@ -67,17 +67,17 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href=""><i class=""></i> Kuota Dosen Pembimbing</a>
+                            <a href="http://localhost/MonitoringSkripsi/kuotadosen/kuota"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
                         </li>
                         
                              
                         <li>
-                            <a href="http://localhost/MonitoringSkripsi/Bimbingan/bimbinganpage"><i class=""></i> Bimbingan</a>
+                            <a href="http://localhost/MonitoringSkripsi/Bimbingan/bimbinganpage"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                         </li>
                         <li>
-                            <a href=""><i class=""></i> Progress</a>
+                            <a href=""><i class="fa fa-edit fa-fw"></i> Progress</a>
                         </li>
-                  </ul>
+                                                   </ul>
                             <!-- /.nav-second-level -->
                         </li>
                        
@@ -93,50 +93,41 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-         <div id="page-wrapper">
+        <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Selamat Datang di Halaman Tambahan Bimbingan</h1>
+                    <h1 class="page-header">Halaman Bimbingan Mahasiswa</h1>
                 </div>
-           <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Form Tambahan Bimbingan
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                <form id="form1" name="form1" method="post" action="http://localhost/MonitoringSkripsi/index.php/Bimbingan/bimbingan_insert">
-                                    <!-- / <form role="form">-->
-<div class="form-group">
-  <label>Tanggal Bimbingan</label> 
-  <input class="form-control" name="tanggal" placeholder="2016-05-03">
-                                    </div>
-<div class="form-group">
-  <label>Catatan/konsultasi</label>
-  <textarea name="catatan" rows="3" class="form-control"></textarea>
-</div>
-                                            <div class="form-group">
-                                            <label>Dosen Pembimbing</label>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="nik" id="optionsRadios1" value="1" checked>Dosen Pembimbing 1
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="nik" id="optionsRadios2" value="2">Dosen Pembimbing 2
-                                                </label>
-                                            </div> 
-                                            <button type="submit" class="btn btn-default">Save</button>
-                                            </form>
-                </div>
-                
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-           
+             <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Silahkan Pilih
+                        </div>
+                        
+                        <div class="panel-body">
+                         <div class="col-lg-6">
+                            <div class="row">
+                          <form name="form1" method="post" action="http://localhost/MonitoringSkripsi/index.php/bimbingan/jenistabel">
+                                            <label>Jenis Bimbingan</label>
+                                            <select class="form-control" name="jenis">
+                                            <option value="0">Semua Bimbingan</option>
+   										    <option value="1">Bimbingan Proposal</option>
+											<option value="2">Bimbingan Skripsi</option>
+                                            </select><br>
+                           <input value="submit" type="submit">
+                                         </form>
+                            </div></div></div>
+                        </div>
+                        
+                        </div>
+                        
+                        </div>
+                        
+                        
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->

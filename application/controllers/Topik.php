@@ -20,8 +20,8 @@ class Topik extends CI_Controller {
 	 */
 	public function index()
 	{
-            $this->load->view('header');
+            $this->load->view('head');
             $this->load->view('topik/topik');
-            $this->load->view('footer');
+            $this->load->view('foot');
 	}
 }

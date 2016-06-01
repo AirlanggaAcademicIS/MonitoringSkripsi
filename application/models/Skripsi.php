@@ -248,5 +248,9 @@ function getnik1nik2($nim){
           return $this->db->query("SELECT * FROM `skripsi`")->result_array();
       }
 
+      function getSkripsiMhs($NIM){
+          return $this->db->get_where('skripsi', array('NIM' => $NIM))->row();
+      }
+
    }
 ?>

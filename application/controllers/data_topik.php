@@ -5,6 +5,10 @@ class Data_topik extends CI_Controller {
  
  public function index()
  {
+ 	if($this->session->userdata('username') == 'mahasiswa'){
+        redirect('login');
+      }
+    
       $this->load->helper('url'); 
           $this->load->database();//memanggil pengaturan database dan mengaktifkannya 
           $this->load->model('m_data_topik');//memanggil model m_data_topik

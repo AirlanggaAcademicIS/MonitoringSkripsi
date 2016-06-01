@@ -25,6 +25,8 @@
             <li><a href="#">Mahasiswa</a></li>
             <li><a href="#">Bimbingan</a></li>
              <li><a href="#">Laporan</a></li>
+			 <li><a href="<?php echo base_url();?>login/logout"> Logout</a></li>
+			 
           </ul></div>  <div class="col-md-8" style="text-align:center">
           <h2>Halaman Home Prodi</h2>
           </div>

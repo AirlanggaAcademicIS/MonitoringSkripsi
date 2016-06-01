@@ -67,16 +67,8 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            
-                        </li>
-                        
-                             
-                        <li>
-                            
-                        </li>
-                        <li>
-                           
-                        </li>
+                       <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>  
+					   
                   </ul>
                             <!-- /.nav-second-level -->
                         </li>

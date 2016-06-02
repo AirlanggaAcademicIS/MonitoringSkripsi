@@ -107,34 +107,35 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form id="form1" name="form1" method="post" action="http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/mahasiswa_insert">
+                                    <form id="form1" name="form1" method="post" action="mahasiswa_insert"> 
+                                  <!--"http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/mahasiswa_insert.php"-->      
 <div class="form-group">
   <label>Nama</label>
-  <textarea name="nama" rows="1" class="form-control"></textarea>
+  <textarea name="Nama" rows="1" class="form-control"></textarea>
                                     </div>
 <div class="form-group">
   <label>NIM</label>
-  <textarea name="nim" rows="1" class="form-control"></textarea>
+  <textarea name="NIM" rows="1" class="form-control"></textarea>
 </div>
 <div class="form-group">
   <label>Prodi</label>
-  <textarea name="prodi" rows="1" class="form-control"></textarea>
+  <textarea name="Prodi" rows="1" class="form-control"></textarea>
 </div>                                     
 <div class="form-group">
-  <label>Password</label>
-  <textarea name="password" rows="1" class="form-control"></textarea>
+  <label>Pass</label>
+  <textarea name="Pass" rows="1" class="form-control"></textarea>
                                     </div>
 <div class="form-group">
   <label>Alamat</label>
-  <textarea name="alamat" rows="3" class="form-control"></textarea>
+  <textarea name="Alamat" rows="3" class="form-control"></textarea>
 </div>
 <div class="form-group">
-  <label>Telepon</label>
-  <textarea name="telepon" rows="1" class="form-control"></textarea>
+  <label>Telp</label>
+  <textarea name="Telp" rows="1" class="form-control"></textarea>
                                     </div>
 <div class="form-group">
   <label>Email</label>
-  <textarea name="email" rows="1" class="form-control"></textarea>
+  <textarea name="Email" rows="1" class="form-control"></textarea>
 </div>                                        
                                            
                                             

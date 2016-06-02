@@ -5,36 +5,36 @@ class Data_topik extends CI_Controller {
  
  public function index()
  {
- 	if($this->session->userdata('username') == 'mahasiswa'){
-        redirect('login');
-      }
-    
-      $this->load->helper('url'); 
+     	  $this->load->helper('url'); 
           $this->load->database();//memanggil pengaturan database dan mengaktifkannya 
           $this->load->model('m_data_topik');//memanggil model m_data_topik
-          $data['skripsi'] = $this->m_data_topik->list_data();//memanggil fungsi di model dan menerima hasil fungsi yang dimasukan ke $data['data_topik']
+          $data['skripsi'] = $this->m_data_topik->list_data(); //memanggil fungsi di model dan menerima hasil fungsi yang dimasukan ke $data['skripsi']
           $this->load->view('v_data_topik',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
-
  }
  
- public function Input()
+
+public function Input()
 {
-      $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
+      $this->load->database();
+      $this->load->model("m_data_topik");
+  	  $data['NIM'] = $this->m_data_topik->getMHS();
+	  $data['NIK'] = $this->m_data_topik->getDosen();
+	  $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_jadwal.php
       $data['type']="INPUT";// definisi type, karena nanti juga ada edit
-      $this->load->view('v_form_topik',$data);// memanggil view v_form_topik.php
+      $this->load->view('v_form_topik',$data);// memanggil view v_form_topik.php	
 }
+
 
 public function Edit()
 {
-      $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_input_produk.php
-  
+      $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
       $this->load->database();//memanggil pengaturan database dan mengaktifkannya
-      $this->load->model('m_data_topik');//memanggil model m_data_topik.php
-  
-      $NIM= $this->input->get('skripsi');//mengambil param topik dari get
-      $data['skripsi'] = $this->m_data_topik->getEdit($NIM);
+      $this->load->model('m_data_topik');//memanggil model m_data_jadwal.php
+      $data['NIM'] = $this->m_data_topik->getMHS();
+      $NIM= $this->input->get('skripsi');//mengambil param  dari get
+	  $data['skripsi'] = $this->m_data_topik->getEdit($NIM);
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
-      $this->load->view('v_form_topik',$data);// memanggil view v_form_topik.php
+      $this->load->view('v_form_topik',$data);// memanggil view v_form_jadwal.php
 }
 
 public function Post(){
@@ -43,15 +43,17 @@ public function Post(){
  
      //mengambil data dari post memasukan ke array agar lebih mudah 
      $param = array(
-	  'Tanggal' => $this->input->post('Tanggal'),
+	   'TanggalTopik' => $this->input->post('TanggalTopik'),
        'TahunAjar' => $this->input->post('TahunAjar'),
 	   'NIM' => $this->input->post('NIM'),
-       'Nama' => $this->input->post('Nama'),
        'KBK' => $this->input->post('KBK'),
        'Topik'=> $this->input->post('Topik'),
 	   'Judul' => $this->input->post('Judul'),
-       'DosenPembimbing1' => $this->input->post('DosenPembimbing1'),
-	   'DosenPembimbing2' => $this->input->post('DosenPembimbing2'),
+       'NIK1' => $this->input->post('NIK1'),
+	   'NIK2' => $this->input->post('NIK2'),
+	   'TanggalProp' => $this->input->post('null'),
+	   'TanggalSkripsi' => $this->input->post('null'),
+	   'id_jadwal' => $this->input->post('null'),
        );
      //jika simpan == input 
      if($this->input->post('simpan')=="INPUT"){
@@ -73,13 +75,15 @@ public function Post(){
    $this->load->model('m_data_topik');//memanggil model m_data_topik.php
    $NIM= $this->input->get('skripsi');
    $this->m_data_topik->delete($NIM);
- 
    $this->load->helper('url');
    redirect('skripsi','refresh');
 }
 
 
-
+public function getSkripsibyNIM(){
+$NIM =$this->input->post('NIM');
+$this->load->model('m_data_topik');
+$info =$this->m_data_topik->gettableSkripsibyNIM();
 }
 
-
+}

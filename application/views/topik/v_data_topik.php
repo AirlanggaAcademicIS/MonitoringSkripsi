@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -65,11 +65,8 @@
                             </div>
                             
                             <!-- /input-group -->
-                        </li>
-                        <li>
-                       <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>  
-					   
-                  </ul>
+                        
+                       
                             <!-- /.nav-second-level -->
                         </li>
                        
@@ -101,25 +98,31 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form">
-               <div class="col-md-8" style="text-align:center">
-                                      
-                                <form name="form1" method="post" action="">
-                                  <label for="select">Tahun Ajar</label>
-                                  <select name="select" id="select">
-                                    <option value="2015">2015</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2017">2017</option>
-                                  </select>
-                                </form>
-                                <p align="justify">&nbsp;</p>
+               <div class="col-md-8" style="text-align:left">
+
+
+	   <form id="form1" name="form1" method="post" action="v_data_topik.php">
+				<label for="sel1">Cari</label>            
+				<select class="form-control" name="tahun">
+				<option>Tahun</option>
+ 			<?php for($i=2015;$i<=2020;$i++)
+ 					{
+ 						echo "<option value=".$i.">".$i."</option>";
+					 }
+					?>
+  		</select>
+				<input class="btn btn-primary" type="submit" name="Submit" value="Tampilkan"/>
+ 
+  </form>                       
+                           
+                                <p>&nbsp;</p>
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
 										
                   	<th width="20"><div align="center">No</div></th>
-                     <th width="39"><div align="center">Tanggal</div></th>
+                    <th width="39"><div align="center">Tanggal</div></th>
                    	<th width="39"><div align="center">NIM</div></th>
-                    <th width="179"><div align="center">Nama</div></th>
                     <th width="119"><div align="center">KBK</div></th>
                     <th width="119"><div align="center">Topik</div></th>
                     <th width="276"><div align="center">Judul</div></th>
@@ -139,7 +142,6 @@ foreach($skripsi as $value)
                     <td><?php echo $no++ ;?></td>
 					<td><?= $value->TanggalTopik;?></td>
                     <td><?= $value->NIM;?></td>
-                    <td><?= $value->Nama;?></td>
                     <td><?= $value->KBK;?></td>
                     <td><?= $value->Topik;?></td>
                     <td><?= $value->Judul;?></td>

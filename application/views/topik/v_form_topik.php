@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script src="assets/jquery.js" type="text/javascript"> </script>
+
 <head>
 
     <meta charset="utf-8">
@@ -65,20 +67,9 @@
                             </div>
                             
                             <!-- /input-group -->
-                        </li>
-                        <li>
-                           
-                        </li>
-                        
-                             
-                        <li>
-                         
-                        </li>
-                        <li>
-                          
-                        </li>
-                  </ul>
-                            <!-- /.nav-second-level -->
+                 
+           
+                      <!-- /.nav-second-level -->
                         </li>
                        
                       
@@ -110,31 +101,47 @@
                                     <form role="form">
 <div class="form-group">
   <label>Tanggal </label>
-   <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TanggalTopik;};?>">
+   <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TanggalTopik;};?>"> 
 </div>
   
 <div class="form-group">
   <label>Tahun Ajar </label>
    <input class="form-control" name="TahunAjar" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TahunAjar;};?>">
 </div>
-
-<div class="form-group">
-  <label>NIM </label>
-  <input class="form-control" name="NIM" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIM;};?>">
-</div> 
-  
-<div class="form-group">
-  <label>Nama </label>
-  <input class="form-control" name="Nama" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->Nama;};?>">
-</div>
-  
-<div class="form-group">
-  <label>KBK</label>
- <input class="form-control" name="KBK" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">
-</div>
  
 <div class="form-group">
-  <label>Topik</label>
+     <label for="NIM">NIM</label>
+     <select name="NIM" class="form-control" name="NIM" id="NIM" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIM;};?>">  
+	 <?php
+$no = 1;
+
+foreach($NIM as $value)
+{
+echo "<option>".$value->NIM."</option>";
+
+if(isset($_GET['skripsi'])){
+	if($_GET['skripsi']==$value->NIM){
+		echo "<option selected>".$value->NIM."</option>";
+	}
+}
+}
+?>
+     </select>
+</div>
+  
+<div class="form-group">
+<label>KBK</label>
+<div class="">
+<select name="KBK" class="form-control" name="KBK" id="KBK">  
+ 				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">Rekayasa Sistem Informasi</option>
+				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">Data Mining</option>
+				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">Sistem Pendukung Keputusan</option>
+    </select>
+</div>
+</div>
+
+<div class="form-group">
+<label>Topik</label>
  <input class="form-control" name="Topik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->Topik;};?>">
 </div>      
 	
@@ -146,22 +153,42 @@
 <div class="form-group">
 <label>Dosen Pembimbing 1</label>
 <div class="">
-<select name="DosenPembimbing1">
-				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK1;};?>">Eva Harianti</option>
-				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK1;};?>">Indra Kharisma</option>
-				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK1;};?>">Badrus Zaman</option>
+<select name="NIK" class="form-control" name="NIK" id="NIK" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK;};?>">  
+	 <?php
+$no = 1;
+
+foreach($NIK as $value)
+{
+echo "<option>".$value->Nama."</option>";
+
+if(isset($_GET['skripsi'])){
+	if($_GET['skripsi']==$value->Nama){
+		echo "<option selected>".$value->Nama."</option>";
+	}
+}
+}
+?>  
     </select>
 </div>
+</div>
+
 <div class="form-group">
 <label>Dosen Pembimbing 2</label>
 <div class="">
-<select name="DosenPembimbing2">
-				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK2;};?>">Eva Harianti</option>
-				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK2;};?>">Indra Kharisma</option>
-				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK2;};?>">Badrus Zaman</option>
-      </select>
+<select name="NIK" class="form-control" name="NIK" id="NIK" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK;};?>">  
+	 <?php
+$no = 1;
+
+foreach($NIK as $value)
+{
+echo "<option>".$value->Nama."</option>";
+
+}
+?>  
+    </select>
 </div>
 </div>
+
  <input type="submit" name="simpan" value="<?php echo $type;?>">
 </div>
                 <?php echo form_close();?>

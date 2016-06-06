@@ -7,13 +7,13 @@ class M_data_jadwal extends CI_Model {
         parent::__construct();
     }
      
-    function list_data(){
+function list_data(){
         $query = $this->db->get('jadwal');// mengambil semua data dari tabel jadwal
          
         return $query->result();// mengembalikan ke controller hasil dari query ke table jadwal
     }
 	
-	function input($param){
+function input($param){
    $this->db->insert('jadwal',$param);
    return true;
 }
@@ -35,5 +35,16 @@ function delete($NIM){
    $this->db->delete('jadwal');
 }
 
+public function getDosen(){
+		$query =  $this->db->get('dosen');
+		return $query->result();
+		}	
+
+public function getSkripsi(){
+		$query =  $this->db->get('skripsi');
+		return $query->result();
+		}	
+	
+		
  
 }

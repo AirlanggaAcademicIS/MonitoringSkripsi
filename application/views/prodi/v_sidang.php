@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Monitoring Skripsi</title>
+    <title>Laporan Minat KBK</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://localhost/MonitoringSkripsi/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -59,15 +59,26 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                               <h3> Selamat Datang!
-                                <br><br>PRODI
-                                <br>081313222773</h3>
+                               <h3> Selamat Datang!</h3>
+                                <br><br>
+                                <h4>PRODI
+                                <br>081313222773</h4>
                             </div>
                             
                             <!-- /input-group -->
-        
-        <li><a href="daftar_mahasiswa.php">Mahasiswa</a></li>
-          <li>  <a href="http://localhost/MonitoringSkripsi/data_jadwal/index"> Jadwal</a>
+                        </li>
+                        <li>
+                            <a href="http://localhost/MSJadwal/v_sidang"> Jadwal</a>
+                        </li>
+                        
+                             
+                        <li>
+                            <a href="http://localhost/MonitoringSkripsi/laporan/tanggungandosen"> Tanggungan Dosen</a>
+                        </li>
+                        <li>
+                            <a href="http://localhost/MonitoringSkripsi/laporan/statusmahasiswa"> Status Mahasiswa</a>
+                        </li>
+                                                   </ul>
                             <!-- /.nav-second-level -->
                         </li>
                        
@@ -83,107 +94,48 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-         <div id="page-wrapper">
+       <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">FORM JADWAL </h1>
+                    <h2 class="page-header">Jadwal Sidang</h2>
                 </div>
-           <div class="row">
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Form Jadwal
+                            Silahkan Pilih
                         </div>
+                        
                         <div class="panel-body">
+                         <div class="col-lg-6">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <form role="form">
-
-  
-<div class="form-group">
-     <label for="NIM">NIM</label>
-     <select name="NIM" class="form-control" name="NIM" id="NIM" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIM;};?>">  
-	 <?php
-$no = 1;
-
-foreach($NIM as $value)
-{
-echo "<option>".$value->NIM."</option>";
-
-if(isset($_GET['skripsi'])){
-	if($_GET['skripsi']==$value->NIM){
-		echo "<option selected>".$value->NIM."</option>";
-	}
-}
-}
-?>
-     </select>
-</div>
-  
-<div class="form-group">
-<label>Jenis Sidang</label>
-<select name="JenisSidang" class="form-control" name="JenisSidang" id="JenisSidang">
-				  <option value="<?php if ($type=="EDIT"){echo $jadwal[0]->JenisSidang;};?>">Proposal</option>
-				  <option value="<?php if ($type=="EDIT"){echo $jadwal[0]->JenisSidang;};?>">Skripsi</option>
-      </select>
-</div>
-  
-  	
-<div class="form-group">
-  <label>Tanggal </label>
-   <input class="form-control" name="Tanggal" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Tanggal;};?>">
-</div>
-
-<div class="form-group">
-  <label>Pukul</label>
-   <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Pukul;};?>">
-</div>
-
-<div class="form-group">
-  <label>Tempat</label>
-   <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Tempat;};?>">
-</div>
-                    
-<div class="form-group">
-<label>Dosen Penguji 1</label>
-<div class="">
-<select name="NIK" class="form-control" name="NIK" id="NIK" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->NIK;};?>">  
-	 <?php
-$no = 1;
-
-foreach($NIK as $value)
-{
-echo "<option>".$value->Nama."</option>";
-
-}
-?>  
-    </select>
-</div>
-</div>
-
-<div class="form-group">
-<label>Dosen Penguji 2</label>
-<select name="NIK" class="form-control" name="NIK" id="NIK" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->NIK;};?>">  
-	 <?php
-$no = 1;
-
-foreach($NIK as $value)
-{
-echo "<option>".$value->Nama."</option>";
-
-}
-?>  
-    </select>
-</div>
-
-  <input type="submit" name="simpan" value="<?php echo $type;?>">
-</div>
-             
-				
-                <!-- /.col-lg-12 --><!-- /.row -->
-           
-            <!-- /.row --><!-- /#page-wrapper --><!-- /#wrapper -->
-
+                            <form role="form" method="post" action="http://localhost/MSJadwal/v_data_sidang">
+                            <div class="form-group">
+                                            <label>Jenis Sidang</label>
+                                            <select class="form-control" name="jeniskbk">
+                                            <option value="0">Semua Sidang</option>
+                                            <option value="1">Proposal</option>
+                                            <option value="2">Skripsi</option>
+                                          
+                                            </select>
+                                        </div>
+                
+                                       <button type="submit" class="btn btn-default">Submit</button>
+                                         </form>
+                            </div></div></div>
+                        </div>
+                        
+                        </div>
+                        
+                        </div>
+                        
+                        </div>
+                        
+                        </div>
+                        
     <!-- jQuery -->
     <script src="http://localhost/MonitoringSkripsi/assets/bower_components/jquery/dist/jquery.min.js"></script>
 

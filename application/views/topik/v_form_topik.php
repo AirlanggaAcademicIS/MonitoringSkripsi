@@ -68,7 +68,9 @@
                             
                             <!-- /input-group -->
                  
-           
+           <li>
+                            <a href="http://localhost/MonitoringSkripsi/data_topik/index"> Topik Skripsi</a>
+                        </li>
                       <!-- /.nav-second-level -->
                         </li>
                        
@@ -98,7 +100,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form id="form1" name="formtopik" method="post" action="post">
 <div class="form-group">
   <label>Tanggal </label>
    <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TanggalTopik;};?>"> 

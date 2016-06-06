@@ -9,7 +9,7 @@ class Data_topik extends CI_Controller {
           $this->load->database();//memanggil pengaturan database dan mengaktifkannya 
           $this->load->model('m_data_topik');//memanggil model m_data_topik
           $data['skripsi'] = $this->m_data_topik->list_data(); //memanggil fungsi di model dan menerima hasil fungsi yang dimasukan ke $data['skripsi']
-          $this->load->view('v_data_topik',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
+          $this->load->view('topik/v_data_topik1',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
  }
  
 
@@ -21,7 +21,7 @@ public function Input()
 	  $data['NIK'] = $this->m_data_topik->getDosen();
 	  $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_jadwal.php
       $data['type']="INPUT";// definisi type, karena nanti juga ada edit
-      $this->load->view('v_form_topik',$data);// memanggil view v_form_topik.php	
+      $this->load->view('topik/v_form_topik',$data);// memanggil view v_form_topik.php	
 }
 
 
@@ -34,7 +34,7 @@ public function Edit()
       $NIM= $this->input->get('skripsi');//mengambil param  dari get
 	  $data['skripsi'] = $this->m_data_topik->getEdit($NIM);
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
-      $this->load->view('v_form_topik',$data);// memanggil view v_form_jadwal.php
+      $this->load->view('topik/v_form_topik',$data);// memanggil view v_form_jadwal.php
 }
 
 public function Post(){

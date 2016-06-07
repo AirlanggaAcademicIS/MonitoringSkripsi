@@ -112,51 +112,29 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Nomor</th>
+                                            <th>No.</th>
+                                            <th>NIK</th>
                                             <th>Nama</th>
                                             <th>KBK</th>
                                             <th>Kuota</th>
                                             
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>1</td>
-                                            <td>Army Justitia</td>
-                                            <td>Rekayasa Sistem Informasi</td>
-                                            <td class="center">0</td>
-                                           
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td>2</td>
-                                            <td>Badrus Zaman</td>
-                                            <td>Rekayasa Sistem Informasi</td>
-                                            <td class="center">0</td>
-                                           
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>3</td>
-                                            <td>Eva Harianty</td>
-                                            <td>RSI</td>
-                                            <td class="center">0</td>
-                                         
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>4</td>
-                                            <td>Eto Wuryanto</td>
-                                            <td>SPK</td>
-                                            <td class="center">0</td>
-                                         
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>5</td>
-                                            <td>Purbandini</td>
-                                            <td>Data Mining</td>
-                                            <td class="center">0</td>
-                                         
-                                        </tr>
+                                  <tbody>
+                                    <?php 
+									for($i=0; $i<$jumlah; $i++){
+                                      echo "<tr>";
+                                      echo "<td>".($i+1)."</td>";
+									   echo "<td>".$isitabel[$i]['NIK']."</td>";
+									    echo "<td>".$isitabel[$i]['nama']."</td>";
+										echo "<td>".$isitabel[$i]['KBK']."</td>";
+										echo "<td>".$isitabel[$i]['kuota']."</td>";										
+									   echo "</tr>";
+									}
+									  ?>
+                                      </tbody>
                                         
-                                    </tbody>
+                                    
                                 </table>
                             </div>
             </div>

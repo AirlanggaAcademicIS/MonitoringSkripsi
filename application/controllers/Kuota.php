@@ -5,12 +5,11 @@ class Data_topik extends CI_Controller {
  
  public function index()
  {
-      $this->load->helper('url'); 
-          $this->load->database();//memanggil pengaturan database dan mengaktifkannya 
-          $this->load->model('m_Kuota');//memanggil model m_data_topik
-          $data['dosen'] = $this->m_Kuota->list_data();//memanggil fungsi di model dan menerima hasil fungsi yang dimasukan ke $data['data_topik']
-          $this->load->view('mahasiswa_kuota_dosen',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
-
+      $this->load->database();
+     $this->load->model('m_Kuota');
+     
+          $this->load->view('kuotadosen/kuotadosen',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
+     
  }
  
  public function Input()
@@ -72,8 +71,20 @@ public function Post(){
  
    $this->load->helper('url');
    redirect('skripsi','refresh');
-}
-
+ }
+public function kuotatabel()
+	{
+		
+		$this->load->model('m_Kuota');
+		$allkuota = $this->m_Kuota->getsemuakuota();
+		$data = array(
+			'jumlah'=>sizeof($allkuota),
+			'isitabel'=>$allkuota
+			);
+			
+		$this->load->view('kuotadosen/mahasiswa_kuota_dosen',$data);
+		
+	}
 
 
 }

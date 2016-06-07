@@ -60,7 +60,7 @@ class Laporan extends CI_Controller {
             $this->allDosen = $this->Dosen->getAllDosen();
             $this->allSkripsi = $this->Skripsi->getAllSkripsi();
             $this->allMembimbing = $this->Bimbingan->getAllBimbingan();
-            $this->laporanTanggungan = $this->generateLaporan($this->allDosen, $this->allSkripsi, $this->jeniskbk, $this->tahun);
+            $this->laporanTanggungan = $this->generateLaporanTanggungan($this->allDosen, $this->allSkripsi, $this->jeniskbk, $this->tahun);
             
             $data      = array(
                             'laporanTanggungan' => $this->laporanTanggungan
@@ -196,30 +196,53 @@ class Laporan extends CI_Controller {
         function generateLaporanStatus($allMahasiswa, $allSkripsi){
             $allStatus = array();
             
-            foreach($allMahasiswa as $mhs){
-                    $statusMhs = array();
-                    $count1 = 0;
-                    $count2 = 0;
-
-                    $statusMhs['NIM'] = $mhs['NIM']; // 1. NIK
-                    // 2. Nama , a href url folder views
-                    $statusMhs['Nama'] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$mhs['NIM'].'"'.'<font color="blue">'.$mhs['Nama'].'</font>'.'</a>';
-                    
-                    foreach($allSkripsi as $skripsi){
-                        if($mhs['NIM'] == $skripsi['NIM']){
-                            if($skripsi['TanggalTopik'] == '0000-00-00'){
-                                $statusMhs['Status'] = '-';
-                            } else if($skripsi['TanggalProp'] == '0000-00-00'){
-                                $statusMhs['Status'] = 'Topik';
-                            } else if($skripsi['TanggalSkripsi'] == '0000-00-00'){
-                                $statusMhs['Status'] = 'Proposal';
-                            } else {
-                                $statusMhs['Status'] = 'Skripsi';
-                            }
-                        }
+            foreach($allSkripsi as $skripsi){
+                $statusMhs['NIM'] = $skripsi['NIM']; // 1. NIK
+                foreach($allMahasiswa as $mhs){
+                    if($skripsi['NIM'] == $mhs['NIM']){
+                        $statusMhs['Nama'] = $mhs['Nama'];
                     }
-                    $allStatus[] = $statusMhs;
                 }
+                
+                if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+                    $statusMhs['Status'] = 'Lulus';
+                } else if($skripsi['TanggalProp'] != '0000-00-00'){
+                    $statusMhs['Status'] = 'Skripsi';
+                } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+                    $statusMhs['Status'] = 'Proposal';
+                } else {
+                    $statusMhs['Status'] = 'Belum usulan topik';
+                }
+                // append to array
+                $allStatus[] = $statusMhs;
+            }
+                    
+//            foreach($allMahasiswa as $mhs){
+//                    $statusMhs = array();
+//                    $count1 = 0;
+//                    $count2 = 0;
+//
+//                    $statusMhs['NIM'] = $mhs['NIM']; // 1. NIK
+//                    // 2. Nama , a href url folder views
+//                    $statusMhs['Nama'] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$mhs['NIM'].'"'.'<font color="blue">'.$mhs['Nama'].'</font>'.'</a>';
+//                    
+//                    foreach($allSkripsi as $skripsi){
+//                        if($mhs['NIM'] == $skripsi['NIM']){
+//                            if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+//                                $statusMhs['Status'] = 'Lulus';
+//                            } else if($skripsi['TanggalProp'] != '0000-00-00'){
+//                                $statusMhs['Status'] = 'Skripsi';
+//                            } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+//                                $statusMhs['Status'] = 'Proposal';
+//                            } else {
+//                                $statusMhs['Status'] = 'Belum usulan topik';
+//                            }
+//                        } else {
+//                            $statusMhs['Status'] = 'Belum usulan topik';
+//                        }
+//                    }
+//                    $allStatus[] = $statusMhs;
+//                }
             // return array
             return $allStatus;
         }

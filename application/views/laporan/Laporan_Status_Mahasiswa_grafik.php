@@ -36,7 +36,7 @@
                   },
                   bars: 'vertical' // Required for Material Bar Charts.
                 };
-                var chart = new google.charts.Bar(document.getElementById('myChart'));
+                var chart = new google.charts.Pie(document.getElementById('myChart'));
                 chart.draw(data, options);
             }
       </script>

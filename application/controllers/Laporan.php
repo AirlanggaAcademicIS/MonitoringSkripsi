@@ -12,12 +12,17 @@ class Laporan extends CI_Controller {
         private $grafikTanggungan;
         private $grafikStatus;
         private $dosen;
+        private $pembimbing;
         
         private $tahun;
         private $jeniskbk;
         
+        private $formValues = array();
+        
         function __construct(){
             parent::__construct();
+            $this->laporanTanggungan = array();
+            
             $this->load->model('Dosen');
             $this->load->model('Mahasiswa');
             $this->load->model('Bimbingan');
@@ -54,13 +59,14 @@ class Laporan extends CI_Controller {
         }
         
         public function tanggungandosentabel(){
-            $this->jeniskbk = 0;
+            $this->pembimbing = $this->input->post('pembimbing');
             $this->tahun = $this->input->post('tahun');
             
             $this->allDosen = $this->Dosen->getAllDosen();
             $this->allSkripsi = $this->Skripsi->getAllSkripsi();
             $this->allMembimbing = $this->Bimbingan->getAllBimbingan();
-            $this->laporanTanggungan = $this->generateLaporanTanggungan($this->allDosen, $this->allSkripsi, $this->jeniskbk, $this->tahun);
+            $this->laporanTanggungan = $this->generateLaporanTanggungan($this->allDosen, $this->allSkripsi, $this->pembimbing, $this->tahun);
+            $this->setPembimbing($this->pembimbing);
             
             $data      = array(
                             'laporanTanggungan' => $this->laporanTanggungan
@@ -69,14 +75,18 @@ class Laporan extends CI_Controller {
             $this->load->view('laporan/Laporan_Tanggungan_Dosen_Tabel', $data);
         }
         
+        function setPembimbing($pembimbing){
+            $this->pembimbing = $pembimbing;
+            echo 'Pembimbing = '.$pembimbing;
+        }
         public function tanggungandosengrafik(){
-            $jeniskbk = 0;
-            $tahun = $this->tahun;
-            
-            $this->allDosen = $this->Dosen->getAllDosen();
-            $this->allSkripsi = $this->Skripsi->getAllSkripsi();
-            $this->allMembimbing = $this->Bimbingan->getAllBimbingan();
-            $this->laporanTanggungan = $this->generateLaporanTanggungan($this->allDosen, $this->allSkripsi, $jeniskbk, $tahun);
+//            $this->pembimbing = $this->input->post('pembimbing');
+//            $this->tahun = $this->input->post('tahun');
+//            
+//            $this->allDosen = $this->Dosen->getAllDosen();
+//            $this->allSkripsi = $this->Skripsi->getAllSkripsi();
+//            $this->allMembimbing = $this->Bimbingan->getAllBimbingan();
+//            $this->laporanTanggungan = $this->generateLaporanTanggungan($this->allDosen, $this->allSkripsi, $this->pembimbing, $this->tahun);
             $this->grafikTanggungan = $this->generateGrafikTanggungan($this->laporanTanggungan);
             
             $data   = array(
@@ -217,33 +227,6 @@ class Laporan extends CI_Controller {
                 $allStatus[] = $statusMhs;
             }
                     
-//            foreach($allMahasiswa as $mhs){
-//                    $statusMhs = array();
-//                    $count1 = 0;
-//                    $count2 = 0;
-//
-//                    $statusMhs['NIM'] = $mhs['NIM']; // 1. NIK
-//                    // 2. Nama , a href url folder views
-//                    $statusMhs['Nama'] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$mhs['NIM'].'"'.'<font color="blue">'.$mhs['Nama'].'</font>'.'</a>';
-//                    
-//                    foreach($allSkripsi as $skripsi){
-//                        if($mhs['NIM'] == $skripsi['NIM']){
-//                            if($skripsi['TanggalSkripsi'] != '0000-00-00'){
-//                                $statusMhs['Status'] = 'Lulus';
-//                            } else if($skripsi['TanggalProp'] != '0000-00-00'){
-//                                $statusMhs['Status'] = 'Skripsi';
-//                            } else if($skripsi['TanggalTopik'] != '0000-00-00'){
-//                                $statusMhs['Status'] = 'Proposal';
-//                            } else {
-//                                $statusMhs['Status'] = 'Belum usulan topik';
-//                            }
-//                        } else {
-//                            $statusMhs['Status'] = 'Belum usulan topik';
-//                        }
-//                    }
-//                    $allStatus[] = $statusMhs;
-//                }
-            // return array
             return $allStatus;
         }
         
@@ -276,7 +259,7 @@ class Laporan extends CI_Controller {
             return $allStatusMhs;
         }
         
-        function generateLaporanTanggungan($allDosen, $allSkripsi, $jeniskbk, $tahun){
+        function generateLaporanTanggungan($allDosen, $allSkripsi, $pembimbing, $tahun){
             $allTanggunganDosen = array();
             
             foreach($allDosen as $dosen){
@@ -286,66 +269,105 @@ class Laporan extends CI_Controller {
 
                     $tanggunganDosen['NIK'] = $dosen['NIK']; // 1. NIK
                     // 2. Nama , a href url folder views
-                    $tanggunganDosen['Nama'] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$dosen['NIK'].'"'.'<font color="blue">'.$dosen['Nama'].'</font>'.'</a>';
+//                    $tanggunganDosen['Nama'] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$dosen['NIK'].'"'.'<font color="red">'.$dosen['Nama'].'</font>'.'</a>';
+                    $tanggunganDosen['Nama'] = $dosen['Nama'];
                     $tanggunganDosen['KBK'] = $dosen['KBK']; // 3. KBK
 
-                    foreach($allSkripsi as $skripsi){
-                        if($dosen['NIK'] == $skripsi['NIK1']){
-                            $count1 = $count1+1;
-                            $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
-                        }
-                        if($dosen['NIK'] == $skripsi['NIK2']){
-                            $count2 = $count2+1;
-                            $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
-                        }
-                    }
-
-                    $tanggunganDosen['count1'] = $count1; // 4. Count1
-                    $tanggunganDosen['count2'] = $count2; // 5. Count2
-                    $tanggunganDosen['allCount'] = $count1+$count2; // 6. Count Total
+                    $prop = 0; $skrip = 0; $lulus = 0;
                     
-                    switch($jeniskbk){
+                    switch($pembimbing){
                         case 0:
-                            if($tahun == 0){
-                                $allTanggunganDosen[] = $tanggunganDosen;                            
-                            } else {
+                            foreach($allSkripsi as $skripsi){
+                                if($dosen['NIK'] == $skripsi['NIK1']){
+                                    $count1 = $count1+1;
+                                    $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
+                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+                                        $lulus = $lulus+1;
+                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
+                                        $skrip = $skrip+1;
+                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+                                        $prop = $prop+1;
+                                    } 
+                                }
+                                
+                                if($dosen['NIK'] == $skripsi['NIK2']){
+                                    $count2 = $count2+1;
+                                    $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
+                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+                                        $lulus = $lulus+1;
+                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
+                                        $skrip = $skrip+1;
+                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+                                        $prop = $prop+1;
+                                    } 
+                                }
+                            }
+
+                            $tanggunganDosen['count1'] = $count1; // 4. Count1
+                            $tanggunganDosen['count2'] = $count2; // 5. Count2
+                            $tanggunganDosen['allCount'] = $count1+$count2; // 6. Count Total
+                            $tanggunganDosen['prop'] = $prop;
+                            $tanggunganDosen['skrip'] = $skrip;
+                            $tanggunganDosen['lulus'] = $lulus;
+
+                            if(isset($tanggunganDosen['tahun'])){
                                 if($tanggunganDosen['tahun'] == $tahun){
                                     $allTanggunganDosen[] = $tanggunganDosen;                            
                                 }
                             }
                             break;
                         case 1:
-                            if($tahun == 0){
-                                if($dosen['KBK']== 'Data Mining'){
-                                    $allTanggunganDosen[] = $tanggunganDosen;
+                            foreach($allSkripsi as $skripsi){
+                                if($dosen['NIK'] == $skripsi['NIK1']){
+                                    $count1 = $count1+1;
+                                    $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
+                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+                                        $lulus = $lulus+1;
+                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
+                                        $skrip = $skrip+1;
+                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+                                        $prop = $prop+1;
+                                    } 
                                 }
-                            } else {
-                                if(($dosen['KBK']== 'Data Mining')&& $tanggunganDosen['tahun'] == $tahun){
-                                    $allTanggunganDosen[] = $tanggunganDosen;
+                            }
+
+                            $tanggunganDosen['count1'] = $count1; // 4. Count1
+                            $tanggunganDosen['prop'] = $prop;
+                            $tanggunganDosen['skrip'] = $skrip;
+                            $tanggunganDosen['lulus'] = $lulus;
+                            
+                            if(isset($tanggunganDosen['tahun'])){
+                                if($tanggunganDosen['tahun'] == $tahun){
+                                    $allTanggunganDosen[] = $tanggunganDosen;                            
                                 }
                             }
                             break;
                         case 2:
-                            if($tahun == 0){
-                                if($dosen['KBK']== 'SPK'){
-                                    $allTanggunganDosen[] = $tanggunganDosen;
+                            foreach($allSkripsi as $skripsi){
+                                if($dosen['NIK'] == $skripsi['NIK2']){
+                                    $count2 = $count2+1;
+                                    $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
+                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+                                        $lulus = $lulus+1;
+                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
+                                        $skrip = $skrip+1;
+                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+                                        $prop = $prop+1;
+                                    } 
                                 }
-                            } else {
-                                if(($dosen['KBK']== 'SPK')&& $tanggunganDosen['tahun'] == $tahun){
-                                    $allTanggunganDosen[] = $tanggunganDosen;
+                            }
+
+                            $tanggunganDosen['count2'] = $count2; // 4. Count1
+                            $tanggunganDosen['prop'] = $prop;
+                            $tanggunganDosen['skrip'] = $skrip;
+                            $tanggunganDosen['lulus'] = $lulus;
+                            
+                            if(isset($tanggunganDosen['tahun'])){
+                                if($tanggunganDosen['tahun'] == $tahun){
+                                    $allTanggunganDosen[] = $tanggunganDosen;                            
                                 }
                             }
                             break;
-                        case 3:
-                            if($tahun == 0){
-                                if($dosen['KBK']== 'RSI'){
-                                    $allTanggunganDosen[] = $tanggunganDosen;
-                                }
-                            } else {
-                                if(($dosen['KBK']== 'RSI')&& $tanggunganDosen['tahun'] == $tahun){
-                                    $allTanggunganDosen[] = $tanggunganDosen;
-                                }
-                            }break;
                     }
                 }
             // return array
@@ -354,10 +376,9 @@ class Laporan extends CI_Controller {
 
         function generateGrafikTanggungan($laporanTD){
             $allTanggunganDosen = array();
-            
             foreach($laporanTD as $row){
                 $tanggunganDosen = array();
-                
+                echo 'HELLO';
                 // 2. Nama , a href url folder views
                 $tanggunganDosen['Nama'] = $row['Nama'];
                 $tanggunganDosen['count1'] = $row['count1']; // 4. Count1
@@ -368,49 +389,127 @@ class Laporan extends CI_Controller {
             // return array
             return $allTanggunganDosen;
         }
-
-        // sub page of viewing detail dosen
-        function detail_dosen($NIK){
-            $this->allMahasiswa = $this->Mahasiswa->getAllMahasiswa();
-            $this->allMembimbing = $this->Bimbingan->getAllBimbingan();
-            $this->allSkripsi = $this->Skripsi->getAllSkripsi();
-            $this->dosen = $this->Dosen->getDosen($NIK);
+        
+        /**
+         * Detail Dosen
+         */
+        
+        function detail_dosen(){
+            $seStr = $this->input->get('array');
+            $arr = explode('x', $seStr);
+            $NIK = $arr[0];
+            $pembimbing = $arr[1];
+            
+            $allSkripsi = $this->Skripsi->getAllSkripsi();
+            $dosen = $this->Dosen->getDosen($NIK);
             $data = array(
-                'detailDosen' => $this->generateDetail($this->dosen, $this->allMembimbing, $this->allSkripsi),
+                'detailDosen' => $this->generateDetail($dosen, $allSkripsi, $pembimbing),
                 'allMahasiswa' => $this->allMahasiswa
             );
             
-            $this->load->view('head');
             $this->load->view('laporan/detail_dosen', $data);
-            $this->load->view('foot');
         }
         
-        function generateDetail($dosen, $allMembimbing, $allSkripsi){
+        function generateDetail($dosen, $allSkripsi, $pembimbing){
             $mhsBimbing = array();
-            foreach($allMembimbing as $membimbing){
-                if($dosen->NIK == $membimbing['NIK']){
-                    $skripsi = $this->Skripsi->getSkripsi($membimbing['id_skripsi']);
-//                    $kbk = $this->KBK->getKBK($skripsi->id_kbk);
-                    $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi->NIM);
-                    if(isset($mahasiswa)){
-                        echo "<br>NIM".$mahasiswa->NIM;
-                    
-                        $mhsTemp = array();
-                        $mhsTemp[] = $mahasiswa->NIM;
-                        $mhsTemp[] = $mahasiswa->Nama;
-                        $mhsTemp[] = $skripsi->KBK;
-                        $mhsTemp[] = $skripsi->Judul;
-    //                    $mhsTemp[] = $kbk['namaKBK'];
+            switch($pembimbing){
+                case 0:
+                    foreach($allSkripsi as $skripsi){
+                        if(($dosen->NIK == $skripsi['NIK1']) || ($dosen->NIK == $skripsi['NIK2'])){
+                            $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi['NIM']);
+                            if(isset($mahasiswa)){
+                           
+                                $mhsTemp = array();
+                                $mhsTemp[] = $mahasiswa->NIM;
+                                $mhsTemp[] = $mahasiswa->Nama;
+                                $mhsTemp[] = $skripsi['KBK'];
+                                $mhsTemp[] = $skripsi['Judul'];
+                
+                                if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+                                    $mhsTemp[] = 'Lulus';
+                                } else if($skripsi['TanggalProp'] != '0000-00-00'){
+                                    $mhsTemp[] = 'Skripsi';
+                                } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+                                    $mhsTemp[] = 'Proposal';
+                                } else {
+                                    $mhsTemp[] = 'Belum usulan topik';
+                                }
+                                $mhsBimbing[] = $mhsTemp;
+                            } else {
+                                echo "Mahasiswa kosong";
+                            }
 
-                        $mhsBimbing[] = $mhsTemp;
-                    } else {
-                        echo "Mahasiswa kosong";
+                        }
                     }
-                    
-                }
+                    break;
+                case 1:
+                    foreach($allSkripsi as $skripsi){
+                        if(($dosen->NIK == $skripsi['NIK1'])){
+                            $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi['NIM']);
+                            if(isset($mahasiswa)){
+                           
+                                $mhsTemp = array();
+                                $mhsTemp[] = $mahasiswa->NIM;
+                                $mhsTemp[] = $mahasiswa->Nama;
+                                $mhsTemp[] = $skripsi['KBK'];
+                                $mhsTemp[] = $skripsi['Judul'];
+                                $mhsBimbing[] = $mhsTemp;
+                            } else {
+                                echo "Mahasiswa kosong";
+                            }
+
+                        }
+                    }
+                    break;
+                case 2:
+                    foreach($allSkripsi as $skripsi){
+                        if(($dosen->NIK == $skripsi['NIK2'])){
+                            $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi['NIM']);
+                            if(isset($mahasiswa)){
+                           
+                                $mhsTemp = array();
+                                $mhsTemp[] = $mahasiswa->NIM;
+                                $mhsTemp[] = $mahasiswa->Nama;
+                                $mhsTemp[] = $skripsi['KBK'];
+                                $mhsTemp[] = $skripsi['Judul'];
+                                $mhsBimbing[] = $mhsTemp;
+                            } else {
+                                echo "Mahasiswa kosong";
+                            }
+
+                        }
+                    }
+                    break;
             }
-            
             return $mhsBimbing;
         }
+        
+//        function generateDetail($dosen, $allMembimbing, $allSkripsi){
+//            $mhsBimbing = array();
+//            foreach($allMembimbing as $skripsi){
+//                if($dosen->NIK == $membimbing['NIK']){
+//                    $skripsi = $this->Skripsi->getSkripsi($membimbing['id_skripsi']);
+////                    $kbk = $this->KBK->getKBK($skripsi->id_kbk);
+//                    $mahasiswa = $this->Mahasiswa->getMahasiswa($skripsi->NIM);
+//                    if(isset($mahasiswa)){
+//                        echo "<br>NIM".$mahasiswa->NIM;
+//                    
+//                        $mhsTemp = array();
+//                        $mhsTemp[] = $mahasiswa->NIM;
+//                        $mhsTemp[] = $mahasiswa->Nama;
+//                        $mhsTemp[] = $skripsi->KBK;
+//                        $mhsTemp[] = $skripsi->Judul;
+//    //                    $mhsTemp[] = $kbk['namaKBK'];
+//
+//                        $mhsBimbing[] = $mhsTemp;
+//                    } else {
+//                        echo "Mahasiswa kosong";
+//                    }
+//                    
+//                }
+//            }
+//            
+//            return $mhsBimbing;
+//        }
         
 }

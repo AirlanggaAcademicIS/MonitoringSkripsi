@@ -58,8 +58,6 @@
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
                                <h3> Selamat Datang!</h3>
                                 <br><br>
-                                <h4>Bunga Desa Wijoyokusumo
-                                <br>081313222773</h4>
                             </div>
                             
                             <!-- /input-group -->
@@ -94,19 +92,41 @@
         <div id="page-wrapper">
         
             <?php
-                echo "<br>Tabel dan Grafik : Performa Dosen Pembimbing<br>";
-                
-                
                 if(isset($laporanTanggungan)) {
                     $template = array(
                         'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table">'
                     );
-
                     $this->table->set_template($template);
-                    $this->table->set_heading(array('NIK', 'Nama', 'KBK', 'Tahun', 'Total 1', 'Total 2', 'Total Seluruhnya'));
-
+                    $P;
+                    
+                    $top =$laporanTanggungan[0];
+                    if(!isset($top['count2'])){
+                        // Pembimbing 1
+                        $P = 1;
+                        echo "<br>Tabel dan Grafik : Performa Dosen Pembimbing 1<br><br>";
+                        $this->table->set_heading(array('NIK', 'Nama', 'KBK', 'Tahun', 
+                            'P1',
+                            'Proposal','Skripsi','Lulus'));
+                    } else if(!isset($top['count1'])){
+                        // Pembimbing 2
+                        $P = 2;
+                        echo "<br>Tabel dan Grafik : Performa Dosen Pembimbing 2<br><br>";
+                        $this->table->set_heading(array('NIK', 'Nama', 'KBK', 'Tahun',
+                            'P2',
+                            'Proposal','Skripsi','Lulus'));
+                    } else {
+                        $P = 0;
+                        echo "<br>Tabel dan Grafik : Performa Dosen Pembimbing<br><br>";
+                        $this->table->set_heading(array('NIK', 'Nama', 'KBK', 'Tahun', 
+                            'P1', 'P2', 'Semua',
+                            'Proposal','Skripsi','Lulus'));
+                    }
+                    
                     // separate row array
                     foreach($laporanTanggungan as $row){
+                        $row['Nama'] = '<a href = "'.base_url().'laporan/detail_dosen/'
+                            ."?array=".$row['NIK'].'x'. $P .'">'
+                            .'<font color="red">'.$row['Nama'].'</font>'.'</a>';
                         $this->table->add_row($row);
                     }
 
@@ -117,7 +137,7 @@
                 
             ?>
             
-            <a href="http://localhost/MonitoringSkripsi/laporan/tanggungandosengrafik"> Grafik</a>
+            <!--<a href="http://localhost/MonitoringSkripsi/laporan/tanggungandosengrafik"> Grafik</a>-->
             
             <div id="myChart" style="width: 900px; height: 500px;">        </div>
         

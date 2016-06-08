@@ -58,8 +58,6 @@
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
                                <h3> Selamat Datang!</h3>
                                 <br><br>
-                                <h4>Bunga Desa Wijoyokusumo
-                                <br>081313222773</h4>
                             </div>
                             
                             <!-- /input-group -->
@@ -110,10 +108,18 @@
                          <div class="col-lg-6">
                             <div class="row">
                             <form role="form" method="post" action="http://localhost/MonitoringSkripsi/laporan/tanggungandosentabel">
+                                <div class="form-group">
+                                            <label>Dosen Pembimbing</label>
+                                            <select class="form-control" name="pembimbing">
+                                            <option value="0">Semua Pembimbing</option>
+                                            <option value="1">Pembimbing 1</option>
+                                            <option value="2">Pembimbing 2</option>
+                                            </select>
+                                        </div>
                             <div class="form-group">
                                             <label>Tahun</label>
                                             <select class="form-control" name="tahun">
-                                            <option value="0">Semua Tahun</option>
+                                            <option value="2016">Semua Tahun</option>
                                             <option value="2016">2016</option>
                                             <option value="2015">2015</option>
                                             <option value="2014">2014</option>

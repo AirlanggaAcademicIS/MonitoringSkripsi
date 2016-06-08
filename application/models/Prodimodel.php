@@ -3,12 +3,15 @@
 class Prodimodel extends CI_Model{
     
     var $NIM;
+    var $NIK;
     var $Nama;
     var $Alamat;
     var $Telp;
     var $Email;
     var $Pass;
     var $Prodi;
+    var $KBK;
+    var $TahunAjar;
     
     function __construct() {
           parent::__construct();
@@ -17,6 +20,10 @@ class Prodimodel extends CI_Model{
       
     function getNIM() {
         return $this->NIM;
+    }
+    
+    function getNIK() {
+        return $this->NIK;
     }
 
     function getNama() {
@@ -42,9 +49,21 @@ class Prodimodel extends CI_Model{
     function getProdi() {
         return $this->Prodi;
     }
+    
+    function getKBK() {
+        return $this->KBK;
+    }
+    
+    function getTahunAjar() {
+        return $this->TahunAjar;
+    }
 
     function setNIM($NIM) {
         $this->NIM = $NIM;
+    }
+    
+    function setNIK($NIK) {
+        $this->NIK = $NIK;
     }
 
     function setNama($Nama) {
@@ -72,8 +91,20 @@ class Prodimodel extends CI_Model{
     
       }
       
+    function setKBK($KBK) {
+        $this->KBK = $KBK;
+    }
+    
+    function setTahunAjar($TahunAjar) {
+        $this->TahunAjar = $TahunAjar;
+    }
+    
       function getAllMahasiswa(){
-          return $this->db->query("SELECT * FROM `mahasiswa`");
+          return $this->db->query("SELECT * FROM `Mahasiswa`");
+      }
+      
+      function getAllDosen(){
+          return $this->db->query("SELECT * FROM `Dosen`");
       }
 public function insert_tambah($NIM, $Nama, $Alamat, $Telp ,$Email, $Pass, $Prodi){
           $data = array (
@@ -87,20 +118,56 @@ public function insert_tambah($NIM, $Nama, $Alamat, $Telp ,$Email, $Pass, $Prodi
 		  );
 		  $this->db->insert('mahasiswa',$data);
       }
+  public function insert_tambah2($NIK, $Nama, $Alamat, $Telp ,$Email, $Pass, $Prodi, $KBK, $TahunAjar){
+          $data = array (
+		  'NIK' => $NIK,
+		  'Nama' => $Nama,
+		  'Alamat' => $Alamat,
+		  'Telp' => $Telp,
+		  'Email' => $Email,
+                  'Pass' => $Pass,
+                  'Prodi' => $Prodi,
+                  'KBK' => $KBK,
+                  'TahunAjar' => $TahunAjar
+		  );
+		  $this->db->insert('dosen',$data);
+      }    
      function getsemuamahasiswa(){
-		 $sql ="SELECT  NIM, Nama, Alamat, Email, Telp, Pass, Prodi FROM mahasiswa";
+		 $sql ="SELECT  Nama, NIM, Alamat, Email, Telp, Pass, Prodi FROM Mahasiswa";
 		  
 		  $query = $this->db->query($sql);
         $i = 0;
         foreach ($query->result_array() as $row)
          {
-			$user[$i]['NIM'] = $row['NIM'];
             $user[$i]['Nama'] = $row['Nama'];
+            $user[$i]['NIM'] = $row['NIM'];
             $user[$i]['Alamat'] = $row['Alamat'];
 			$user[$i]['Email'] = $row['Email'];
                         $user[$i]['Telp'] = $row['Telp'];
                         $user[$i]['Pass'] = $row['Pass'];
                         $user[$i]['Prodi'] = $row['Prodi'];
+			$i++;
+        }
+        return $user;
+		  
+		  }
+                  
+        function getsemuadosen(){
+		 $sql ="SELECT  Nama, NIK, Alamat, Email, Telp, Pass, Prodi, KBK, TahunAjar FROM Dosen";
+		  
+		  $query = $this->db->query($sql);
+        $i = 0;
+        foreach ($query->result_array() as $row)
+         {
+            $user[$i]['Nama'] = $row['Nama'];
+            $user[$i]['NIK'] = $row['NIM'];
+            $user[$i]['Alamat'] = $row['Alamat'];
+			$user[$i]['Email'] = $row['Email'];
+                        $user[$i]['Telp'] = $row['Telp'];
+                        $user[$i]['Pass'] = $row['Pass'];
+                        $user[$i]['Prodi'] = $row['Prodi'];
+                        $user[$i]['KBK'] = $row['KBK'];
+                        $user[$i]['TahunAjar'] = $row['TahunAjar'];
 			$i++;
         }
         return $user;

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Monitoring Skripsi</title>
+    <title>Daftar Mahasiswa</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://localhost/MonitoringSkripsi/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -72,11 +72,9 @@
                         
                              
                         <li>
-                            <a href=""><i class="fa fa-table fa-fw"></i> Bimbingan</a>
+                            <a href=""><i class="fa fa-table fa-fw"></i> Dosen</a>
                         </li>
-                        <li>
-                            <a href=""><i class="fa fa-edit fa-fw"></i> Laporan</a>
-                        </li>
+                        
                                                    </ul>
                             <!-- /.nav-second-level -->
                         </li>

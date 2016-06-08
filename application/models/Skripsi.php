@@ -18,8 +18,16 @@
       }
       /* Member functions */
       
-      function getId_skripsi() {
-          return $this->id_skripsi;
+     function getId_skripsi($nim) {
+	    $sql = "SELECT id_skripsi, NIM FROM `skripsi` WHERE NIM='".$nim."'";
+    	$query = $this->db->query($sql);
+		foreach ($query->result_array() as $row)
+		{
+        	
+			$users=$row['id_skripsi'];
+           
+		}
+		 return $users;
       }
 
       function getJudul() {
@@ -232,6 +240,31 @@ function getnik1nik2($nim){
 		{
         	$users['nik1']=$row['NIK1'];
             $users['nik2']=$row['NIK2'];
+		}
+        
+       return $users;
+		}
+		
+		function getnikk(){
+			$sql = "SELECT NIK FROM `bimbingan`";
+    	$query = $this->db->query($sql);
+		
+		foreach ($query->result_array() as $row)
+		{
+        	$users['nik']=$row['NIK'];
+           
+		}
+        
+       return $users;
+		}
+		 function gettanggaskripsi($nim){
+			$sql = "SELECT * FROM `skripsi` WHERE NIM='".$nim."'";
+    	$query = $this->db->query($sql);
+		
+		foreach ($query->result_array() as $row)
+		{
+        	$users['TanggalTopik']=$row['TanggalTopik'];
+            $users['TanggalProp']=$row['TanggalProp'];
 		}
         
        return $users;

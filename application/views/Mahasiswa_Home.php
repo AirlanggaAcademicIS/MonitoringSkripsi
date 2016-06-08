@@ -66,6 +66,10 @@
                         
                         <!-- /input-group -->
                     </li>
+					 <li>
+                         <a href="http://localhost/MonitoringSkripsi/data_topik/input"><i class="fa fa-dashboard fa-fw"></i> Usulan Topik</a>
+                    </li>
+                    
                     <li>
                         <a href="<?php echo base_url();?>kuotadosen/kuota"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
                     </li>
@@ -73,7 +77,6 @@
                          
                     <li>
                         <a href="<?php echo base_url();?>Bimbingan/bimbingantabel"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
-						<a href="<?php echo base_url();?>Bimbingan/bimbinganpage"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-edit fa-fw"></i> Progress</a>

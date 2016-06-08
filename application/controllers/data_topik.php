@@ -21,7 +21,7 @@ public function Input()
 	  $data['NIK'] = $this->m_data_topik->getDosen();
 	  $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_jadwal.php
       $data['type']="INPUT";// definisi type, karena nanti juga ada edit
-      $this->load->view('topik/v_form_topik',$data);// memanggil view v_form_topik.php	
+      $this->load->view('formTopik/v_form_topik',$data);// memanggil view v_form_topik.php	
 }
 
 
@@ -51,9 +51,9 @@ public function Post(){
 	   'Judul' => $this->input->post('Judul'),
        'NIK1' => $this->input->post('NIK1'),
 	   'NIK2' => $this->input->post('NIK2'),
-	   'TanggalProp' => $this->input->post('null'),
-	   'TanggalSkripsi' => $this->input->post('null'),
-	   'id_jadwal' => $this->input->post('null'),
+	   'TanggalProp' => $this->input->post('0000-00-00'),
+	   'TanggalSkripsi' => $this->input->post('0000-00-00'),
+	   'id_jadwal' => $this->input->post('0'),
        );
      //jika simpan == input 
      if($this->input->post('simpan')=="INPUT"){
@@ -79,11 +79,5 @@ public function Post(){
    redirect('skripsi','refresh');
 }
 
-
-public function getSkripsibyNIM(){
-$NIM =$this->input->post('NIM');
-$this->load->model('m_data_topik');
-$info =$this->m_data_topik->gettableSkripsibyNIM();
-}
 
 }

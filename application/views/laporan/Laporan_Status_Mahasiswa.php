@@ -58,8 +58,7 @@
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
                                <h3> Selamat Datang!</h3>
                                 <br><br>
-                                <h4>Bunga Desa Wijoyokusumo
-                                <br>081313222773</h4>
+                                
                             </div>
                             
                             <!-- /input-group -->
@@ -75,7 +74,7 @@
                         <li>
                             <a href="http://localhost/MonitoringSkripsi/laporan/statusmahasiswa"> Status Mahasiswa</a>
                         </li>
-                                                   </ul>
+                        </ul>
                             <!-- /.nav-second-level -->
                         </li>
                        
@@ -126,6 +125,31 @@
                                          </form>
                             </div></div></div>
                         </div>
+                        Tabel Dashboard
+                        <?php
+                            echo "<br>Dashboard : Status Mahasiswa<br>";
+
+
+                            if(isset($laporanStatus)) {
+                                $template = array(
+                                    'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table">'
+                                );
+
+                                $this->table->set_template($template);
+                                $this->table->set_heading(array('Status', 'TOtal'));
+
+                                // separate row array
+                                foreach($laporanStatus as $row){
+                                    $this->table->add_row($row);
+                                }
+
+                                echo $this->table->generate();
+                            } else {
+                                echo "<br><br> No Data Available";
+                            }
+
+                        ?>
+            
                         
                         </div>
                         

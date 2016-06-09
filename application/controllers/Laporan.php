@@ -101,7 +101,14 @@ class Laporan extends CI_Controller {
          */
         
         public function statusmahasiswa(){
-            $this->load->view('laporan/Laporan_Status_Mahasiswa');
+            $mahasiswas = $this->Mahasiswa->getAllMahasiswa();
+            $skripsis = $this->Skripsi->getAllSkripsi();
+            $this->laporanStatus = $this->generateDashboardStatus($skripsis);
+            $data   = array(
+                    'laporanStatus' => $this->laporanStatus
+                    );
+            
+            $this->load->view('laporan/Laporan_Status_Mahasiswa', $data);
         }
         
         public function statusmahasiswatabel(){
@@ -202,6 +209,58 @@ class Laporan extends CI_Controller {
 		else if($option==2)$this->load->view('laporan_statusmhs_page');
 		
 	}
+        
+        function generateDashboardStatus($allSkripsi){
+            $allStatus = array();
+            $count1=0; // Lulus
+            $count2=0; // Skripsi
+            $count3=0; // Proposal
+            $count4=0; // Belum usulan Topik
+            
+            foreach($allSkripsi as $skripsi){
+                if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+                    $count1++;
+                } else if($skripsi['TanggalProp'] != '0000-00-00'){
+                    $count2++;
+                } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+                    $count3++;
+                } else {
+                    $count4++;
+                }
+            }
+            
+            $statusMhs['Status']='Lulus';
+            $statusMhs['Count']=$count1;
+            $allStatus[] = $statusMhs;            
+            
+            // Masa berakhir Skripsi (Revisi)
+            $statusMhs['Status']='Revisi Skripsi';
+            $statusMhs['Count']=0;
+            // if getDateNow?
+            $allStatus[] = $statusMhs;
+            
+            //Skripsi
+            $statusMhs['Status']='Skripsi';
+            $statusMhs['Count']=$count2;
+            $allStatus[] = $statusMhs;
+            
+            // Masa berakhir Proposal (Revisi)
+            $statusMhs['Status']='Revisi Proposal';
+            $statusMhs['Count']=0;
+            // if getDateNow?
+            $allStatus[] = $statusMhs;
+            
+            // Proposal
+            $statusMhs['Status']='Proposal';
+            $statusMhs['Count']=$count3;
+            $allStatus[] = $statusMhs;
+            
+            $statusMhs['Status']='Belum usulan Topik';
+            $statusMhs['Count']=$count4;
+            $allStatus[] = $statusMhs;
+                
+            return $allStatus;
+        }
         
         function generateLaporanStatus($allMahasiswa, $allSkripsi){
             $allStatus = array();

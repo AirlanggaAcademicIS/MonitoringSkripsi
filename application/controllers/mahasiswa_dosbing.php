@@ -1,12 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
 //nama class harus diawali dengan kapital, walaupun nama file semua kecil
-class Kuota extends CI_Controller {
+class Mahasiswa_dosbing extends CI_Controller {
  
  public function index()
  {
      
-    $this->load->view('kuotadosen/mahasiswa_kuota_dosen');//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
+     
+    $this->load->view('mahasiswa_dosen_pembimbing/mahasiswa_dosen_pembimbing');//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
      
  }
  
@@ -14,7 +15,7 @@ class Kuota extends CI_Controller {
 {
       $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
       $data['type']="INPUT";// definisi type, karena nanti juga ada edit
-      $this->load->view('mahasiswa_kuota_dosen',$data);// memanggil view v_form_topik.php
+      $this->load->view('mahasiswa_dosen_pembimbing',$data);// memanggil view v_form_topik.php
 }
 
 public function Edit()
@@ -70,21 +71,41 @@ public function Post(){
    $this->load->helper('url');
    redirect('skripsi','refresh');
  }
+    
 public function kuotatabel()
 	{
 		
-		$this->load->model('m_Kuota');
+		$this->load->model('m_Mahasiswadosbing');
 		$allkuota = $this->m_Kuota->getsemuakuota();
 		$data = array(
 			'jumlah'=>sizeof($allkuota),
 			'isitabel'=>$allkuota
 			);
 			
-		$this->load->view('kuotadosen/mahasiswa_kuota_dosen',$data);
+		$this->load->view('mahasiswa_dosen_pembimbing/mahasiswa_dosen_pembimbing',$data);
 		
 	}
+    
+    
+    public function mahasiswabimbingan(){
+       
+		$jeniskbk = $this->input->post('jeniskbk');
+		$tahun = $this->input->post('tahun');
+		$this->load->model('m_Mahasiswadosbing');
+		
+		
+		$mhsbim = $this->m_Mahasiswadosbing->getsemuamahadosbing("'D001'");
+		$data = array(
+			'jumlah'=>sizeof($mhsbim),
+			'isitabel'=> $mhsbim
+			);
+			
+		$this->load->view('mahasiswa_dosen_pembimbing/mahasiswa_dosen_pembimbing',$data);
+	}
+        
+    }
 
 
-}
+
 
 

@@ -110,87 +110,27 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
+                                            <th>No.</th>
                                             <th>NIM</th>
                                             <th>Nama</th>
                                             <th>Judul</th>
-                                            <th>Persetujuan</th>
+                                            <th>Status</th>
                                             
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>1</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                           
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td>2</td>
-                                            <td>Internet Explorer 5.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5</td>
-                                           
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>3</td>
-                                            <td>Internet Explorer 5.5</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5.5</td>
-                                         
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>4</td>
-                                            <td>Internet Explorer 6</td>
-                                            <td>Win 98+</td>
-                                            <td class="center">6</td>
-                                         
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>5</td>
-                                            <td>Internet Explorer 7</td>
-                                            <td>Win XP SP2+</td>
-                                            <td class="center">7</td>
-                                         
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>6</td>
-                                            <td>AOL browser (AOL desktop)</td>
-                                            <td>Win XP</td>
-                                            <td class="center">6</td>
-                                           
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>7</td>
-                                            <td>Firefox 1.0</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.7</td>
-                                          
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>8</td>
-                                            <td>Firefox 1.5</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.8</td>
-                                          
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>9</td>
-                                            <td>Firefox 2.0</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.8</td>
-                                      
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>10</td>
-                                            <td>Firefox 3.0</td>
-                                            <td>Win 2k+ / OSX.3+</td>
-                                            <td class="center">1.9</td>
-                                       
-                                        </tr>
-                                        
-                                       
-                                    </tbody>
+                                     <tbody>
+                                    <?php 
+									for($i=0; $i<$jumlah; $i++){
+                                      echo "<tr>";
+                                      echo "<td>".($i+1)."</td>";
+									   echo "<td>".$isitabel[$i]['NIM']."</td>";
+									    echo "<td>".$isitabel[$i]['nama']."</td>";
+										echo "<td>".$isitabel[$i]['judul']."</td>";
+										echo "<td>".$isitabel[$i]['status']."</td>";	
+									   echo "</tr>";
+									}
+									  ?>
+                                      </tbody>
                                 </table>
                             </div>
             </div>

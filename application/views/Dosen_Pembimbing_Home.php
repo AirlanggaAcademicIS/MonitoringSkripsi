@@ -67,8 +67,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
-                        </li>
+ <a href="http://localhost/MonitoringSkripsi/mahasiswa_dosbing/mahasiswabimbingan"><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>                        </li>
                         <li>
                             <a href=""><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                         </li>

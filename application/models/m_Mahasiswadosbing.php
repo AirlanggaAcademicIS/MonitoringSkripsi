@@ -1,5 +1,5 @@
 <?php
-class M_kuota extends CI_Model {
+class M_mahasiswadosbing extends CI_Model {
   
  function __construct()
     {
@@ -8,7 +8,7 @@ class M_kuota extends CI_Model {
     }
      
     function list_data(){
-        $query = $this->db->get('dosen');// mengambil semua data dari tabel skripsi
+        $query = $this->db->get('skripsi');// mengambil semua data dari tabel skripsi
          
         return $query->result();// mengembalikan ke controller hasil dari query ke table skripsi
     }
@@ -35,20 +35,32 @@ function delete($NIK){
    $this->db->delete('dosen');
 }
 
-   function getsemuakuota(){
-		 $sql ="SELECT  NIK, Nama, KBK, Kuota FROM dosen";
+   function getsemuamahadosbing($NIK){
+		 $sql ="SELECT q1.NIM, q3.Nama, q1.Judul, q1.TanggalSkripsi, q1.TanggalProp, q1.TanggalTopik FROM skripsi as q1, mahasiswa as q3 WHERE (q1.NIK1=".$NIK." OR q1.NIK2=".$NIK.") AND q1.NIM=q3.NIM";
 		  
 		  $query = $this->db->query($sql);
         $i = 0;
         foreach ($query->result_array() as $row)
          {
-			$user[$i]['NIK'] = $row['NIK'];
+			$user[$i]['NIM'] = $row['NIM'];
             $user[$i]['nama'] = $row['Nama'];
-            $user[$i]['KBK'] = $row['KBK'];
-			$user[$i]['kuota'] = $row['Kuota'];
+            $user[$i]['judul'] = $row['Judul'];
+			if($row['TanggalSkripsi'] != 0000-00-00){
+				$user[$i]['status'] = "Lulus";			
+			}
+			else if($row['TanggalProp'] != 0000-00-00){
+				$user[$i]['status'] = "Skripsi";			
+			}
+			else if($row['TanggalTopik'] != 0000-00-00){
+				$user[$i]['status'] = "Proposal";			
+			}
+			else {
+				$user[$i]['status'] = "Belum usulan topik";
+			
 			$i++;
         }
         return $user;
 		  
 		  }
+}
 }

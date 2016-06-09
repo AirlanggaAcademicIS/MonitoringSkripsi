@@ -71,7 +71,7 @@
                     </li>
                     
                     <li>
-                        <a href="<?php echo base_url();?>kuotadosen/kuota"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
+                       <a href="http://localhost/MonitoringSkripsi/Kuota/kuotatabel"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
                     </li>
                     
                          

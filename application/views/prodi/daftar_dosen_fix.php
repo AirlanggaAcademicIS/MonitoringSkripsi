@@ -67,12 +67,12 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
+                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/mahasiswa_page"><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
                         </li>
                         
                              
                         <li>
-                            <a href=""><i class="fa fa-table fa-fw"></i> Dosen</a>
+                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/dosen_page"><i class="fa fa-table fa-fw"></i> Dosen</a>
                         </li>
                         
                                                    </ul>

@@ -30,7 +30,7 @@ class Prodi_fix4 extends CI_Controller {
 	}
         public function dosen_page()
 	{
-		$this->load->view('prodi/dosen_fix');
+		$this->load->view('prodi/daftar_dosen_fix');
 	}
 	public function tambah_mahasiswa_page()
 	{

@@ -56,9 +56,9 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                        <h3> Selamat Datang!
-                                <br><br><?php echo $this->session->userdata('nama');?>
-                                <br><?php echo $this->session->userdata('nik');?></h3>
+                               <h3> Selamat Datang!</h3>
+                                <br><br>
+                                
                             </div>
                             
                             <!-- /input-group -->
@@ -74,7 +74,6 @@
                         <li>
                             <a href="http://localhost/MonitoringSkripsi/laporan/statusmahasiswa"> Status Mahasiswa</a>
                         </li>
-						<li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -126,31 +125,6 @@
                                          </form>
                             </div></div></div>
                         </div>
-                        Tabel Dashboard
-                        <?php
-                            echo "<br>Dashboard : Status Mahasiswa<br>";
-
-
-                            if(isset($laporanStatus)) {
-                                $template = array(
-                                    'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table">'
-                                );
-
-                                $this->table->set_template($template);
-                                $this->table->set_heading(array('Status', 'TOtal'));
-
-                                // separate row array
-                                foreach($laporanStatus as $row){
-                                    $this->table->add_row($row);
-                                }
-
-                                echo $this->table->generate();
-                            } else {
-                                echo "<br><br> No Data Available";
-                            }
-
-                        ?>
-            
                         
                         </div>
                         

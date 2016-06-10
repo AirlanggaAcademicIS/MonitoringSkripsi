@@ -101,23 +101,26 @@ class Laporan extends CI_Controller {
          */
         
         public function statusmahasiswa(){
-            $mahasiswas = $this->Mahasiswa->getAllMahasiswa();
-            $skripsis = $this->Skripsi->getAllSkripsi();
-            $this->laporanStatus = $this->generateDashboardStatus($skripsis);
-            $data   = array(
-                    'laporanStatus' => $this->laporanStatus
-                    );
+//            $skripsis = $this->Skripsi->getAllSkripsi();
+//            $this->laporanStatus = $this->generateDashboardStatus($skripsis);
+//            $data   = array(
+//                    'laporanStatus' => $this->laporanStatus
+//                    );
             
-            $this->load->view('laporan/Laporan_Status_Mahasiswa', $data);
+            $this->load->view('laporan/Laporan_Status_Mahasiswa');
         }
         
         public function statusmahasiswatabel(){
+            $this->tahun = $this->input->post('tahun');
+            
             $mahasiswas = $this->Mahasiswa->getAllMahasiswa();
             $skripsis = $this->Skripsi->getAllSkripsi();
             $this->laporanStatus = $this->generateLaporanStatus($mahasiswas, $skripsis);
+            $dashboardStatus = $this->generateDashboardStatus($skripsis, $this->tahun);
             
             $data   = array(
-                    'laporanStatus' => $this->laporanStatus
+                    'laporanStatus' => $this->laporanStatus,
+                    'dashboardStatus' => $dashboardStatus
                     );
             
             $this->load->view('laporan/Laporan_Status_Mahasiswa_Tabel', $data);
@@ -210,7 +213,7 @@ class Laporan extends CI_Controller {
 		
 	}
         
-        function generateDashboardStatus($allSkripsi){
+        function generateDashboardStatus($allSkripsi, $tahun){
             $allStatus = array();
             $count1=0; // Lulus
             $count2=0; // Skripsi

@@ -56,9 +56,8 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                            <h3> Selamat Datang!
-                                <br><br><?php echo $this->session->userdata('nama');?>
-                                <br><?php echo $this->session->userdata('nik');?></h3>
+                               <h3> Selamat Datang!</h3>
+                                <br><br>
                             </div>
                             
                             <!-- /input-group -->
@@ -69,12 +68,11 @@
                         
                              
                         <li>
-                            <a href="http://localhost/MonitoringSkripsi/laporan/tanggungandosen"> Tanggungan Dosen</a>
+                            <a href="http://localhost/MonitoringSkripsi/laporan/minatkbk"> Tanggungan Dosen</a>
                         </li>
                         <li>
                             <a href="http://localhost/MonitoringSkripsi/laporan/statusmahasiswa"> Status Mahasiswa</a>
                         </li>
-						<li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                                                    </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -92,36 +90,78 @@
         </nav>
         
         <div id="page-wrapper">
-        
-            <?php
-                echo "<br>Tabel dan Grafik : Performa Dosen Pembimbing<br>";
-                
-                
-                if(isset($laporanStatus)) {
-                    $template = array(
-                        'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table">'
-                    );
-
-                    $this->table->set_template($template);
-                    $this->table->set_heading(array('NIM', 'Nama', 'Status'));
-
-                    // separate row array
-                    foreach($laporanStatus as $row){
-                        $this->table->add_row($row);
-                    }
-
-                    echo $this->table->generate();
-                } else {
-                    echo "<br><br> No Data Available";
-                }
-                
-            ?>
-            
-            <a href="http://localhost/MonitoringSkripsi/laporan/statusmahasiswagrafik"> Grafik</a>
-            
-            <div id="myChart" style="width: 900px; height: 500px;">        </div>
-        
-        </div></div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Laporan Status Mahasiswa</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+           <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           Dashboard
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">Status</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Jumlah</th></tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php 
+                                        foreach($dashboardStatus as $row){
+                                            echo "<tr>";
+                                            echo "<td>".$row['Status']."</td>";
+                                            echo "<td>".$row['Count']."</td>";
+					    echo "</tr>";
+					}
+        				  ?>
+                                      </tbody>
+                                </table></div></div></div>
+                            </div>
+                            <!-- /.table-responsive -->
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-heading">
+                           Laporan Status per Mahasiswa
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">Nama</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 204px;">NIM</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Status</th></tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php 
+                                        foreach($laporanStatus as $row){
+                                            echo "<tr>";
+                                            echo "<td>".$row['NIM']."</td>";
+                                            echo "<td>".$row['Nama']."</td>";
+					    echo "<td>".$row['Status']."</td>";
+                                            echo "</tr>";
+					}
+        				  ?>
+                                      </tbody>
+                                </table></div></div></div>
+                            </div>
+                            <!-- /.table-responsive -->
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div></div>
                         
  <!-- jQuery -->
     <script src="http://localhost/MonitoringSkripsi/assets/bower_components/jquery/dist/jquery.min.js"></script>
@@ -138,6 +178,15 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="http://localhost/MonitoringSkripsi/assets/dist/js/sb-admin-2.js"></script>
-    
-    </body>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    </script>
+</body>
+
 </html>

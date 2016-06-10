@@ -15,26 +15,43 @@ class Data_topik extends CI_Controller {
 
 public function Input()
 {
-      $this->load->database();
+     $NIM= $this->session->userdata('nim');
+	 $cek = false;
+	 $this->load->database();
+	 $this->load->model("Skripsi");
+	 $allSkripsi= $this->Skripsi->getAllSkripsi();
+	 
+	 foreach($allSkripsi as $value){
+		if ($value['NIM'] == $NIM) {
+			$cek = true;	
+		}
+	}
+	if ($cek == true){
+		$this->load->view('formTopik/usulan');
+	
+	}
+	else{
+		
       $this->load->model("m_data_topik");
   	  $data['NIM'] = $this->m_data_topik->getMHS();
-	  $data['NIK'] = $this->m_data_topik->getDosen();
-	  $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_jadwal.php
+	  $data['NIK1'] = $this->m_data_topik->getDosen();
+	  $data['NIK2'] = $this->m_data_topik->getDosen();
+	  $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
       $data['type']="INPUT";// definisi type, karena nanti juga ada edit
       $this->load->view('formTopik/v_form_topik',$data);// memanggil view v_form_topik.php	
-}
+}}
 
 
 public function Edit()
 {
       $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
       $this->load->database();//memanggil pengaturan database dan mengaktifkannya
-      $this->load->model('m_data_topik');//memanggil model m_data_jadwal.php
+      $this->load->model('m_data_topik');//memanggil model m_data_topik.php
       $data['NIM'] = $this->m_data_topik->getMHS();
       $NIM= $this->input->get('skripsi');//mengambil param  dari get
 	  $data['skripsi'] = $this->m_data_topik->getEdit($NIM);
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
-      $this->load->view('topik/v_form_topik',$data);// memanggil view v_form_jadwal.php
+      $this->load->view('topik/v_form_topik1',$data);// memanggil view v_form_topik.php
 }
 
 public function Post(){
@@ -51,9 +68,9 @@ public function Post(){
 	   'Judul' => $this->input->post('Judul'),
        'NIK1' => $this->input->post('NIK1'),
 	   'NIK2' => $this->input->post('NIK2'),
-	   'TanggalProp' => $this->input->post('0000-00-00'),
-	   'TanggalSkripsi' => $this->input->post('0000-00-00'),
-	   'id_jadwal' => $this->input->post('0'),
+	   'TanggalProp' => '0000-00-00',
+	   'TanggalSkripsi' => '0000-00-00',
+	   'id_jadwal' => '0',
        );
      //jika simpan == input 
      if($this->input->post('simpan')=="INPUT"){
@@ -67,16 +84,18 @@ public function Post(){
       //memanggil helper url untuk fungsi redirect
       $this->load->helper('url');
       //mengalihkan ke list data produk setelah input atau edit selesai
-      redirect('data_topik','refresh');
+      redirect('mahasiswa','refresh');
      }
 
- public function Delete(){
+public function Delete(){
    $this->load->database();//memanggil pengaturan database dan mengaktifkannya
-   $this->load->model('m_data_topik');//memanggil model m_data_topik.php
-   $NIM= $this->input->get('skripsi');
+   $this->load->model('m_data_topik');//memanggil model m_data_produk.php
+   $NIM = $this->input->get('skripsi');
    $this->m_data_topik->delete($NIM);
+ 
    $this->load->helper('url');
-   redirect('skripsi','refresh');
+   redirect('data_topik','refresh');
+  
 }
 
 

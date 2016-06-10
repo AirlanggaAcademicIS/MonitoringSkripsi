@@ -77,7 +77,7 @@ class Laporan extends CI_Controller {
         
         function setPembimbing($pembimbing){
             $this->pembimbing = $pembimbing;
-            echo 'Pembimbing = '.$pembimbing;
+//            echo 'Pembimbing = '.$pembimbing;
         }
         public function tanggungandosengrafik(){
 //            $this->pembimbing = $this->input->post('pembimbing');
@@ -101,12 +101,6 @@ class Laporan extends CI_Controller {
          */
         
         public function statusmahasiswa(){
-//            $skripsis = $this->Skripsi->getAllSkripsi();
-//            $this->laporanStatus = $this->generateDashboardStatus($skripsis);
-//            $data   = array(
-//                    'laporanStatus' => $this->laporanStatus
-//                    );
-            
             $this->load->view('laporan/Laporan_Status_Mahasiswa');
         }
         
@@ -115,7 +109,7 @@ class Laporan extends CI_Controller {
             
             $mahasiswas = $this->Mahasiswa->getAllMahasiswa();
             $skripsis = $this->Skripsi->getAllSkripsi();
-            $this->laporanStatus = $this->generateLaporanStatus($mahasiswas, $skripsis);
+            $this->laporanStatus = $this->generateLaporanStatus($mahasiswas, $skripsis, $this->tahun);
             $dashboardStatus = $this->generateDashboardStatus($skripsis, $this->tahun);
             
             $data   = array(
@@ -216,19 +210,81 @@ class Laporan extends CI_Controller {
         function generateDashboardStatus($allSkripsi, $tahun){
             $allStatus = array();
             $count1=0; // Lulus
+            $count1x = 0; // Revisi Skripsi
             $count2=0; // Skripsi
+            $count2x = 0; // Revisi Proposal
             $count3=0; // Proposal
             $count4=0; // Belum usulan Topik
             
             foreach($allSkripsi as $skripsi){
                 if($skripsi['TanggalSkripsi'] != '0000-00-00'){
-                    $count1++;
+                    if($tahun!=0){
+                        if($tahun == $skripsi['TahunAjar']){
+                            $today = date("Y-m-d");
+                            $tanggal = $skripsi['TanggalSkripsi']; // tanggalSubmit
+                            $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                            $tanggalRevisi = date ( 'Y-m-j' , $tanggalRevisi );
+//                            echo $tanggalRevisi.'<br>';
+                            if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                                $count1x++;
+                            } else {
+                                $count1++;
+                            }
+                        }
+                    } else {
+                        $today = date("Y-m-d");
+                        $tanggal = $skripsi['TanggalSkripsi']; // tanggalSubmit
+                        $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                        $tanggalRevisi = date ( 'Y-m-j' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $count1x++;
+                        } else {
+                        $count1++;                            
+                        }
+                    }
                 } else if($skripsi['TanggalProp'] != '0000-00-00'){
-                    $count2++;
+                    if($tahun!=0){
+                        if($tahun == $skripsi['TahunAjar']){
+                            $today = date("Y-m-d");
+                            $tanggal = $skripsi['TanggalProp']; // tanggalSubmit
+                            $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                            $tanggalRevisi = date ( 'Y-m-j' , $tanggalRevisi );
+//                            echo $tanggalRevisi.'<br>';
+                            if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                                $count2x++;
+                            } else {
+                                $count2++;
+                            }
+                        }
+                    } else {
+                        $today = date("Y-m-d");
+                        $tanggal = $skripsi['TanggalProp']; // tanggalSubmit
+                        $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                        $tanggalRevisi = date ( 'Y-m-j' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $count2x++;
+                        } else {
+                        $count2++;                            
+                        }
+                    }
                 } else if($skripsi['TanggalTopik'] != '0000-00-00'){
-                    $count3++;
+                    if($tahun!=0){
+                        if($tahun == $skripsi['TahunAjar']){
+                            $count3++;
+                        }
+                    } else {
+                        $count3++;
+                    }
                 } else {
-                    $count4++;
+                    if($tahun!=0){
+                        if($tahun == $skripsi['TahunAjar']){
+                            $count4++;
+                        }
+                    } else {
+                        $count4++;
+                    }
                 }
             }
             
@@ -238,7 +294,7 @@ class Laporan extends CI_Controller {
             
             // Masa berakhir Skripsi (Revisi)
             $statusMhs['Status']='Revisi Skripsi';
-            $statusMhs['Count']=0;
+            $statusMhs['Count']= $count1x;
             // if getDateNow?
             $allStatus[] = $statusMhs;
             
@@ -265,7 +321,7 @@ class Laporan extends CI_Controller {
             return $allStatus;
         }
         
-        function generateLaporanStatus($allMahasiswa, $allSkripsi){
+        function generateLaporanStatus($allMahasiswa, $allSkripsi, $tahun){
             $allStatus = array();
             
             foreach($allSkripsi as $skripsi){
@@ -286,7 +342,14 @@ class Laporan extends CI_Controller {
                     $statusMhs['Status'] = 'Belum usulan topik';
                 }
                 // append to array
-                $allStatus[] = $statusMhs;
+                if($tahun != 0){
+                    if($skripsi['TahunAjar'] == $tahun){
+                        $allStatus[] = $statusMhs;
+                    }
+                } else {
+                    $allStatus[] = $statusMhs;
+                }
+                
             }
                     
             return $allStatus;

@@ -62,15 +62,15 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
                                <h3> Selamat Datang!
-                                <br><br>Mahasiswa
-                                <br>081313222773</h3>
+                             <h4><?php echo $this->session->userdata('nama');?>
+                            <br><?php echo $this->session->userdata('nim');?></h4>
                             </div>
                             
                             <!-- /input-group -->
                  
          </li>
 					 <li>
-                         <a href="http://localhost/MonitoringSkripsi/index.php/mahasiswa"><i class="fa fa-dashboard fa-fw"></i> Usulan Topik</a>
+                          <a href="http://localhost/MonitoringSkripsi/data_topik/input"><i class="fa fa-dashboard fa-fw"></i> Usulan Topik</a>
                     </li>
                     
                     <li>
@@ -128,69 +128,56 @@
 									
 <div class="form-group">
   <label>Tanggal </label>
-   <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TanggalTopik;};?>"> 
+  <input type="date" name="TanggalTopik" class="form-control" id="TanggalTopik" placeholder="yyyy-mm-dd" required>
+  
 </div>
   
 <div class="form-group">
   <label>Tahun Ajar </label>
-   <input class="form-control" name="TahunAjar" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TahunAjar;};?>">
+   <input class="form-control" name="TahunAjar" placeholder="TahunAngkatan" required>
 </div>
  
 <div class="form-group">
      <label for="NIM">NIM</label>
-     <select name="NIM" class="form-control" name="NIM" id="NIM" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIM;};?>">  
-	 <?php
-$no = 1;
-
-foreach($NIM as $value)
-{
-echo "<option>".$value->NIM."</option>";
-
-if(isset($_GET['skripsi'])){
-	if($_GET['skripsi']==$value->NIM){
-		echo "<option selected>".$value->NIM."</option>";
-	}
-}
-}
-?>
-     </select>
+      <input class="form-control" name="NIM" value ="<?php echo $this->session->userdata('nim');?>">
+	 
 </div>
   
 <div class="form-group">
 <label>KBK</label>
 <div class="">
-<select name="KBK" class="form-control" name="KBK" id="KBK">  
- 				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">Rekayasa Sistem Informasi</option>
-				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">Data Mining</option>
-				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">Sistem Pendukung Keputusan</option>
+<select name="KBK" class="form-control" id="KBK" placeholder="Pilih KBK" required>   
+ 				  <option value="Rekayasa Sistem Informasi">Rekayasa Sistem Informasi</option>
+				  <option value="Data Mining">Data Mining</option>
+				  <option value="Sistem Pendukung Keputusan">Sistem Pendukung Keputusan</option>
     </select>
 </div>
 </div>
 
 <div class="form-group">
 <label>Topik</label>
- <input class="form-control" name="Topik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->Topik;};?>">
+ <input class="form-control" name="Topik" placeholder="Topik Skripsi" required>
 </div>      
 	
 <div class="form-group">
   <label>Judul</label>
-  <input class="form-control" name="Judul" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->Judul;};?>">
+  <input class="form-control" name="Judul" placeholder="Judul Skripsi" required>
 </div>      
                     
 <div class="form-group">
 <label>Dosen Pembimbing 1</label>
 <div class="">
-<select name="NIK" class="form-control" id="NIK1" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK1;};?>">  
+<select name="NIK1" class="form-control" id="NIK1" placeholder="Dosen Pembimbing 1" required>  
 	 <?php
 $no = 1;
 
-foreach($NIK as $value)
+foreach($NIK1 as $value)
 {
 echo "<option>".$value->Nama."</option>";
 
 if(isset($_GET['skripsi'])){
 	if($_GET['skripsi']==$value->Nama){
-		echo "<option selected>".$value->Nama."</option>";
+		echo "<option selected>".$value->NIK."</option>";
 	}
 }
 }
@@ -202,16 +189,16 @@ if(isset($_GET['skripsi'])){
 <div class="form-group">
 <label>Dosen Pembimbing 2</label>
 <div class="">
-<select name="NIK" class="form-control" id="NIK2" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK2;};?>">  
+<select name="NIK2" class="form-control" id="NIK2" placeholder="Dosen Pembimbing 2" required>  
 	 <?php
 $no = 1;
 
-foreach($NIK as $value)
+foreach($NIK2 as $value)
 {
 echo "<option>".$value->Nama."</option>";
 if(isset($_GET['skripsi'])){
 	if($_GET['skripsi']==$value->Nama){
-		echo "<option selected>".$value->Nama."</option>";
+		echo "<option selected>".$value->NIK."</option>";
 	}
 }}
 ?>  
@@ -219,7 +206,7 @@ if(isset($_GET['skripsi'])){
 </div>
 </div>
 
- <input type="submit" name="simpan" value="<?php echo $type;?>">
+<input type="submit" name="simpan"  value="<?php echo $type;?>">
 </div>
                 <?php echo form_close();?>
                 <!-- /.col-lg-12 --><!-- /.row -->

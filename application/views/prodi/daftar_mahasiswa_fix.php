@@ -66,14 +66,13 @@
                             
                             <!-- /input-group -->
                         </li>
-                        <li>
-                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/mahasiswa_page"><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
+                         <li>
+                           <a href="<?php echo base_url();?>Prodi_fix4/mahasiswatabel"><i class="fa fa-table fa-fw"></i> Mahasiswa</a>
                         </li>
-                        
-                             
                         <li>
-                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/dosen_page"><i class="fa fa-table fa-fw"></i> Dosen</a>
+                             <a href="<?php echo base_url();?>Prodi_fix4/dosentabel"><i class="fa fa-table fa-fw"></i> Dosen</a>
                         </li>
+                        <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         
                                                    </ul>
                             <!-- /.nav-second-level -->
@@ -105,47 +104,31 @@
                                             <th>Nama</th>
                                             <th>NIM</th>
                                             <th>Prodi</th>
-                                            <th>Password</th>
                                             <th>Alamat</th>
                                              <th>Telepon</th>
                                              <th>Email</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Adi Alam</td>
-                                            <td>021121</td>
-                                            <td>Akuntansi</td>
-                                            <td>jgri</td>
-                                            <td>Jalan Anggur 27 Surabaya</td>
-                                            <td>0315111111</td>
-                                            <td>adi_a@gmail.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Bunga Biru</td>
-                                            <td>021122</td>
-                                            <td>Bahasa Inggris</td>
-                                            <td>powqw</td>
-                                            <td>Jalan Bunga 98 Surabaya</td>
-                                            <td>0315222222</td>
-                                            <td>bunga_b@gmail.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Citra Cinta</td>
-                                            <td>021123</td>
-                                            <td>Computer Science</td>
-                                            <td>fjji</td>
-                                            <td>Jalan Coklat 72 Sidoarjo</td>
-                                            <td>0315333333</td>
-                                            <td>citra_c@gmail.com</td>
-                                        </tr>
-                                    </tbody>
+                                   <tbody>
+                                    <?php 
+									
+									for($i=0; $i<$jumlah; $i++){
+										
+                                      echo "<tr>";
+                                      echo "<td>".($i+1)."</td>";
+									   echo "<td>".$isitabel[$i]['nama']."</td>";
+									    echo "<td>".$isitabel[$i]['NIM']."</td>";
+										echo "<td>".$isitabel[$i]['prodi']."</td>";
+										echo "<td>".$isitabel[$i]['alamat']."</td>";	
+										echo "<td>".$isitabel[$i]['telepon']."</td>";	
+										echo "<td>".$isitabel[$i]['email']."</td>";									
+									   echo "</tr>";
+									}
+									  ?>
+                                      </tbody>
                                 </table>
                                 <form name="form2" method="post" action="http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/tambah_mahasiswa_page">
-  <input type="submit" name="tambahmahasiswa" id="tambahmahasiswa" value="Tambah Mahasiswa">
+  <input type="submit" name="tambahmahasiswa" id="tambahmahasiswa" value="Tambah Mahasiswa"><br><br>
 </form>
                             </div>
                 </div>

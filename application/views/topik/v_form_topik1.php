@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script src="assets/jquery.js" type="text/javascript"> </script>
+
 <head>
 
     <meta charset="utf-8">
@@ -9,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tambah Dosen</title>
+    <title>Monitoring Skripsi</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://localhost/MonitoringSkripsi/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -59,24 +61,19 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                              <h3> Hai,
-                                <br><br>Ridwan Kamil
-                                <br>1987653442</h3>
+                               <h3> Selamat Datang!
+                                <br><br>KOOR SKRIPSI
+                                <br>081313222773</h3>
                             </div>
                             
                             <!-- /input-group -->
+                 
+           <li>
+                            <a href="http://localhost/MonitoringSkripsi/data_topik/index"> Topik Skripsi</a>
                         </li>
-                        <li>
-                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/mahasiswa_page"><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
-                        </li>
-                        
-                             
-                        <li>
-                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/dosen_page"><i class="fa fa-table fa-fw"></i> Dosen</a>
-                        </li>
-                        
-                  </ul>
-                            <!-- /.nav-second-level -->
+							<li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                                                   </ul>
+                      <!-- /.nav-second-level -->
                         </li>
                        
                       
@@ -94,65 +91,74 @@
          <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> Tambah Dosen</h1>
+                    <h1 class="page-header">FORM TOPIK SKRIPSI</h1>
                 </div>
            <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Form Tambah Dosen
+                            Form Topik Skripsi
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form id="form1" name="form1" method="post" action="dosen_insert"> 
-                                  <!--"http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/dosen_insert.php"-->      
+                                    <form id="form1" name="formtopik" method="post" action="post">
 <div class="form-group">
-  <label>Nama</label>
-  <textarea name="Nama" rows="1" class="form-control"></textarea>
-                                    </div>
-<div class="form-group">
-  <label>NIK</label>
-  <textarea name="NIK" rows="1" class="form-control"></textarea>
+  <label>Tanggal </label>
+   <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TanggalTopik;};?>"> 
 </div>
+  
 <div class="form-group">
-  <label>Prodi</label>
-  <textarea name="Prodi" rows="1" class="form-control"></textarea>
-</div>                                     
-<div class="form-group">
-  <label>Alamat</label>
-  <textarea name="Alamat" rows="3" class="form-control"></textarea>
+  <label>Tahun Ajar </label>
+   <input class="form-control" name="TahunAjar" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TahunAjar;};?>">
 </div>
+ 
 <div class="form-group">
-  <label>Telp</label>
-  <textarea name="Telp" rows="1" class="form-control"></textarea>
-                                    </div>
+     <label for="NIM">NIM</label>
+      <input class="form-control" name="NIM"  placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIM;};?>"">
+   
+</div>
+  
 <div class="form-group">
-  <label>Email</label>
-  <textarea name="Email" rows="1" class="form-control"></textarea>
-</div>                                        
+<label>KBK</label>
+<div class="">
+<Input name="KBK" class="form-control" id="KBK" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">  
+ 				
+</div>
+</div>
 
 <div class="form-group">
-  <label>KBK</label>
-  <textarea name="KBK" rows="1" class="form-control"></textarea>
-</div>               
-                                 
-                                            
-                                            <button type="submit" class="btn btn-default">Save</button>
-</form>
-                                            </div> 
-                </div>
-                
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+<label>Topik</label>
+ <Input class="form-control" name="Topik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->Topik;};?>">
+</div>      
+	
+<div class="form-group">
+  <label>Judul</label>
+  <Input class="form-control" name="Judul" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->Judul;};?>">
+</div>      
+                    
+<div class="form-group">
+<label>Dosen Pembimbing 1</label>
+<div class="">
+<Input name="NIK1" class="form-control" id="NIK1" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK1;};?>">  
+	
+    </select>
+</div>
+</div>
+
+<div class="form-group">
+<label>Dosen Pembimbing 2</label>
+<div class="">
+<Input name="NIK2" class="form-control" id="NIK2" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK2;};?>">  
+	
+</div>
+</div>
+ <input type="submit" name="simpan" value="<?php echo $type;?>">
+</div>
+                <?php echo form_close();?>
+                <!-- /.col-lg-12 --><!-- /.row -->
            
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+            <!-- /.row --><!-- /#page-wrapper --><!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="http://localhost/MonitoringSkripsi/assets/bower_components/jquery/dist/jquery.min.js"></script>

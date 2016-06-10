@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script src="assets/jquery.js" type="text/javascript"> </script>
+
 <head>
 
     <meta charset="utf-8">
@@ -9,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tambah Dosen</title>
+    <title>Monitoring Skripsi</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://localhost/MonitoringSkripsi/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -59,24 +61,34 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                              <h3> Hai,
-                                <br><br>Ridwan Kamil
-                                <br>1987653442</h3>
+                               <h3> Selamat Datang!
+                             <h4><?php echo $this->session->userdata('nama');?>
+                            <br><?php echo $this->session->userdata('nim');?></h4>
                             </div>
                             
                             <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/mahasiswa_page"><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
-                        </li>
-                        
-                             
-                        <li>
-                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/dosen_page"><i class="fa fa-table fa-fw"></i> Dosen</a>
-                        </li>
-                        
+                 
+         </li>
+					 <li>
+                          <a href="http://localhost/MonitoringSkripsi/data_topik/input"><i class="fa fa-dashboard fa-fw"></i> Usulan Topik</a>
+                    </li>
+                    
+                    <li>
+                        <a href="<?php echo base_url();?>kuotadosen/kuota"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
+                    </li>
+                    
+                         
+                    <li>
+                        <a href="<?php echo base_url();?>Bimbingan/bimbingantabel"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-edit fa-fw"></i> Progress</a>
+                    </li>
+                    <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                   </ul>
-                            <!-- /.nav-second-level -->
+                        <!-- /.nav-second-level -->
+                    </li>
+                      <!-- /.nav-second-level -->
                         </li>
                        
                       
@@ -94,65 +106,12 @@
          <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> Tambah Dosen</h1>
+                    <h1 class="page-header">SUDAH MENGUSULKAN TOPIK</h1>
                 </div>
-           <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Form Tambah Dosen
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <form id="form1" name="form1" method="post" action="dosen_insert"> 
-                                  <!--"http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/dosen_insert.php"-->      
-<div class="form-group">
-  <label>Nama</label>
-  <textarea name="Nama" rows="1" class="form-control"></textarea>
-                                    </div>
-<div class="form-group">
-  <label>NIK</label>
-  <textarea name="NIK" rows="1" class="form-control"></textarea>
-</div>
-<div class="form-group">
-  <label>Prodi</label>
-  <textarea name="Prodi" rows="1" class="form-control"></textarea>
-</div>                                     
-<div class="form-group">
-  <label>Alamat</label>
-  <textarea name="Alamat" rows="3" class="form-control"></textarea>
-</div>
-<div class="form-group">
-  <label>Telp</label>
-  <textarea name="Telp" rows="1" class="form-control"></textarea>
-                                    </div>
-<div class="form-group">
-  <label>Email</label>
-  <textarea name="Email" rows="1" class="form-control"></textarea>
-</div>                                        
-
-<div class="form-group">
-  <label>KBK</label>
-  <textarea name="KBK" rows="1" class="form-control"></textarea>
-</div>               
-                                 
-                                            
-                                            <button type="submit" class="btn btn-default">Save</button>
-</form>
-                                            </div> 
-                </div>
-                
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+         
+                <!-- /.col-lg-12 --><!-- /.row -->
            
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+            <!-- /.row --><!-- /#page-wrapper --><!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="http://localhost/MonitoringSkripsi/assets/bower_components/jquery/dist/jquery.min.js"></script>
@@ -174,3 +133,4 @@
 </body>
 
 </html>
+

@@ -97,12 +97,11 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
-
-  
+                                   <form id="form1" name="formjadwal" method="post" action="post">
+ 
 <div class="form-group">
      <label for="NIM">NIM</label>
-     <select name="NIM" class="form-control" name="NIM" id="NIM" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIM;};?>">  
+     <select name="NIM" class="form-control"  id="NIM" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIM;};?>">  
 	 <?php
 $no = 1;
 
@@ -122,39 +121,45 @@ if(isset($_GET['skripsi'])){
   
 <div class="form-group">
 <label>Jenis Sidang</label>
-<select name="JenisSidang" class="form-control" name="JenisSidang" id="JenisSidang">
-				  <option value="<?php if ($type=="EDIT"){echo $jadwal[0]->JenisSidang;};?>">Proposal</option>
-				  <option value="<?php if ($type=="EDIT"){echo $jadwal[0]->JenisSidang;};?>">Skripsi</option>
+<select name="JenisSidang" class="form-control"  id="JenisSidang">
+				 <option value="Proposal">Proposal</option>
+				  <option value="Skripsi">Skripsi</option>
+
       </select>
 </div>
   
   	
 <div class="form-group">
   <label>Tanggal </label>
-   <input class="form-control" name="Tanggal" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Tanggal;};?>">
+   <input type="date" class="form-control" name="Tanggal" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Tanggal;};?>">
 </div>
 
 <div class="form-group">
   <label>Pukul</label>
-   <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Pukul;};?>">
+   <input class="form-control" name="Pukul" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Pukul;};?>">
 </div>
 
 <div class="form-group">
   <label>Tempat</label>
-   <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Tempat;};?>">
+   <input class="form-control" name="Tempat" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Tempat;};?>">
 </div>
                     
 <div class="form-group">
 <label>Dosen Penguji 1</label>
 <div class="">
-<select name="NIK" class="form-control" name="NIK" id="NIK" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->NIK;};?>">  
+<select name="NIK1" class="form-control" id="NIK1" placeholder="Dosen Penguji 1" required>  
 	 <?php
 $no = 1;
 
-foreach($NIK as $value)
+foreach($NIK1 as $value)
 {
 echo "<option>".$value->Nama."</option>";
 
+if(isset($_GET['skripsi'])){
+	if($_GET['skripsi']==$value->Nama){
+		echo "<option selected>".$value->NIK."</option>";
+	}
+}
 }
 ?>  
     </select>
@@ -163,22 +168,27 @@ echo "<option>".$value->Nama."</option>";
 
 <div class="form-group">
 <label>Dosen Penguji 2</label>
-<select name="NIK" class="form-control" name="NIK" id="NIK" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->NIK;};?>">  
+<div class="">
+<select name="NIK2" class="form-control" id="NIK2" placeholder="Dosen Penguji 2" required>  
 	 <?php
 $no = 1;
 
-foreach($NIK as $value)
+foreach($NIK2 as $value)
 {
 echo "<option>".$value->Nama."</option>";
-
-}
+if(isset($_GET['skripsi'])){
+	if($_GET['skripsi']==$value->Nama){
+		echo "<option selected>".$value->NIK."</option>";
+	}
+}}
 ?>  
     </select>
 </div>
-
-  <input type="submit" name="simpan" value="<?php echo $type;?>">
 </div>
-             
+
+ <input type="submit" name="simpan" value="<?php echo $type;?>">
+</div>
+               <?php echo form_close();?>
 				
                 <!-- /.col-lg-12 --><!-- /.row -->
            

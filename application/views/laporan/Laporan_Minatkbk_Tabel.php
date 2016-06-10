@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+    <?php $rsi=0;
+                                    $spk=0;
+                                    $dm=0;
+                                   
+    ?>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -102,10 +107,14 @@
                 <!-- /.col-lg-12 -->
             </div>
            <div class="row">
+               
+               <div class="col-lg-12">
+                    
+               
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Laporan Semua KBK pada Semua Tahun
+                           Tabel
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -116,8 +125,17 @@
                                     </thead>
                                     <tbody>
                                     <?php 
-									for($i=0; $i<$jumlah; $i++){
+                                    
+                                    for($i=0; $i<$jumlah; $i++){
                                       echo "<tr>";
+                                      if($isitabel[$i]['kbk']=='Data Mining'){
+                                      $dm++;}
+                                          else if ($isitabel[$i]['kbk']=='Sistem Pendukung Keputusan'){
+                                              $spk++;
+                                          }
+                                          else if ($isitabel[$i]['kbk']=='Rekayasa Sistem Informasi'){
+                                          $rsi++;
+                                      }
                                       echo "<td>".$isitabel[$i]['nama']."</td>";
 									   echo "<td>".$isitabel[$i]['nim']."</td>";
 									    echo "<td>".$isitabel[$i]['kbk']."</td>";
@@ -144,11 +162,44 @@
                                 </table></div></div></div>
                             </div>
                             <!-- /.table-responsive -->
-                            
+                           
                         </div>
                         <!-- /.panel-body -->
+                        
                     </div>
                     <!-- /.panel -->
+                      <div class="panel panel-default">
+                     <div class="panel-heading">
+                           Grafik
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = google.visualization.arrayToDataTable([
+          ['Minat KBK', 'Jumlah'],
+          ['Rekayasa Sistem Informasi',   <?=$rsi?>],
+          ['Data Mining',     <?=$dm ?>],
+          ['Sistem Pendukung Keputusan',  <?=$spk ?> ]
+        ]);
+
+        var options = {
+          title: 'Minat KBK',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+  
+    </script>
+                            <div id="piechart_3d" style="width: 700px; height: 300px;"></div>
+                            
+                        </div></div></div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div></div>
@@ -177,6 +228,9 @@
         });
     });
     </script>
+    
+    
+    
 </body>
 
 </html>

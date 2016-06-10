@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script src="assets/jquery.js" type="text/javascript"> </script>
+
 <head>
 
     <meta charset="utf-8">
@@ -60,15 +62,18 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
                                <h3> Selamat Datang!
-                                <br><br>PRODI
+                                <br><br>KOOR SKRIPSI
                                 <br>081313222773</h3>
                             </div>
                             
                             <!-- /input-group -->
-        
-        <li><a href="daftar_mahasiswa.php">Mahasiswa</a></li>
-          <li>  <a href="http://localhost/MonitoringSkripsi/data_jadwal/index"> Jadwal</a>
-                            <!-- /.nav-second-level -->
+                 
+           <li>
+                            <a href="http://localhost/MonitoringSkripsi/data_topik/index"> Topik Skripsi</a>
+                        </li>
+							<li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                                                   </ul>
+                      <!-- /.nav-second-level -->
                         </li>
                        
                       
@@ -86,110 +91,71 @@
          <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">FORM JADWAL </h1>
+                    <h1 class="page-header">FORM TOPIK SKRIPSI</h1>
                 </div>
            <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Form Jadwal
+                            Form Topik Skripsi
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                   <form id="form1" name="formjadwal" method="post" action="post">
+                                    <form id="form1" name="formtopik" method="post" action="post">
+<div class="form-group">
+  <label>Tanggal </label>
+   <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TanggalTopik;};?>"> 
+</div>
+  
+<div class="form-group">
+  <label>Tahun Ajar </label>
+   <input class="form-control" name="TahunAjar" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TahunAjar;};?>">
+</div>
  
 <div class="form-group">
      <label for="NIM">NIM</label>
-     <select name="NIM" class="form-control"  id="NIM" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIM;};?>">  
-	 <?php
-$no = 1;
-
-foreach($NIM as $value)
-{
-echo "<option>".$value->NIM."</option>";
-
-if(isset($_GET['skripsi'])){
-	if($_GET['skripsi']==$value->NIM){
-		echo "<option selected>".$value->NIM."</option>";
-	}
-}
-}
-?>
-     </select>
+      <input class="form-control" name="NIM"  placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIM;};?>"">
+   
 </div>
   
 <div class="form-group">
-<label>Jenis Sidang</label>
-<select name="JenisSidang" class="form-control"  id="JenisSidang">
-				 <option value="Proposal">Proposal</option>
-				  <option value="Skripsi">Skripsi</option>
-
-      </select>
+<label>KBK</label>
+<div class="">
+<Input name="KBK" class="form-control" id="KBK" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">  
+ 				
 </div>
-  
-  	
-<div class="form-group">
-  <label>Tanggal </label>
-   <input type="date" class="form-control" name="Tanggal" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Tanggal;};?>">
 </div>
 
 <div class="form-group">
-  <label>Pukul</label>
-   <input class="form-control" name="Pukul" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Pukul;};?>">
-</div>
-
+<label>Topik</label>
+ <Input class="form-control" name="Topik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->Topik;};?>">
+</div>      
+	
 <div class="form-group">
-  <label>Tempat</label>
-   <input class="form-control" name="Tempat" placeholder="<?php if ($type=="EDIT"){echo $jadwal[0]->Tempat;};?>">
-</div>
+  <label>Judul</label>
+  <Input class="form-control" name="Judul" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->Judul;};?>">
+</div>      
                     
 <div class="form-group">
-<label>Dosen Penguji 1</label>
+<label>Dosen Pembimbing 1</label>
 <div class="">
-<select name="NIK1" class="form-control" id="NIK1" placeholder="Dosen Penguji 1" required>  
-	 <?php
-$no = 1;
-
-foreach($NIK1 as $value)
-{
-echo "<option>".$value->Nama."</option>";
-
-if(isset($_GET['skripsi'])){
-	if($_GET['skripsi']==$value->Nama){
-		echo "<option selected>".$value->NIK."</option>";
-	}
-}
-}
-?>  
+<Input name="NIK1" class="form-control" id="NIK1" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK1;};?>">  
+	
     </select>
 </div>
 </div>
 
 <div class="form-group">
-<label>Dosen Penguji 2</label>
+<label>Dosen Pembimbing 2</label>
 <div class="">
-<select name="NIK2" class="form-control" id="NIK2" placeholder="Dosen Penguji 2" required>  
-	 <?php
-$no = 1;
-
-foreach($NIK2 as $value)
-{
-echo "<option>".$value->Nama."</option>";
-if(isset($_GET['skripsi'])){
-	if($_GET['skripsi']==$value->Nama){
-		echo "<option selected>".$value->NIK."</option>";
-	}
-}}
-?>  
-    </select>
+<Input name="NIK2" class="form-control" id="NIK2" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK2;};?>">  
+	
 </div>
 </div>
-
  <input type="submit" name="simpan" value="<?php echo $type;?>">
 </div>
-               <?php echo form_close();?>
-				
+                <?php echo form_close();?>
                 <!-- /.col-lg-12 --><!-- /.row -->
            
             <!-- /.row --><!-- /#page-wrapper --><!-- /#wrapper -->

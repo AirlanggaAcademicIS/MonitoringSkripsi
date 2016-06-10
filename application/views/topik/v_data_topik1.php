@@ -70,7 +70,8 @@
                         <li>
                             <a href="http://localhost/MonitoringSkripsi/data_topik/index"> Topik Skripsi</a>
                         </li>
-                        
+                        <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                                                   </ul>
                    
                                                    </ul>
                             <!-- /.nav-second-level -->
@@ -131,9 +132,7 @@ foreach($skripsi as $value)
                 ?>
                                       </tbody>
                                 </table>
-			<form name="form2" method="post" action="http://localhost/MonitoringSkripsi/index.php/data_topik/input">
-              <input type="submit" name="TambahData id="TambahData" value="Tambah Data">
-		  </form>
+			
 								</div></div></div>
                             </div>
                             <!-- /.table-responsive -->

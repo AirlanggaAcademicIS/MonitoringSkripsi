@@ -16,18 +16,22 @@ class Data_jadwal extends CI_Controller {
  public function Input()
 {
 
-      //$this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_jadwal.php
+    $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_jadwal.php
       $this->load->database();
+	  $this->load->model("Skripsi");
+	  $allSkripsi= $this->Skripsi->getAllSkripsi();
+	  
 	  $this->load->model("m_data_jadwal");
 	  $data['NIM'] = $this->m_data_jadwal->getSkripsi();
-	  $data['NIK'] = $this->m_data_jadwal->getDosen();
+	  $data['NIK1'] = $this->m_data_jadwal->getDosen();
+	  $data['NIK2'] = $this->m_data_jadwal->getDosen();
 	  $data['type']="INPUT";// definisi type, karena nanti juga ada edit
       $this->load->view('prodi/v_form_jadwal',$data);// memanggil view v_form_jadwal.php
 }
 
 public function Edit()
 {
-   //   $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_jadwal.php
+  $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_jadwal.php
   
       $this->load->database();//memanggil pengaturan database dan mengaktifkannya
       $this->load->model('m_data_jadwal');//memanggil model m_data_jadwal.php
@@ -44,14 +48,15 @@ public function Post(){
  
      //mengambil data dari post memasukan ke array agar lebih mudah 
      $param = array(
-	   'id_jadwal' => $this->input->post('null'),
+	//   'id_jadwal' => $this->input->post('null'),
 	   'NIM' => $this->input->post('NIM'),
        'NIK1' => $this->input->post('NIK1'),
 	   'NIK2' => $this->input->post('NIK2'),
 	   'Tanggal' => $this->input->post('Tanggal'),
 	   'Pukul'=> $this->input->post('Pukul'),
 	   'Tempat' => $this->input->post('Tempat'),
-       );
+	   'JenisSidang' => $this->input->post('JenisSidang'),
+	          );
 	   
      //jika simpan == input 
      if($this->input->post('simpan')=="INPUT"){

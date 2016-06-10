@@ -36,7 +36,9 @@ function delete($NIK){
 }
 
    function getsemuamahadosbing($NIK){
-		 $sql ="SELECT q1.NIM, q3.Nama, q1.Judul, q1.TanggalSkripsi, q1.TanggalProp, q1.TanggalTopik FROM skripsi as q1, mahasiswa as q3 WHERE (q1.NIK1=".$NIK." OR q1.NIK2=".$NIK.") AND q1.NIM=q3.NIM";
+		 //$sql ="SELECT * from mahasiswa";
+       
+       $sql ="SELECT q1.NIM, q3.Nama, q1.Judul, q1.TanggalSkripsi, q1.TanggalProp, q1.TanggalTopik FROM skripsi as q1, mahasiswa as q3 WHERE (q1.NIK1='".$NIK."' OR q1.NIK2='".$NIK."') AND q1.NIM=q3.NIM";
 		  
 		  $query = $this->db->query($sql);
         $i = 0;
@@ -56,11 +58,11 @@ function delete($NIK){
 			}
 			else {
 				$user[$i]['status'] = "Belum usulan topik";
+            }
 			
-			$i++;
-        }
+        $i++;}
         return $user;
 		  
-		  }
+		  
 }
 }

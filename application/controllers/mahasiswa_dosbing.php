@@ -7,7 +7,7 @@ class Mahasiswa_dosbing extends CI_Controller {
  {
      
      
-    $this->load->view('mahasiswa_dosen_pembimbing/mahasiswa_dosen_pembimbing');//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
+    $this->load->view('Dosen_Pembimbing_Home');//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
      
  }
  
@@ -30,6 +30,7 @@ public function Edit()
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
       $this->load->view('v_form_topik',$data);// memanggil view v_form_topik.php
 }
+
 
 public function Post(){
      $this->load->database();//memanggil pengaturan database dan mengaktifkannya
@@ -89,12 +90,10 @@ public function kuotatabel()
     
     public function mahasiswabimbingan(){
        
-		$jeniskbk = $this->input->post('jeniskbk');
-		$tahun = $this->input->post('tahun');
 		$this->load->model('m_Mahasiswadosbing');
 		
 		
-		$mhsbim = $this->m_Mahasiswadosbing->getsemuamahadosbing("'D001'");
+		$mhsbim = $this->m_Mahasiswadosbing->getsemuamahadosbing("D003");
 		$data = array(
 			'jumlah'=>sizeof($mhsbim),
 			'isitabel'=> $mhsbim

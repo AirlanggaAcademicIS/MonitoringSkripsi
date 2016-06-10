@@ -67,13 +67,12 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/mahasiswa_page"><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
+                           <a href="<?php echo base_url();?>Prodi_fix4/mahasiswatabel"><i class="fa fa-table fa-fw"></i> Mahasiswa</a>
                         </li>
-                        
-                             
                         <li>
-                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/dosen_page"><i class="fa fa-table fa-fw"></i> Dosen</a>
+                             <a href="<?php echo base_url();?>Prodi_fix4/dosentabel"><i class="fa fa-table fa-fw"></i> Dosen</a>
                         </li>
+                        <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         
                                                    </ul>
                             <!-- /.nav-second-level -->
@@ -104,53 +103,31 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>NIK</th>
-                                            <th>Prodi</th>
-                                            <th>Password</th>
+                                            <th>KBK</th>
                                             <th>Alamat</th>
                                              <th>Telepon</th>
                                              <th>Email</th>
-                                             <th>KBK</th>
-                                             <th>TahunAjar</th>
+                                             <th>Prodi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Ahmad Albar</td>
-                                            <td>9111</td>
-                                            <td>Sistem Informasi</td>
-                                            <td>jgriaq</td>
-                                            <td>Jalan Anggur 28 Surabaya</td>
-                                            <td>0315991111</td>
-                                            <td>ahmad_a@gmail.com</td>
-                                            <td>RSI</td>
-                                            <td>1995</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Bunda Bi</td>
-                                            <td>9922</td>
-                                            <td>Sistem Informasi</td>
-                                            <td>powqwa</td>
-                                            <td>Jalan Bunga 99 Surabaya</td>
-                                            <td>0315992222</td>
-                                            <td>bunda_b@gmail.com</td>
-                                            <td>Audit</td>
-                                            <td>1996</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Cindy Cin</td>
-                                            <td>9993</td>
-                                            <td>Sistem Informasi</td>
-                                            <td>fjjia</td>
-                                            <td>Jalan Coklat 73 Sidoarjo</td>
-                                            <td>0315993333</td>
-                                            <td>cindy_c@gmail.com</td>
-                                            <td>SPK</td>
-                                            <td>1996</td>
-                                        </tr>
-                                    </tbody>
+                                    <?php 
+									
+									for($i=0; $i<$jumlah; $i++){
+										
+                                      echo "<tr>";
+                                      echo "<td>".($i+1)."</td>";
+									   echo "<td>".$isitabel[$i]['nama']."</td>";
+									    echo "<td>".$isitabel[$i]['NIK']."</td>";
+										echo "<td>".$isitabel[$i]['KBK']."</td>";
+										echo "<td>".$isitabel[$i]['alamat']."</td>";	
+										echo "<td>".$isitabel[$i]['telepon']."</td>";	
+										echo "<td>".$isitabel[$i]['email']."</td>";			
+										echo "<td>".$isitabel[$i]['prodi']."</td>";							
+									   echo "</tr>";
+									}
+									  ?>
+                                      </tbody>
                                 </table>
                                 <form name="form2" method="post" action="http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/tambah_dosen_page">
   <input type="submit" name="tambahdosen" id="tambahdosen" value="Tambah Dosen">

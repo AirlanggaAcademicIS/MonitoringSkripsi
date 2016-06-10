@@ -120,10 +120,6 @@
   <textarea name="Prodi" rows="1" class="form-control"></textarea>
 </div>                                     
 <div class="form-group">
-  <label>Pass</label>
-  <textarea name="Pass" rows="1" class="form-control"></textarea>
-                                    </div>
-<div class="form-group">
   <label>Alamat</label>
   <textarea name="Alamat" rows="3" class="form-control"></textarea>
 </div>
@@ -137,7 +133,7 @@
 </div>                                        
                                            
                                             
-                                            <button type="submit" class="btn btn-default">Submit Button</button>
+                                            <button type="submit" class="btn btn-default">Save</button><br><br>
 </form>
                                             </div> 
                 </div>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tambah Dosen</title>
+    <title>Monitoring Skripsi</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://localhost/MonitoringSkripsi/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -59,23 +59,22 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                              <h3> Hai,
-                                <br><br>Ridwan Kamil
-                                <br>1987653442</h3>
+                               <h3> Selamat Datang!
+                                <br><br><?php echo $this->session->userdata('nama');?>
+                                <br><?php echo $this->session->userdata('nik');?></h3>
                             </div>
                             
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/mahasiswa_page"><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
+                           <a href="<?php echo base_url();?>Prodi_fix4/mahasiswatabel"><i class="fa fa-table fa-fw"></i> Mahasiswa</a>
                         </li>
-                        
-                             
                         <li>
-                            <a href="http://localhost/MonitoringSkripsi/Prodi_fix4/dosen_page"><i class="fa fa-table fa-fw"></i> Dosen</a>
+                             <a href="<?php echo base_url();?>Prodi_fix4/dosentabel"><i class="fa fa-table fa-fw"></i> Dosen</a>
                         </li>
+                        <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         
-                  </ul>
+                                                   </ul>
                             <!-- /.nav-second-level -->
                         </li>
                        
@@ -91,58 +90,11 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-         <div id="page-wrapper">
+        <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> Tambah Dosen</h1>
+                    <h1 class="page-header">Homepage Tata Usaha</h1>
                 </div>
-           <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Form Tambah Dosen
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <form id="form1" name="form1" method="post" action="dosen_insert"> 
-                                  <!--"http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/dosen_insert.php"-->      
-<div class="form-group">
-  <label>Nama</label>
-  <textarea name="Nama" rows="1" class="form-control"></textarea>
-                                    </div>
-<div class="form-group">
-  <label>NIK</label>
-  <textarea name="NIK" rows="1" class="form-control"></textarea>
-</div>
-<div class="form-group">
-  <label>Prodi</label>
-  <textarea name="Prodi" rows="1" class="form-control"></textarea>
-</div>                                     
-<div class="form-group">
-  <label>Alamat</label>
-  <textarea name="Alamat" rows="3" class="form-control"></textarea>
-</div>
-<div class="form-group">
-  <label>Telp</label>
-  <textarea name="Telp" rows="1" class="form-control"></textarea>
-                                    </div>
-<div class="form-group">
-  <label>Email</label>
-  <textarea name="Email" rows="1" class="form-control"></textarea>
-</div>                                        
-
-<div class="form-group">
-  <label>KBK</label>
-  <textarea name="KBK" rows="1" class="form-control"></textarea>
-</div>               
-                                 
-                                            
-                                            <button type="submit" class="btn btn-default">Save</button>
-</form>
-                                            </div> 
-                </div>
-                
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->

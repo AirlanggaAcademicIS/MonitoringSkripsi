@@ -34,6 +34,7 @@ class Bimbingan extends CI_Controller {
 	}
 	public function bimbingan_insert()
 	{
+		$NIM=$this->session->userdata('nim');
 		$Tanggal=$this->input->post('tanggal');
 		$Subjek=$this->input->post('catatan');
 		$option=$this->input->post('nik');
@@ -41,9 +42,9 @@ class Bimbingan extends CI_Controller {
 		$Persetujuan="Belum disetujui";
 		
 		$this->load->model('Skripsi');
-		$nik1nik2 = $this->Skripsi->getnik1nik2("081311633058");
-		$id_skripsi= $this->Skripsi->getId_skripsi("081311633058");
-		$tanggalskripsi = $this->Skripsi->gettanggaskripsi("081311633058");
+		$nik1nik2 = $this->Skripsi->getnik1nik2($NIM);
+		$id_skripsi= $this->Skripsi->getId_skripsi($NIM);
+		$tanggalskripsi = $this->Skripsi->gettanggaskripsi($NIM);
 				if($tanggalskripsi['TanggalProp'] != 0000-00-00){
 				$Jenis="Skripsi";			
 			}
@@ -62,8 +63,8 @@ class Bimbingan extends CI_Controller {
 		
 		$this->load->model('Bimbingan1');
 		$this->Bimbingan1->insert_tambahan($id_skripsi, $Subjek, $Tanggal, $Jenis, $NIK ,$Persetujuan) ;
-		
-		$allbimbingan = $this->Bimbingan1->getsemuabimbingan("081311633058");
+		 
+		$allbimbingan = $this->Bimbingan1->getsemuabimbingan('nim');
 		$data = array(
 			'jumlah'=>sizeof($allbimbingan),
 			'isitabel'=>$allbimbingan
@@ -84,10 +85,10 @@ class Bimbingan extends CI_Controller {
 	*/
 		public function bimbingantabel()
 	{
-			
+			$NIM=$this->session->userdata('nim');
 		$this->load->model('Bimbingan1');
 		
-		$allbimbingan = $this->Bimbingan1->getsemuabimbingan("081311633058");
+		$allbimbingan = $this->Bimbingan1->getsemuabimbingan($NIM);
 		$data = array(
 			'jumlah'=>sizeof($allbimbingan),
 			'isitabel'=>$allbimbingan
@@ -109,23 +110,23 @@ class Bimbingan extends CI_Controller {
 	
 	public function jenistabel()
 	{
-		
+		$NIM=$this->session->userdata('nim');
 		$this->load->model('Skripsi');
-		$niknik = $this->Skripsi->getnik1nik2("081311633058");
+		$niknik = $this->Skripsi->getnik1nik2($NIM);
 		
 			$this->load->model('Bimbingan1');
 		$jenis = $this->input->post('jenis');
 		
 		
 		if($jenis==0){
-		$albimbingan = $this->Bimbingan1->getsemuabimbingan("081311633058");
+		$albimbingan = $this->Bimbingan1->getsemuabimbingan($NIM);
 		$data = array(
 			'jumlah'=>sizeof($albimbingan),
 			'isitabel'=> $albimbingan
 			);	
 					}
-			else if($jenis==1){$albimbingan = $this->Bimbingan1->getjenisbimbingan("'Proposal'","081311633058");}
-				else if($jenis==2){$albimbingan = $this->Bimbingan1->getjenisbimbingan("'Skripsi'","081311633058");}
+			else if($jenis==1){$albimbingan = $this->Bimbingan1->getjenisbimbingan("'Proposal'",$NIM);}
+				else if($jenis==2){$albimbingan = $this->Bimbingan1->getjenisbimbingan("'Skripsi'",$NIM);}
 	
 		$data = array(
 			'jumlah'=>sizeof($albimbingan),

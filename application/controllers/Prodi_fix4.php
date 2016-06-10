@@ -21,7 +21,7 @@ class Prodi_fix4 extends CI_Controller {
 	public function index()
 	{
 //            $this->load->view('header');
-            $this->load->view('prodi/daftar_mahasiswa_fix');
+            $this->load->view('Prodi_Home');
 //            $this->load->view('footer');
 	}
 	public function mahasiswa_page()
@@ -47,12 +47,11 @@ class Prodi_fix4 extends CI_Controller {
 		$Alamat=$this->input->post('Alamat');
 	        $Telp=$this->input->post('Telp');
 		$Email=$this->input->post('Email');
-		$Pass=$this->input->post('Pass');
                 $Prodi=$this->input->post('Prodi');
                 
 $this->load->database();
 $this->load->model('Prodimodel');
-		$this->Prodimodel->insert_tambah($NIM, $Nama, $Alamat, $Email, $Telp, $Pass, $Prodi) ;
+		$this->Prodimodel->insert_tambah($NIM, $Nama, $Alamat, $Email, $Telp, $Prodi) ;
 		
 		$allmahasiswa = $this->Prodimodel->getsemuamahasiswa();
 		$data = array(
@@ -62,6 +61,7 @@ $this->load->model('Prodimodel');
 			
 		$this->load->view('prodi/daftar_mahasiswa_fix',$data);
         }
+		
         public function dosen_insert()
 	{
 		$NIK=$this->input->post('NIK');
@@ -87,4 +87,34 @@ $this->load->model('Prodimodel');
 			
 		$this->load->view('prodi/daftar_dosen_fix',$data);
         }
-        }
+       
+		
+		public function mahasiswatabel()
+	{
+			
+		$this->load->model('Prodimodel');
+		
+		$allbimbingan = $this->Prodimodel->getsemuamahasiswa();
+		$data = array(
+			'jumlah'=>sizeof($allbimbingan),
+			'isitabel'=>$allbimbingan
+			);
+			
+		$this->load->view('prodi/daftar_mahasiswa_fix',$data);
+		
+	} 
+	public function dosentabel()
+	{
+			
+		$this->load->model('Prodimodel');
+		
+		$allbimbingan = $this->Prodimodel->getsemuadosen();
+		$data = array(
+			'jumlah'=>sizeof($allbimbingan),
+			'isitabel'=>$allbimbingan
+			);
+			
+		$this->load->view('prodi/daftar_dosen_fix',$data);
+		
+	} 
+	}

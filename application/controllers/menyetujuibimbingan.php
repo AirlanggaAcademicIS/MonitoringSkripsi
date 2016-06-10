@@ -26,51 +26,93 @@ class Menyetujuibimbingan extends CI_Controller {
 	public function bimbingan()
 	{
 		$this->load->model('menyetujui');
-		$data['mahasiswa']=$this->menyetujui->m_lihat();
+		$this->load->model('Skripsi');
+		$this->load->model('Bimbingan');
+		$this->load->library('table');
+		$this->input->post('NIM');
+		$NIM = '081313222773';
+		
+		$skripsi_id = 0;
+		$allSkripsi=$this->Skripsi->getAllSkripsi();
+			foreach ($allSkripsi as $skripsi){
+				if($skripsi['NIM']== $NIM){
+					$skripsi_id = $skripsi['id_skripsi'];
+					
+
+				}
+			}
+		//	$data['bimbingan'] = $skripsi_id;
+		
+		$bimX = array();
+		$allbim=$this->Bimbingan->getAllBimbingan();
+			foreach ($allbim as $bim){
+				if($bim['id_skripsi'] == $skripsi_id ){
+						$bimX[] = $bim;
+					}
+			}
+			$data = array( 'bimbingan' => $bimX);
+		
 		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Page',$data);
 		
 	}	
-	public function tampil()
+	public function bimbingan_setuju()
 	{
-	$this->load->model('menyetujui'); //load model
-    $data['hasilTampil'] = $this->menyetujui->menampilkan(); //membuat data dari hasil transaksi masuk ke $data
-	$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Page',$data);
-	}	
-/*	public function bimbingan_insert()
-	{
-		$this->load->model('Skripsi');
-		$nik1nik2 = $this->Skripsi->getnik1nik2("081313222773");
+		$Tanggal=$this->input->post('tanggal');
+		$Subjek=$this->input->post('catatan');
 		
+		$Persetujuan="Belum disetujui";
+		
+		$this->load->model('Skripsi');
+		$nik1nik2 = $this->Skripsi->getnik1nik2("081311633058");
+		$id_skripsi= $this->Skripsi->getId_skripsi("081311633058");
+		$tanggalskripsi = $this->Skripsi->gettanggaskripsi("081311633058");
+				if($tanggalskripsi['TanggalProp'] != 0000-00-00){
+				$Jenis="Skripsi";			
+			}
+			else {
+			$Jenis="Proposal";
+							
+			}
+			
+			
 				if($option==1){
 					$NIK = $nik1nik2['nik1'];
 				}
 				else if($option==2){
 					$NIK = $nik1nik2['nik2'];				
 				}
-		
-		$this->load->model('menyetujui');
-		$this->menyetujui->insert_tambahan($NIM, $Nama, $Judul, $Persetujuan) ;
-		
-		$allbimbingan = $this->menyetujui->getsemuabimbingan();
-		$data = array(
-			'jumlah'=>sizeof($allbimbingan),
-			'isitabel'=>$allbimbingan
-			);
-			
-		$this->load->view('menyetujui/menyetujuibimbingan_Page',$data);
-	
-	}
-	public function bimbingantabel()
+	public function Edit()
 	{
-		
+      $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
+      $this->load->database();//memanggil pengaturan database dan mengaktifkannya
+      $this->load->model('menyetujui');//memanggil model m_data_jadwal.php
+      $data['NIM'] = $this->m_data_topik->getMHS();
+      $NIM= $this->input->get('skripsi');//mengambil param  dari get
+	  $data['skripsi'] = $this->m_data_topik->getEdit($NIM);
+      $data['type']="EDIT";// definisi type, karena nanti juga ada edit
+      $this->load->view('topik/v_form_topik',$data);// memanggil view v_form_jadwal.php
+}
+	public function Delete(){
+	   $this->load->database();//memanggil pengaturan database dan mengaktifkannya
+	   $this->load->model('m_data_topik');//memanggil model m_data_topik.php
+	   $NIM= $this->input->get('skripsi');
+	   $this->m_data_topik->delete($NIM);
+	   $this->load->helper('url');
+	   redirect('skripsi','refresh');
+}	
+	
+/*	public function menyetujuitabel()
+	{
+			
 		$this->load->model('menyetujui');
-		$allbimbingan = $this->menyetujui->getsemuabimbingan();
+		
+		$allbimbingan = $this->menyetujui->getsemuabim("081311633058");
 		$data = array(
 			'jumlah'=>sizeof($allbimbingan),
 			'isitabel'=>$allbimbingan
 			);
 			
-		$this->load->view('menyetujui/menyetujuibimbingan_Page',$data);
+		$this->load->view('menyetujui_bimbingan/menyetujuibimbingan_Page',$data);
 		
 	}	*/
 }

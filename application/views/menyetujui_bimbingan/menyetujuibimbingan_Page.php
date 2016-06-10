@@ -72,7 +72,7 @@
                                <li><a href=""><img src="http://localhost/MonitoringSkripsi/assets/dosen.jpg"></a></li>
                                
                                 <br><br>Dosen
-                                <br>1989088976525</h3>
+
                             </div>
                             
                             <!-- /input-group -->
@@ -85,6 +85,8 @@
                         <li>
                             <a href=""> Bimbingan</a>
                         </li>
+						
+                        	<a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                                                    </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -105,71 +107,32 @@
             <div class="row">
                 <div class="col-lg-12" style="text-align:center;">
                     <h2 class="page-header">BIMBINGAN</h2>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-           
-            <!-- /.row -->
-			<div class="col-lg-12" style="text-align:center;">
-			<td width="400"><input name="nama" type="text" id="nama" value="">
-	              <input type="submit" name="search" id="search" value="Search" /></td>
-				  <br><br>
-		        </tr>
-				
-				
-          </table>
-		</style>
-			<table width="1050" height="30" border="1">
-	        <tr>
-			  <th width="50" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>NO</strong></th>
-	          <th width="112" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>NIM</strong></th>
-	          <td width="150" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>Nama Mahasiswa</strong></td>
-			  <td width="150" align="center" bordercolor="#000000" bgcolor="#999999" scope="row"><strong>Judul Skripsi</strong></td>
-			  
-			</tr>
-		<!--	<?php 
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                    <thead>
+                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 150px;">Tanggal</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 170px;">Catatan</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 170px;">Jenis</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 170px;">Persetujuan</th><th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 130px;">Kontrol</th></tr>
+                                    </thead>
+                                    <tbody>         
+<?php 
 			$no = 1;
-			foreach($mahasiswa as $data){
+			foreach($bimbingan as $lihat){
 			?>
 			<tr>
 			<td><?= $no;?></td>
-			<td><?php echo $data-> NIM; ?></td>
-			<td><?php echo $data-> Nama; ?></td>
-			<td><?php echo $data-> Judul; ?></td>
+			<td><?php echo $lihat['Tanggal']; ?></td>
+			<td><?php echo $lihat['Subjek']; ?></td>
+			<td><?php echo $lihat['Jenis']; ?></td>
+			<td><?php echo $lihat['Persetujuan']; ?></td>
 		
-			</tr>
-			<?php
-			$no++;
-		
-			}
-			?>	-->
-		<!--	<?php 
-									for($i=0; $i<$jumlah; $i++){
-                                      echo "<tr>";
-                                      echo "<td>".($i+1)."</td>";
-									   echo "<td>".$isitabel[$i]['NIM']."</td>";
-									    echo "<td>".$isitabel[$i]['Nama']."</td>";
-										echo "<td>".$isitabel[$i]['Judul']."</td>";
-										echo "<td>".$isitabel[$i]['persetujuan']."</td>";										
-									   echo "</tr>";
-									}
-									  ?>	-->
-			<?php 
-			$no = 1;
-			foreach($mahasiswa as $lihat){
-			?>
-			<tr>
-			<td><?= $no;?></td>
-			<td><?php echo $lihat-> NIM; ?></td>
-			<td><?php echo $lihat-> Nama; ?></td>
-			
-			</tr>
-			<?php
-			$no++;
-			}
-			?>
-		 
+                  </tr>
+                  <?php
+				  $no++;  }
+                ?>
+                                      </tbody>
+                                </table>
 </div>
         </div>
         <!-- /#page-wrapper -->

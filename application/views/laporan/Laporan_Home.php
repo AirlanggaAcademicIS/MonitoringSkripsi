@@ -59,9 +59,9 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                               <h3> Selamat Datang!
-                                <br><br>Bunga Desa Wijoyokusumo
-                                <br>081313222773</h3>
+                                 <h3> Selamat Datang!
+                                <br><br><?php echo $this->session->userdata('nama');?>
+                                <br><?php echo $this->session->userdata('nik');?></h3>
                             </div>
                             
                             <!-- /input-group -->

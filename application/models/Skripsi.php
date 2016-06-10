@@ -257,19 +257,7 @@ function getnik1nik2($nim){
         
        return $users;
 		}
-		 function gettanggaskripsi($nim){
-			$sql = "SELECT * FROM `skripsi` WHERE NIM='".$nim."'";
-    	$query = $this->db->query($sql);
-		
-		foreach ($query->result_array() as $row)
-		{
-        	$users['TanggalTopik']=$row['TanggalTopik'];
-            $users['TanggalProp']=$row['TanggalProp'];
-		}
-        
-       return $users;
-		}
-      /*
+		  /*
        * Database Method Caller
        */
       

@@ -89,7 +89,7 @@ class Login extends CI_Controller{
                     $this->session->set_userdata('username','tu');
                     $this->session->set_userdata($sess_data);
                     session_start();
-                    redirect('prodi');
+                    redirect('prodi_fix4');
                 }
                 else{
                     redirect('login');

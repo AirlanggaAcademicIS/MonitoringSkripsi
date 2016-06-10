@@ -126,18 +126,41 @@
             $user[$i]['kbk'] = $row['KBK'];
 			$user[$i]['tahunajar'] = $row['TahunAjar'];
 			$user[$i]['judul'] = $row['Judul'];
-			if($row['TanggalSkripsi'] != 0000-00-00){
-				$user[$i]['status'] = "Lulus";			
-			}
-			else if($row['TanggalProp'] != 0000-00-00){
-				$user[$i]['status'] = "Skripsi";			
-			}
-			else if($row['TanggalTopik'] != 0000-00-00){
-				$user[$i]['status'] = "Proposal";			
-			}
-			else {
-				$user[$i]['status'] = "Belum usulan topik";
-			}
+                        
+			 if($row['TanggalSkripsi'] != '0000-00-00'){
+                    $today = date("Y-m-d");
+                    $tanggal = $row['TanggalSkripsi']; // tanggalSubmit
+                    $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                    $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $user[$i]['status'] = 'Revisi Skripsi';
+                            
+                        }  else {
+                            $user[$i]['status'] = 'Lulus';
+                            
+                        }
+                } else if($row['TanggalProp'] != '0000-00-00'){
+                    $today = date("Y-m-d");
+                    $tanggal = $row['TanggalProp']; // tanggalSubmit
+                    $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                    $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $user[$i]['status'] = 'Revisi Proposal';
+                            
+                        }  else {
+                            $user[$i]['status'] = 'Skripsi';
+                             
+                        }
+                        
+                    
+                } else if($row['TanggalTopik'] != '0000-00-00'){
+                    $user[$i]['status'] = 'Proposal';
+                    
+                } else {
+                    $user[$i]['status'] = 'Belum usulan topik';
+                }
             $i++;
         }
         return $user;
@@ -156,18 +179,40 @@
             $user[$i]['kbk'] = $row['KBK'];
 			$user[$i]['tahunajar'] = $row['TahunAjar'];
 			$user[$i]['judul'] = $row['Judul'];
-			if($row['TanggalSkripsi'] != 0000-00-00){
-				$user[$i]['status'] = "Lulus";			
-			}
-			else if($row['TanggalProp'] != 0000-00-00){
-				$user[$i]['status'] = "Skripsi";			
-			}
-			else if($row['TanggalTopik'] != 0000-00-00){
-				$user[$i]['status'] = "Proposal";			
-			}
-			else {
-				$user[$i]['status'] = "Belum usulan topik";
-			}
+			 if($row['TanggalSkripsi'] != '0000-00-00'){
+                    $today = date("Y-m-d");
+                    $tanggal = $row['TanggalSkripsi']; // tanggalSubmit
+                    $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                    $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $user[$i]['status'] = 'Revisi Skripsi';
+                            
+                        }  else {
+                            $user[$i]['status'] = 'Lulus';
+                            
+                        }
+                } else if($row['TanggalProp'] != '0000-00-00'){
+                    $today = date("Y-m-d");
+                    $tanggal = $row['TanggalProp']; // tanggalSubmit
+                    $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                    $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $user[$i]['status'] = 'Revisi Proposal';
+                            
+                        }  else {
+                            $user[$i]['status'] = 'Skripsi';
+                             
+                        }
+                        
+                    
+                } else if($row['TanggalTopik'] != '0000-00-00'){
+                    $user[$i]['status'] = 'Proposal';
+                    
+                } else {
+                    $user[$i]['status'] = 'Belum usulan topik';
+                }
             $i++;
         }
         return $user;
@@ -185,18 +230,40 @@
             $user[$i]['kbk'] = $row['KBK'];
 			$user[$i]['tahunajar'] = $row['TahunAjar'];
 			$user[$i]['judul'] = $row['Judul'];
-			if($row['TanggalSkripsi'] != 0000-00-00){
-				$user[$i]['status'] = "Lulus";			
-			}
-			else if($row['TanggalProp'] != 0000-00-00){
-				$user[$i]['status'] = "Skripsi";			
-			}
-			else if($row['TanggalTopik'] != 0000-00-00){
-				$user[$i]['status'] = "Proposal";			
-			}
-			else {
-				$user[$i]['status'] = "Belum usulan topik";
-			}
+			 if($row['TanggalSkripsi'] != '0000-00-00'){
+                    $today = date("Y-m-d");
+                    $tanggal = $row['TanggalSkripsi']; // tanggalSubmit
+                    $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                    $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $user[$i]['status'] = 'Revisi Skripsi';
+                            
+                        }  else {
+                            $user[$i]['status'] = 'Lulus';
+                            
+                        }
+                } else if($row['TanggalProp'] != '0000-00-00'){
+                    $today = date("Y-m-d");
+                    $tanggal = $row['TanggalProp']; // tanggalSubmit
+                    $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                    $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $user[$i]['status'] = 'Revisi Proposal';
+                            
+                        }  else {
+                            $user[$i]['status'] = 'Skripsi';
+                             
+                        }
+                        
+                    
+                } else if($row['TanggalTopik'] != '0000-00-00'){
+                    $user[$i]['status'] = 'Proposal';
+                    
+                } else {
+                    $user[$i]['status'] = 'Belum usulan topik';
+                }
             $i++;
         }
         return $user;
@@ -214,18 +281,40 @@
             $user[$i]['kbk'] = $row['KBK'];
 			$user[$i]['tahunajar'] = $row['TahunAjar'];
 			$user[$i]['judul'] = $row['Judul'];
-			if($row['TanggalSkripsi'] != 0000-00-00){
-				$user[$i]['status'] = "Lulus";			
-			}
-			else if($row['TanggalProp'] != 0000-00-00){
-				$user[$i]['status'] = "Skripsi";			
-			}
-			else if($row['TanggalTopik'] != 0000-00-00){
-				$user[$i]['status'] = "Proposal";			
-			}
-			else {
-				$user[$i]['status'] = "Belum usulan topik";
-			}
+			 if($row['TanggalSkripsi'] != '0000-00-00'){
+                    $today = date("Y-m-d");
+                    $tanggal = $row['TanggalSkripsi']; // tanggalSubmit
+                    $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                    $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $user[$i]['status'] = 'Revisi Skripsi';
+                            
+                        }  else {
+                            $user[$i]['status'] = 'Lulus';
+                            
+                        }
+                } else if($row['TanggalProp'] != '0000-00-00'){
+                    $today = date("Y-m-d");
+                    $tanggal = $row['TanggalProp']; // tanggalSubmit
+                    $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                    $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $user[$i]['status'] = 'Revisi Proposal';
+                            
+                        }  else {
+                            $user[$i]['status'] = 'Skripsi';
+                             
+                        }
+                        
+                    
+                } else if($row['TanggalTopik'] != '0000-00-00'){
+                    $user[$i]['status'] = 'Proposal';
+                    
+                } else {
+                    $user[$i]['status'] = 'Belum usulan topik';
+                }
             $i++;
         }
         return $user;

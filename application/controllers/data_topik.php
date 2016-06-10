@@ -84,7 +84,7 @@ public function Post(){
       //memanggil helper url untuk fungsi redirect
       $this->load->helper('url');
       //mengalihkan ke list data produk setelah input atau edit selesai
-      redirect('data_topik','refresh');
+      redirect('mahasiswa','refresh');
      }
 
 public function Delete(){

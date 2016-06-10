@@ -65,11 +65,11 @@ class Laporan extends CI_Controller {
             $this->allDosen = $this->Dosen->getAllDosen();
             $this->allSkripsi = $this->Skripsi->getAllSkripsi();
             $this->allMembimbing = $this->Bimbingan->getAllBimbingan();
-            $this->laporanTanggungan = $this->generateLaporanTanggungan($this->allDosen, $this->allSkripsi, $this->pembimbing, $this->tahun);
+            $laporanTanggungan = $this->generateLaporanTanggungan($this->allDosen, $this->allSkripsi, $this->pembimbing, $this->tahun);
             $this->setPembimbing($this->pembimbing);
             
             $data      = array(
-                            'laporanTanggungan' => $this->laporanTanggungan
+                            'laporanTanggungan' => $laporanTanggungan
                             );
             
             $this->load->view('laporan/Laporan_Tanggungan_Dosen_Tabel', $data);
@@ -223,7 +223,7 @@ class Laporan extends CI_Controller {
                             $today = date("Y-m-d");
                             $tanggal = $skripsi['TanggalSkripsi']; // tanggalSubmit
                             $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
-                            $tanggalRevisi = date ( 'Y-m-j' , $tanggalRevisi );
+                            $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
 //                            echo $tanggalRevisi.'<br>';
                             if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
                                 $count1x++;
@@ -235,7 +235,7 @@ class Laporan extends CI_Controller {
                         $today = date("Y-m-d");
                         $tanggal = $skripsi['TanggalSkripsi']; // tanggalSubmit
                         $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
-                        $tanggalRevisi = date ( 'Y-m-j' , $tanggalRevisi );
+                        $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
 //                        echo $tanggalRevisi.'<br>';
                         if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
                             $count1x++;
@@ -249,7 +249,7 @@ class Laporan extends CI_Controller {
                             $today = date("Y-m-d");
                             $tanggal = $skripsi['TanggalProp']; // tanggalSubmit
                             $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
-                            $tanggalRevisi = date ( 'Y-m-j' , $tanggalRevisi );
+                            $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
 //                            echo $tanggalRevisi.'<br>';
                             if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
                                 $count2x++;
@@ -261,7 +261,7 @@ class Laporan extends CI_Controller {
                         $today = date("Y-m-d");
                         $tanggal = $skripsi['TanggalProp']; // tanggalSubmit
                         $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
-                        $tanggalRevisi = date ( 'Y-m-j' , $tanggalRevisi );
+                        $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
 //                        echo $tanggalRevisi.'<br>';
                         if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
                             $count2x++;
@@ -305,7 +305,7 @@ class Laporan extends CI_Controller {
             
             // Masa berakhir Proposal (Revisi)
             $statusMhs['Status']='Revisi Proposal';
-            $statusMhs['Count']=0;
+            $statusMhs['Count']=$count2x;
             // if getDateNow?
             $allStatus[] = $statusMhs;
             
@@ -335,28 +335,31 @@ class Laporan extends CI_Controller {
                 
                 if($skripsi['TanggalSkripsi'] != '0000-00-00'){
                     $today = date("Y-m-d");
-                    $statusMhs['Status'] = 'Lulus';
                     $tanggal = $skripsi['TanggalSkripsi']; // tanggalSubmit
                     $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
                     $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
 //                        echo $tanggalRevisi.'<br>';
                         if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $statusMhs['Status'] = 'Revisi Skripsi';
                             $statusMhs['Masa']=$tanggalRevisi;
                         }  else {
+                            $statusMhs['Status'] = 'Lulus';
                             $statusMhs['Masa']=$tanggal;
                         }
                 } else if($skripsi['TanggalProp'] != '0000-00-00'){
                     $today = date("Y-m-d");
-                    $statusMhs['Status'] = 'Skripsi';
-                     $tanggal = $skripsi['TanggalProp']; // tanggalSubmit
+                    $tanggal = $skripsi['TanggalProp']; // tanggalSubmit
                     $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
                     $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
 //                        echo $tanggalRevisi.'<br>';
                         if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $statusMhs['Status'] = 'Revisi Proposal';
                             $statusMhs['Masa']=$tanggalRevisi;
                         }  else {
                             $statusMhs['Masa']=  date('Y-m-d',  strtotime('+365 day', strtotime($tanggal)));
+                            $statusMhs['Status'] = 'Skripsi';
                         }
+                        
                     
                 } else if($skripsi['TanggalTopik'] != '0000-00-00'){
                     $statusMhs['Status'] = 'Proposal';
@@ -409,7 +412,6 @@ class Laporan extends CI_Controller {
         
         function generateLaporanTanggungan($allDosen, $allSkripsi, $pembimbing, $tahun){
             $allTanggunganDosen = array();
-            
             foreach($allDosen as $dosen){
                     $tanggunganDosen = array();
                     $count1 = 0;
@@ -420,7 +422,6 @@ class Laporan extends CI_Controller {
 //                    $tanggunganDosen['Nama'] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$dosen['NIK'].'"'.'<font color="red">'.$dosen['Nama'].'</font>'.'</a>';
                     $tanggunganDosen['Nama'] = $dosen['Nama'];
                     $tanggunganDosen['KBK'] = $dosen['KBK']; // 3. KBK
-
                     $prop = 0; $skrip = 0; $lulus = 0;
                     
                     switch($pembimbing){
@@ -457,9 +458,12 @@ class Laporan extends CI_Controller {
                             $tanggunganDosen['prop'] = $prop;
                             $tanggunganDosen['skrip'] = $skrip;
                             $tanggunganDosen['lulus'] = $lulus;
-
                             if(isset($tanggunganDosen['tahun'])){
-                                if($tanggunganDosen['tahun'] == $tahun){
+                                if($tahun != 0){
+                                    if($tanggunganDosen['tahun'] == $tahun){
+                                        $allTanggunganDosen[] = $tanggunganDosen;                            
+                                    }
+                                } else {
                                     $allTanggunganDosen[] = $tanggunganDosen;                            
                                 }
                             }
@@ -511,7 +515,11 @@ class Laporan extends CI_Controller {
                             $tanggunganDosen['lulus'] = $lulus;
                             
                             if(isset($tanggunganDosen['tahun'])){
-                                if($tanggunganDosen['tahun'] == $tahun){
+                                if($tahun != 0){
+                                    if($tanggunganDosen['tahun'] == $tahun){
+                                        $allTanggunganDosen[] = $tanggunganDosen;                            
+                                    }
+                                } else {
                                     $allTanggunganDosen[] = $tanggunganDosen;                            
                                 }
                             }
@@ -526,7 +534,6 @@ class Laporan extends CI_Controller {
             $allTanggunganDosen = array();
             foreach($laporanTD as $row){
                 $tanggunganDosen = array();
-                echo 'HELLO';
                 // 2. Nama , a href url folder views
                 $tanggunganDosen['Nama'] = $row['Nama'];
                 $tanggunganDosen['count1'] = $row['count1']; // 4. Count1

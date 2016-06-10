@@ -119,7 +119,7 @@
                             <div class="form-group">
                                             <label>Tahun</label>
                                             <select class="form-control" name="tahun">
-                                            <option value="2016">Semua Tahun</option>
+                                            <option value="0">Semua Tahun</option>
                                             <option value="2016">2016</option>
                                             <option value="2015">2015</option>
                                             <option value="2014">2014</option>

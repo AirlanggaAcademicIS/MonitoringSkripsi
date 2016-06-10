@@ -110,7 +110,9 @@
                                         <tr role="row">
                                              <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">Nama</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 204px;">NIM</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Status</th></tr>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Status</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Tahun Ajar</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Masa Berlaku</th></tr>
                                   
                                                 </thead>
                                     <tbody>
@@ -120,6 +122,8 @@
                                             echo "<td>".$row['NIM']."</td>";
                                             echo "<td>".$row['Nama']."</td>";
 					    echo "<td>".$row['Status']."</td>";
+                                            echo "<td>".$row['Tahun']."</td>";
+                                            echo "<td>".$row['Masa']."</td>";
                                             echo "</tr>";            
 					}
         				  ?>

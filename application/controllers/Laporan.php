@@ -326,6 +326,7 @@ class Laporan extends CI_Controller {
             
             foreach($allSkripsi as $skripsi){
                 $statusMhs['NIM'] = $skripsi['NIM']; // 1. NIK
+                $statusMhs['Tahun']=$skripsi['TahunAjar'];
                 foreach($allMahasiswa as $mhs){
                     if($skripsi['NIM'] == $mhs['NIM']){
                         $statusMhs['Nama'] = $mhs['Nama'];
@@ -333,11 +334,33 @@ class Laporan extends CI_Controller {
                 }
                 
                 if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+                    $today = date("Y-m-d");
                     $statusMhs['Status'] = 'Lulus';
+                    $tanggal = $skripsi['TanggalSkripsi']; // tanggalSubmit
+                    $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                    $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $statusMhs['Masa']=$tanggalRevisi;
+                        }  else {
+                            $statusMhs['Masa']=$tanggal;
+                        }
                 } else if($skripsi['TanggalProp'] != '0000-00-00'){
+                    $today = date("Y-m-d");
                     $statusMhs['Status'] = 'Skripsi';
+                     $tanggal = $skripsi['TanggalProp']; // tanggalSubmit
+                    $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                    $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+//                        echo $tanggalRevisi.'<br>';
+                        if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                            $statusMhs['Masa']=$tanggalRevisi;
+                        }  else {
+                            $statusMhs['Masa']=  date('Y-m-d',  strtotime('+365 day', strtotime($tanggal)));
+                        }
+                    
                 } else if($skripsi['TanggalTopik'] != '0000-00-00'){
                     $statusMhs['Status'] = 'Proposal';
+                    $statusMhs['Masa']='-';
                 } else {
                     $statusMhs['Status'] = 'Belum usulan topik';
                 }

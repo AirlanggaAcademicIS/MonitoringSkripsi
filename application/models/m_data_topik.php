@@ -45,17 +45,5 @@ public function getDosen(){
 		return $query->result();
 		}	
 			
-public function gettableSkripsibyNIM(){
-		$query =  $this->db->get_where('skripsi',array('NIM'=>$NIM));
-		return $query->result();
-		}	
-			
-function getSkripsiByNIM($NIM){
-		$this->db->where("NIM",$NIM);
-        $this->db->from('mahasiswa'); 
-        $query = $this->db->get();
-
-        return $query->result();
-	}	
  
 }

@@ -77,7 +77,7 @@ class Laporan extends CI_Controller {
         
         function setPembimbing($pembimbing){
             $this->pembimbing = $pembimbing;
-            echo 'Pembimbing = '.$pembimbing;
+//            echo 'Pembimbing = '.$pembimbing;
         }
         public function tanggungandosengrafik(){
 //            $this->pembimbing = $this->input->post('pembimbing');
@@ -236,7 +236,7 @@ class Laporan extends CI_Controller {
                         $tanggal = $skripsi['TanggalSkripsi']; // tanggalSubmit
                         $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
                         $tanggalRevisi = date ( 'Y-m-j' , $tanggalRevisi );
-                        echo $tanggalRevisi.'<br>';
+//                        echo $tanggalRevisi.'<br>';
                         if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
                             $count1x++;
                         } else {
@@ -321,7 +321,7 @@ class Laporan extends CI_Controller {
             return $allStatus;
         }
         
-        function generateLaporanStatus($allMahasiswa, $allSkripsi){
+        function generateLaporanStatus($allMahasiswa, $allSkripsi, $tahun){
             $allStatus = array();
             
             foreach($allSkripsi as $skripsi){
@@ -342,7 +342,14 @@ class Laporan extends CI_Controller {
                     $statusMhs['Status'] = 'Belum usulan topik';
                 }
                 // append to array
-                $allStatus[] = $statusMhs;
+                if($tahun != 0){
+                    if($skripsi['TahunAjar'] == $tahun){
+                        $allStatus[] = $statusMhs;
+                    }
+                } else {
+                    $allStatus[] = $statusMhs;
+                }
+                
             }
                     
             return $allStatus;

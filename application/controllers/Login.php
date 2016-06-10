@@ -73,7 +73,6 @@ class Login extends CI_Controller{
                     $this->session->set_userdata('username','dosen');
                     $this->session->set_userdata($sess_data);
                     session_start();
-                    redirect('dosen_pembimbing');
                 }elseif($level == 'koor') {                    
                     $sess_data['username'] = 'koor';
                     $sess_data['nik'] = $sess->NIK;

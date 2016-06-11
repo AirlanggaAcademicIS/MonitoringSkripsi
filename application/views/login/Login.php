@@ -44,10 +44,15 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-custom navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
+         <nav class="navbar navbar-custom navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+        <img src="<?php echo base_url();?>assets/header.png">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                
+            </button>
             
-
+        </div>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <div class="input-group custom-search-form" style="color:#39F; text-align:center;">

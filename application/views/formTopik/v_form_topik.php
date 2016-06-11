@@ -69,7 +69,10 @@
                             <!-- /input-group -->
                  
          </li>
-					 <li>
+					<li>
+                         <a href="http://localhost/MonitoringSkripsi/Mahasiswa"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                    </li>
+                     <li>
                           <a href="http://localhost/MonitoringSkripsi/data_topik/input"><i class="fa fa-dashboard fa-fw"></i> Usulan Topik</a>
                     </li>
                     
@@ -79,10 +82,7 @@
                     
                          
                     <li>
-                        <a href="<?php echo base_url();?>Bimbingan/bimbingantabel"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-edit fa-fw"></i> Progress</a>
+                        <a href="<?php echo base_url();?>Bimbingan"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                     </li>
                     <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                                                </ul>

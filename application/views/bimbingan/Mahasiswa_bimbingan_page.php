@@ -59,25 +59,31 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                               <h3> Selamat Datang!
-                                <br><br>Bunga Desa Wijoyokusumo
-                                <br>081313222773</h3>
-                            </div>
-                            
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="http://localhost/MonitoringSkripsi/kuotadosen/kuota"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
-                        </li>
+                               <h3> Selamat Datang!</h3>
+                            <h4><?php echo $this->session->userdata('nama');?>
+                            <br><?php echo $this->session->userdata('nim');?></h4>
+                        </div>
                         
-                             
-                        <li>
-                            <a href="http://localhost/MonitoringSkripsi/Bimbingan/bimbinganpage"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="fa fa-edit fa-fw"></i> Progress</a>
-                        </li>
-                                                   </ul>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                         <a href="http://localhost/MonitoringSkripsi/Mahasiswa"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                    </li>
+					 <li>
+                         <a href="http://localhost/MonitoringSkripsi/data_topik/input"><i class="fa fa-dashboard fa-fw"></i> Usulan Topik</a>
+                    </li>
+                    
+                    <li>
+                       <a href="http://localhost/MonitoringSkripsi/Kuota/kuotatabel"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
+                    </li>
+                    
+                         
+                    <li>
+                        <a href="<?php echo base_url();?>Bimbingan"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
+                    </li>
+                    
+                    <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                                               </ul>
                             <!-- /.nav-second-level -->
                         </li>
                        

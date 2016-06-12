@@ -47,11 +47,12 @@ class Prodi_fix4 extends CI_Controller {
 		$Alamat=$this->input->post('Alamat');
 	        $Telp=$this->input->post('Telp');
 		$Email=$this->input->post('Email');
+                $Pass=$this->input->post('Pass');
                 $Prodi=$this->input->post('Prodi');
                 
 $this->load->database();
 $this->load->model('Prodimodel');
-		$this->Prodimodel->insert_tambah($NIM, $Nama, $Alamat, $Email, $Telp, $Prodi) ;
+		$this->Prodimodel->insert_tambah($NIM, $Nama, $Alamat, $Telp, $Email, $Pass, $Prodi) ;
 		
 		$allmahasiswa = $this->Prodimodel->getsemuamahasiswa();
 		$data = array(

@@ -131,6 +131,13 @@
   <label>Email</label>
   <textarea name="Email" rows="1" class="form-control"></textarea>
 </div>                                        
+
+<div class="form-group">
+  <label>Pass</label>
+  <textarea name="Pass" rows="1" class="form-control"></textarea>
+</div> 
+                                  
+                                   
                                            
                                             
                                             <button type="submit" class="btn btn-default">Save</button><br><br>

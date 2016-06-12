@@ -113,8 +113,8 @@ public function insert_tambah($NIM, $Nama, $Alamat, $Telp ,$Email, $Pass, $Prodi
 		  'Alamat' => $Alamat,
 		  'Telp' => $Telp,
 		  'Email' => $Email,
-                  'Pass' => $Pass,
-                  'Prodi' => $Prodi
+                 'Pass' => $Pass,
+                'Prodi' => $Prodi
 		  );
 		  $this->db->insert('mahasiswa',$data);
       }
@@ -133,7 +133,7 @@ public function insert_tambah($NIM, $Nama, $Alamat, $Telp ,$Email, $Pass, $Prodi
 		  $this->db->insert('dosen',$data);
       }    
     function getsemuamahasiswa(){
-		 $sql ="SELECT NIM, Nama, Alamat, Telp, Email, Prodi FROM mahasiswa";
+		 $sql ="SELECT NIM, Nama, Alamat, Telp, Email, Pass, Prodi FROM mahasiswa";
 		
 		  
 		  $query = $this->db->query($sql);
@@ -141,11 +141,12 @@ public function insert_tambah($NIM, $Nama, $Alamat, $Telp ,$Email, $Pass, $Prodi
         foreach ($query->result_array() as $row)
          {
             $user[$i]['NIM'] = $row['NIM'];
-			$user[$i]['nama'] = $row['Nama'];
-            $user[$i]['alamat'] = $row['Alamat'];
-			$user[$i]['telepon'] = $row['Telp'];
-			$user[$i]['email'] = $row['Email'];
-			$user[$i]['prodi'] = $row['Prodi'];
+			$user[$i]['Nama'] = $row['Nama'];
+            $user[$i]['Alamat'] = $row['Alamat'];
+			$user[$i]['Telepon'] = $row['Telp'];
+			$user[$i]['Email'] = $row['Email'];
+                        $user[$i]['Pass'] = $row['Pass'];
+			$user[$i]['Prodi'] = $row['Prodi'];
 			$i++;
         }
         return $user;
@@ -153,19 +154,21 @@ public function insert_tambah($NIM, $Nama, $Alamat, $Telp ,$Email, $Pass, $Prodi
 		  }
                   
         function getsemuadosen(){
-		 $sql ="SELECT  Nama, NIK, Alamat, Email, Telp, Prodi, KBK, TahunAjar FROM Dosen";
+		 $sql ="SELECT  Nama, NIK, Alamat, Email, Pass, Telp, Prodi, KBK, TahunAjar FROM Dosen";
 		  
 		  $query = $this->db->query($sql);
         $i = 0;
         foreach ($query->result_array() as $row)
          {
-            $user[$i]['nama'] = $row['Nama'];
+            $user[$i]['Nama'] = $row['Nama'];
             $user[$i]['NIK'] = $row['NIK'];
-            $user[$i]['alamat'] = $row['Alamat'];
-			$user[$i]['email'] = $row['Email'];
-			$user[$i]['prodi'] = $row['Prodi'];
-                        $user[$i]['telepon'] = $row['Telp'];
+            $user[$i]['Alamat'] = $row['Alamat'];
+			$user[$i]['Email'] = $row['Email'];
+                        $user[$i]['Pass'] = $row['Pass'];
+			$user[$i]['Prodi'] = $row['Prodi'];
+                        $user[$i]['Telepon'] = $row['Telp'];
                         $user[$i]['KBK'] = $row['KBK'];
+                        $user[$i]['TahunAjar'] = $row['TahunAjar'];
 			$i++;
         }
         return $user;

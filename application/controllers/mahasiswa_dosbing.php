@@ -91,9 +91,9 @@ public function kuotatabel()
     public function mahasiswabimbingan(){
        
 		$this->load->model('m_Mahasiswadosbing');
+		$NIK = $this->session->userdata('nik');
 		
-		
-		$mhsbim = $this->m_Mahasiswadosbing->getsemuamahadosbing("D003");
+		$mhsbim = $this->m_Mahasiswadosbing->getsemuamahadosbing($NIK);
 		$data = array(
 			'jumlah'=>sizeof($mhsbim),
 			'isitabel'=> $mhsbim

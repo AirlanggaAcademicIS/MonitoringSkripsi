@@ -10,7 +10,7 @@ class Dosen_pembimbing extends CI_Controller {
     }
 
 	public function index(){
-		$this->load->view('Dosen_Pembimbing_Home',$data);
+		$this->load->view('Dosen_Pembimbing_Home');
 	}
 	
 }

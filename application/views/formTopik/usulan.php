@@ -76,10 +76,9 @@
                           <a href="http://localhost/MonitoringSkripsi/data_topik/input"><i class="fa fa-dashboard fa-fw"></i> Usulan Topik</a>
                     </li>
                     
-                    <li>
-                        <a href="<?php echo base_url();?>kuotadosen/kuota"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
+                   <li>
+                       <a href="http://localhost/MonitoringSkripsi/Kuota/kuotatabel"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
                     </li>
-                    
                          
                     <li>
                         <a href="<?php echo base_url();?>Bimbingan"><i class="fa fa-table fa-fw"></i> Bimbingan</a>

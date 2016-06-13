@@ -10,6 +10,7 @@ class Data_topik extends CI_Controller {
           $this->load->model('m_data_topik');//memanggil model m_data_topik
           $data['skripsi'] = $this->m_data_topik->list_data(); //memanggil fungsi di model dan menerima hasil fungsi yang dimasukan ke $data['skripsi']
           $this->load->view('topik/v_data_topik1',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
+
  }
  
 
@@ -30,8 +31,7 @@ public function Input()
 		$this->load->view('formTopik/usulan');
 	
 	}
-	else{
-		
+	else{	
       $this->load->model("m_data_topik");
   	  $data['NIM'] = $this->m_data_topik->getMHS();
 	  $data['NIK1'] = $this->m_data_topik->getDosen();
@@ -75,17 +75,27 @@ public function Post(){
      //jika simpan == input 
      if($this->input->post('simpan')=="INPUT"){
           $this->m_data_topik->input($param); 
-     }else
-     if($this->input->post('simpan')=="EDIT"){
-          $NIM= $this->input->post('NIM');
-          $this->m_data_topik->edit($param,$NIM); 
-     }
- 
-      //memanggil helper url untuk fungsi redirect
+		    $this->m_data_topik->edit($param,$NIM); 
+			$this->data_topik->kuota($NIK1);
+			
+			$this->data_topik->kuota($NIK2);
+			
+		//memanggil helper url untuk fungsi redirect
       $this->load->helper('url');
       //mengalihkan ke list data produk setelah input atau edit selesai
       redirect('mahasiswa','refresh');
+     
+     }else
+     if($this->input->post('simpan')=="EDIT"){
+         $NIM= $this->input->post('NIM');
+         $this->m_data_topik->edit($param,$NIM); 
+		//memanggil helper url untuk fungsi redirect
+      $this->load->helper('url');
+      //mengalihkan ke list data produk setelah input atau edit selesai
+      redirect('data_topik','refresh');
      }
+     }
+   
 
 public function Delete(){
    $this->load->database();//memanggil pengaturan database dan mengaktifkannya
@@ -97,6 +107,19 @@ public function Delete(){
    redirect('data_topik','refresh');
   
 }
+
+
+public function kuota($NIK)
+	{
+		
+		$this->load->model('m_data_topik');
+		$kuota = $this->m_data_topik->getKuota($NIK);
+		$kuota= $kuota--;
+		// 
+		$this->m_data_topik->setKuota($NIK,$kuota);
+		
+	}
+
 
 
 }

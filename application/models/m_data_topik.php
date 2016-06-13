@@ -27,7 +27,7 @@ function getEdit($NIM){
  
 function edit($param,$NIM){
    $this->db->where('NIM',$NIM);
-   $this->db->update('skripsi',$param);
+  $this->db->update('skripsi',$param); // coba pake sql biasa 
    return true;
 }
 function delete($NIM){
@@ -45,5 +45,25 @@ public function getDosen(){
 		return $query->result();
 		}	
 			
- 
+function getKuota($NIK){
+		 $sql ="SELECT Kuota FROM dosen where NIK=".$NIK;
+		  
+		$query = $this->db->query($sql);
+  // 		$this->db->update('dosen',$param);
+       
+        return $query;
+		  
+		  }
+
+
+function setKuota($NIK,$kuota){
+    	$sql ="Update dosen set kuota=".$kuota. "where NIK=".$NIK;
+		  
+		$query = $this->db->query($sql);
+//   		$this->db->update('dosen',$param);
+       
+        return $query;
+		  
+		  }
+
 }

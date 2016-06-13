@@ -117,19 +117,19 @@
                                     </thead>
                                     <tbody>         
 <?php 
-			$no = 1;
+		
 			foreach($bimbingan as $lihat){
 			?>
 			<tr>
-			<td><?= $no;?></td>
+		<!--	<td><?= $no;?></td>	-->
 			<td><?php echo $lihat['Tanggal']; ?></td>
 			<td><?php echo $lihat['Subjek']; ?></td>
 			<td><?php echo $lihat['Jenis']; ?></td>
 			<td><?php echo $lihat['Persetujuan']; ?></td>
-		
+			<td><a href="<?= site_url("menyetujuibimbingan/edit")."?bimbingan=".$value->id_bimbingan;?>"> Edit </a> </td>
                   </tr>
                   <?php
-				  $no++;  }
+				    }
                 ?>
                                       </tbody>
                                 </table>

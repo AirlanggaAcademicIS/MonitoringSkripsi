@@ -30,7 +30,8 @@ class Menyetujuibimbingan extends CI_Controller {
 		$this->load->model('Bimbingan');
 		$this->load->library('table');
 		$this->input->post('NIM');
-		$NIM = '081313222773';
+		//$this->load->model('m_Mahasiswadosbing');
+		$NIM = '081311633005'; 
 		
 		$skripsi_id = 0;
 		$allSkripsi=$this->Skripsi->getAllSkripsi();
@@ -55,42 +56,18 @@ class Menyetujuibimbingan extends CI_Controller {
 		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Page',$data);
 		
 	}	
-	public function bimbingan_setuju()
-	{
-		$Tanggal=$this->input->post('tanggal');
-		$Subjek=$this->input->post('catatan');
-		
-		$Persetujuan="Belum disetujui";
-		
-		$this->load->model('Skripsi');
-		$nik1nik2 = $this->Skripsi->getnik1nik2("081311633058");
-		$id_skripsi= $this->Skripsi->getId_skripsi("081311633058");
-		$tanggalskripsi = $this->Skripsi->gettanggaskripsi("081311633058");
-				if($tanggalskripsi['TanggalProp'] != 0000-00-00){
-				$Jenis="Skripsi";			
-			}
-			else {
-			$Jenis="Proposal";
-							
-			}
-			
-			
-				if($option==1){
-					$NIK = $nik1nik2['nik1'];
-				}
-				else if($option==2){
-					$NIK = $nik1nik2['nik2'];				
-				}
+	
 	public function Edit()
 	{
       $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
       $this->load->database();//memanggil pengaturan database dan mengaktifkannya
-      $this->load->model('menyetujui');//memanggil model m_data_jadwal.php
-      $data['NIM'] = $this->m_data_topik->getMHS();
-      $NIM= $this->input->get('skripsi');//mengambil param  dari get
-	  $data['skripsi'] = $this->m_data_topik->getEdit($NIM);
+      $this->load->model('Bimbingan');//memanggil model m_data_jadwal.php
+      $data['id_bimbingan'] = $this->Bimbingan->getAllBimbingan();
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
-      $this->load->view('topik/v_form_topik',$data);// memanggil view v_form_jadwal.php
+	  
+	  
+	  
+      $this->load->view('menyetujuibimbingan/edit_bimbingan',$data);// memanggil view edit_bimbingan.php
 }
 	public function Delete(){
 	   $this->load->database();//memanggil pengaturan database dan mengaktifkannya

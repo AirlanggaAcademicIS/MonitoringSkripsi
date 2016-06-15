@@ -76,7 +76,7 @@ class Bimbingan extends CI_Model{
       }
       
       function getAllBimbingan(){
-          return $this->db->query("SELECT * FROM `bimbingan`");
+          return $this->db->query("SELECT * FROM `bimbingan`")->result_array();
       }
 public function insert_tambahan($id_skripsi, $Subjek, $Tanggal, $Jenis, $NIK ,$Persetujuan){
           $data = array (

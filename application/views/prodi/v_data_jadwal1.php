@@ -70,6 +70,9 @@
                         <li>
                             <a href="http://localhost/MonitoringSkripsi/prodi/prodi_fix4"> Mahasiswa</a>
                         </li>
+                        <li>
+                             <a href="<?php echo base_url();?>Prodi_fix4/dosentabel"><i class="fa fa-table fa-fw"></i> Dosen</a>
+                        </li>
                          <li>
                             <li>  <a href="http://localhost/MonitoringSkripsi/data_jadwal/index"> Jadwal</a>
                         </li>

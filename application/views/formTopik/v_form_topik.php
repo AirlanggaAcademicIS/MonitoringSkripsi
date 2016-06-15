@@ -128,7 +128,7 @@
 									
 <div class="form-group">
   <label>Tanggal </label>
-  <input type="date" name="TanggalTopik" class="form-control" id="TanggalTopik" placeholder="yyyy-mm-dd" required>
+  <input type="text" name="TanggalTopik" class="form-control" id="TanggalTopik" placeholder="yyyy-mm-dd" required>
   
 </div>
   

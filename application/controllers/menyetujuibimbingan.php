@@ -20,7 +20,7 @@ class Menyetujuibimbingan extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Home');	
+		$this->load->view('menyetujui_bimbingan/menyetujuibimbingan_Home');	
 
 		}
 	public function bimbingan()
@@ -31,7 +31,7 @@ class Menyetujuibimbingan extends CI_Controller {
 		$this->load->library('table');
 		$this->input->post('NIM');
 		//$this->load->model('m_Mahasiswadosbing');
-		$NIM = '081311633005'; 
+		$NIM = '081311633001'; 
 		
 		$skripsi_id = 0;
 		$allSkripsi=$this->Skripsi->getAllSkripsi();
@@ -53,7 +53,7 @@ class Menyetujuibimbingan extends CI_Controller {
 			}
 			$data = array( 'bimbingan' => $bimX);
 		
-		$this->load->view('menyetujuibimbingan/menyetujuibimbingan_Page',$data);
+		$this->load->view('menyetujui_bimbingan/menyetujuibimbingan_Page',$data);
 		
 	}	
 	
@@ -67,7 +67,7 @@ class Menyetujuibimbingan extends CI_Controller {
 	  
 	  
 	  
-      $this->load->view('menyetujuibimbingan/edit_bimbingan',$data);// memanggil view edit_bimbingan.php
+      $this->load->view('menyetujui_bimbingan/edit_bimbingan',$data);// memanggil view edit_bimbingan.php
 }
 	public function Delete(){
 	   $this->load->database();//memanggil pengaturan database dan mengaktifkannya

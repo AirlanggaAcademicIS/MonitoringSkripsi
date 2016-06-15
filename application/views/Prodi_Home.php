@@ -71,6 +71,8 @@
                         </li>
                         <li>
                              <a href="<?php echo base_url();?>Prodi_fix4/dosentabel"><i class="fa fa-table fa-fw"></i> Dosen</a>
+                        </li><li>
+                             <a href="<?php echo base_url();?>data_jadwal"><i class="fa fa-table fa-fw"></i> Jadwal</a>
                         </li>
                         <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         

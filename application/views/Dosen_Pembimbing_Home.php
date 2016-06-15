@@ -70,7 +70,7 @@
                             <a href="http://localhost/MonitoringSkripsi/mahasiswa_dosbing/mahasiswabimbingan"><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-table fa-fw"></i> Bimbingan</a>
+                            <a href="http://localhost/MonitoringSkripsi/menyetujuibimbingan"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                         </li>
                         <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         

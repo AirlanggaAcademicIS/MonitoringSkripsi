@@ -75,7 +75,7 @@ public function Post(){
      //jika simpan == input 
      if($this->input->post('simpan')=="INPUT"){
           $this->m_data_topik->input($param); 
-		    $this->m_data_topik->edit($param,$NIM); 
+		    
 			$this->data_topik->kuota($NIK1);
 			
 			$this->data_topik->kuota($NIK2);

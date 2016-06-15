@@ -72,6 +72,9 @@
                         <li>
                              <a href="<?php echo base_url();?>Prodi_fix4/dosentabel"><i class="fa fa-table fa-fw"></i> Dosen</a>
                         </li>
+                        <li>
+                             <a href="<?php echo base_url();?>data_jadwal"><i class="fa fa-table fa-fw"></i> Jadwal</a>
+                        </li>
                         <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         
                                                    </ul>
@@ -116,12 +119,12 @@
 										
                                       echo "<tr>";
                                       echo "<td>".($i+1)."</td>";
-									   echo "<td>".$isitabel[$i]['nama']."</td>";
+									   echo "<td>".$isitabel[$i]['Nama']."</td>";
 									    echo "<td>".$isitabel[$i]['NIM']."</td>";
-										echo "<td>".$isitabel[$i]['prodi']."</td>";
-										echo "<td>".$isitabel[$i]['alamat']."</td>";	
-										echo "<td>".$isitabel[$i]['telepon']."</td>";	
-										echo "<td>".$isitabel[$i]['email']."</td>";									
+										echo "<td>".$isitabel[$i]['Prodi']."</td>";
+										echo "<td>".$isitabel[$i]['Alamat']."</td>";	
+										echo "<td>".$isitabel[$i]['Telepon']."</td>";	
+										echo "<td>".$isitabel[$i]['Email']."</td>";									
 									   echo "</tr>";
 									}
 									  ?>

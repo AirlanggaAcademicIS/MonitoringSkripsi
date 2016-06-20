@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Laporan Minat KBK</title>
+    <title>Laporan Status Mahasiswa</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://localhost/MonitoringSkripsi/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -93,7 +93,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header">Laporan Tanggungan Dosen</h2>
+                    <h2 class="page-header">Laporan Status Mahasiswa</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

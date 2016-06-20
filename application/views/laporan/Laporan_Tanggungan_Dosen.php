@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Laporan Minat KBK</title>
+    <title>Laporan Tanggungan Dosen</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://localhost/MonitoringSkripsi/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -108,15 +108,26 @@
                          <div class="col-lg-6">
                             <div class="row">
                             <form role="form" method="post" action="http://localhost/MonitoringSkripsi/laporan/tanggungandosentabel">
-                                <div class="form-group">
+<!--                                <div class="form-group">
                                             <label>Dosen Pembimbing</label>
                                             <select class="form-control" name="pembimbing">
                                             <option value="0">Semua Pembimbing</option>
                                             <option value="1">Pembimbing 1</option>
                                             <option value="2">Pembimbing 2</option>
                                             </select>
-                                        </div>
-                            <div class="form-group">
+                                </div>-->
+                                <div class="form-group">
+                                            <label>Status Mahasiswa</label>
+                                            <select class="form-control" name="pembimbing">
+                                            <option value="0">Semua Status</option>
+                                            <option value="1">Proposal</option>
+                                            <option value="2">Revisi Proposal</option>
+                                            <option value="3">Skripsi</option>
+                                            <option value="4">Revisi Skripsi</option>
+                                            <option value="5">Lulus</option>
+                                            </select>
+                                </div>
+                                <div class="form-group">
                                             <label>Tahun</label>
                                             <select class="form-control" name="tahun">
                                             <option value="0">Semua Tahun</option>

@@ -410,7 +410,7 @@ class Laporan extends CI_Controller {
             return $allStatusMhs;
         }
         
-        function generateLaporanTanggungan($allDosen, $allSkripsi, $pembimbing, $tahun){
+        function generateLaporanTanggungan($allDosen, $allSkripsi, $status, $tahun){
             $allTanggunganDosen = array();
             foreach($allDosen as $dosen){
                     $tanggunganDosen = array();
@@ -422,109 +422,195 @@ class Laporan extends CI_Controller {
 //                    $tanggunganDosen['Nama'] = '<a href = " '. base_url() .'laporan/detail_dosen/'.$dosen['NIK'].'"'.'<font color="red">'.$dosen['Nama'].'</font>'.'</a>';
                     $tanggunganDosen['Nama'] = $dosen['Nama'];
                     $tanggunganDosen['KBK'] = $dosen['KBK']; // 3. KBK
-                    $prop = 0; $skrip = 0; $lulus = 0;
+                    $prop = 0; $revProp = 0; $skrip = 0; $revSkrip = 0; $lulus = 0;
                     
-                    switch($pembimbing){
+                    foreach($allSkripsi as $skripsi){
+                        if(($dosen['NIK'] == $skripsi['NIK1']) || ($dosen['NIK'] == $skripsi['NIK2'])){
+                            if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+                                $today = date("Y-m-d");
+                                $tanggal = $skripsi['TanggalSkripsi']; // tanggalSubmit
+                                $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                                $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+                                if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                                    $revSkrip++;
+                                }  else {
+                                    $lulus++;
+                                }
+                            } else if($skripsi['TanggalProp'] != '0000-00-00'){
+                                $today = date("Y-m-d");
+                                $tanggal = $skripsi['TanggalProp']; // tanggalSubmit
+                                $tanggalRevisi = strtotime ( '+21 day' , strtotime ( $tanggal ) ) ; // $tanggalRevisi
+                                $tanggalRevisi = date ( 'Y-m-d' , $tanggalRevisi );
+                                if(( $today >= $tanggal ) && ( $today <= $tanggalRevisi)){
+                                    $revProp++;
+                                }  else {
+                                    $skrip++;
+                                }
+                            } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+                                $prop = $prop+1;
+                            } 
+                        }
+                    }
+                    
+                    switch($status){
                         case 0:
-                            foreach($allSkripsi as $skripsi){
-                                if($dosen['NIK'] == $skripsi['NIK1']){
-                                    $count1 = $count1+1;
-                                    $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
-                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
-                                        $lulus = $lulus+1;
-                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
-                                        $skrip = $skrip+1;
-                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
-                                        $prop = $prop+1;
-                                    } 
-                                }
-                                
-                                if($dosen['NIK'] == $skripsi['NIK2']){
-                                    $count2 = $count2+1;
-                                    $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
-                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
-                                        $lulus = $lulus+1;
-                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
-                                        $skrip = $skrip+1;
-                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
-                                        $prop = $prop+1;
-                                    } 
-                                }
-                            }
-
-                            $tanggunganDosen['count1'] = $count1; // 4. Count1
-                            $tanggunganDosen['count2'] = $count2; // 5. Count2
-                            $tanggunganDosen['allCount'] = $count1+$count2; // 6. Count Total
                             $tanggunganDosen['prop'] = $prop;
+                            $tanggunganDosen['revProp'] = $revProp;
                             $tanggunganDosen['skrip'] = $skrip;
+                            $tanggunganDosen['revSkrip'] = $revSkrip;
                             $tanggunganDosen['lulus'] = $lulus;
-                            if(isset($tanggunganDosen['tahun'])){
-                                if($tahun != 0){
-                                    if($tanggunganDosen['tahun'] == $tahun){
-                                        $allTanggunganDosen[] = $tanggunganDosen;                            
-                                    }
-                                } else {
+                            if($tahun != 0){
+                                if($skripsi['TahunAjar'] == $tahun){
                                     $allTanggunganDosen[] = $tanggunganDosen;                            
                                 }
+                            } else {
+                                $allTanggunganDosen[] = $tanggunganDosen;                            
                             }
                             break;
                         case 1:
-                            foreach($allSkripsi as $skripsi){
-                                if($dosen['NIK'] == $skripsi['NIK1']){
-                                    $count1 = $count1+1;
-                                    $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
-                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
-                                        $lulus = $lulus+1;
-                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
-                                        $skrip = $skrip+1;
-                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
-                                        $prop = $prop+1;
-                                    } 
-                                }
-                            }
-
-                            $tanggunganDosen['count1'] = $count1; // 4. Count1
                             $tanggunganDosen['prop'] = $prop;
-                            $tanggunganDosen['skrip'] = $skrip;
-                            $tanggunganDosen['lulus'] = $lulus;
-                            
-                            if(isset($tanggunganDosen['tahun'])){
-                                if($tanggunganDosen['tahun'] == $tahun){
+                            if($tahun != 0){
+                                if($skripsi['TahunAjar'] == $tahun){
                                     $allTanggunganDosen[] = $tanggunganDosen;                            
                                 }
+                            } else {
+                                $allTanggunganDosen[] = $tanggunganDosen;                            
                             }
                             break;
                         case 2:
-                            foreach($allSkripsi as $skripsi){
-                                if($dosen['NIK'] == $skripsi['NIK2']){
-                                    $count2 = $count2+1;
-                                    $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
-                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
-                                        $lulus = $lulus+1;
-                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
-                                        $skrip = $skrip+1;
-                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
-                                        $prop = $prop+1;
-                                    } 
-                                }
-                            }
-
-                            $tanggunganDosen['count2'] = $count2; // 4. Count1
-                            $tanggunganDosen['prop'] = $prop;
-                            $tanggunganDosen['skrip'] = $skrip;
-                            $tanggunganDosen['lulus'] = $lulus;
-                            
-                            if(isset($tanggunganDosen['tahun'])){
-                                if($tahun != 0){
-                                    if($tanggunganDosen['tahun'] == $tahun){
-                                        $allTanggunganDosen[] = $tanggunganDosen;                            
-                                    }
-                                } else {
+                            $tanggunganDosen['revProp'] = $revProp;
+                            if($tahun != 0){
+                                if($skripsi['TahunAjar'] == $tahun){
                                     $allTanggunganDosen[] = $tanggunganDosen;                            
                                 }
+                            } else {
+                                $allTanggunganDosen[] = $tanggunganDosen;                            
                             }
                             break;
+                        case 3:
+                            $tanggunganDosen['skrip'] = $skrip;
+                            if($tahun != 0){
+                                if($skripsi['TahunAjar'] == $tahun){
+                                    $allTanggunganDosen[] = $tanggunganDosen;                            
+                                }
+                            } else {
+                                $allTanggunganDosen[] = $tanggunganDosen;                            
+                            }
+                            break;    
+                        case 4:
+                            $tanggunganDosen['revSkrip'] = $revSkrip;
+                            if($tahun != 0){
+                                if($skripsi['TahunAjar'] == $tahun){
+                                    $allTanggunganDosen[] = $tanggunganDosen;                            
+                                }
+                            } else {
+                                $allTanggunganDosen[] = $tanggunganDosen;                            
+                            }
+                            break;
+                        case 5:
+                            $tanggunganDosen['lulus'] = $lulus;
+                            if($tahun != 0){
+                                if($skripsi['TahunAjar'] == $tahun){
+                                    $allTanggunganDosen[] = $tanggunganDosen;                            
+                                }
+                            } else {
+                                $allTanggunganDosen[] = $tanggunganDosen;                            
+                            }
+                            break;    
                     }
+                    
+//                    switch($pembimbing){
+//                        case 0:
+//                            foreach($allSkripsi as $skripsi){
+//                                if($dosen['NIK'] == $skripsi['NIK1']){
+//                                    $count1 = $count1+1;
+//                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+//                                        $lulus = $lulus+1;
+//                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
+//                                        $skrip = $skrip+1;
+//                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+//                                        $prop = $prop+1;
+//                                    } 
+//                                }
+//                                
+//                                if($dosen['NIK'] == $skripsi['NIK2']){
+//                                    $count2 = $count2+1;
+////                                    $tanggunganDosen['tahun'] = $skripsi['TahunAjar'];
+//                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+//                                        $lulus = $lulus+1;
+//                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
+//                                        $skrip = $skrip+1;
+//                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+//                                        $prop = $prop+1;
+//                                    } 
+//                                }
+//                            }
+//
+//                            $tanggunganDosen['count1'] = $count1; // 4. Count1
+//                            $tanggunganDosen['count2'] = $count2; // 5. Count2
+//                            $tanggunganDosen['allCount'] = $count1+$count2; // 6. Count Total
+//                            $tanggunganDosen['prop'] = $prop;
+//                            $tanggunganDosen['skrip'] = $skrip;
+//                            $tanggunganDosen['lulus'] = $lulus;
+//                                if($tahun != 0){
+//                                    if($skripsi['TahunAjar'] == $tahun){
+//                                        $allTanggunganDosen[] = $tanggunganDosen;                            
+//                                    }
+//                                } else {
+//                                    $allTanggunganDosen[] = $tanggunganDosen;                            
+//                                }
+//                            break;
+//                        case 1:
+//                            foreach($allSkripsi as $skripsi){
+//                                if($dosen['NIK'] == $skripsi['NIK1']){
+//                                    $count1 = $count1+1;
+//                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+//                                        $lulus = $lulus+1;
+//                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
+//                                        $skrip = $skrip+1;
+//                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+//                                        $prop = $prop+1;
+//                                    } 
+//                                }
+//                            }
+//
+//                            $tanggunganDosen['count1'] = $count1; // 4. Count1
+//                            $tanggunganDosen['prop'] = $prop;
+//                            $tanggunganDosen['skrip'] = $skrip;
+//                            $tanggunganDosen['lulus'] = $lulus;
+//                            
+//                                if($skripsi['TahunAjar'] == $tahun){
+//                                    $allTanggunganDosen[] = $tanggunganDosen;                            
+//                                }
+//                            break;
+//                        case 2:
+//                            foreach($allSkripsi as $skripsi){
+//                                if($dosen['NIK'] == $skripsi['NIK2']){
+//                                    $count2 = $count2+1;
+//                                    if($skripsi['TanggalSkripsi'] != '0000-00-00'){
+//                                        $lulus = $lulus+1;
+//                                    } else if($skripsi['TanggalProp'] != '0000-00-00'){
+//                                        $skrip = $skrip+1;
+//                                    } else if($skripsi['TanggalTopik'] != '0000-00-00'){
+//                                        $prop = $prop+1;
+//                                    } 
+//                                }
+//                            }
+//
+//                            $tanggunganDosen['count2'] = $count2; // 4. Count1
+//                            $tanggunganDosen['prop'] = $prop;
+//                            $tanggunganDosen['skrip'] = $skrip;
+//                            $tanggunganDosen['lulus'] = $lulus;
+//                            
+//                                if($tahun != 0){
+//                                    if($skripsi['TahunAjar'] == $tahun){
+//                                        $allTanggunganDosen[] = $tanggunganDosen;                            
+//                                    }
+//                                } else {
+//                                    $allTanggunganDosen[] = $tanggunganDosen;                            
+//                                }
+//                            break;
+//                    }
                 }
             // return array
             return $allTanggunganDosen;

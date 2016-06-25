@@ -23,6 +23,7 @@ class Login extends CI_Controller{
     public function process(){
         $this->load->model('login_model');
         $this->load->model('Dosen');
+        $this->load->model('Mahasiswa');
         $username =$this->input->post('username', TRUE);
         $password =$this->input->post('password', TRUE);
         /*
@@ -35,11 +36,9 @@ class Login extends CI_Controller{
         ];
         $result = $this->login_model->validate('mahasiswa',$data);
         if($result->num_rows() == 1){
-            $sess_data['as'] = 'mahasiswa';
-            $sess_data['nama'] = $sess->Nama;
-            $sess_data['nim'] = $sess->NIM;
-            $this->session->set_userdata('username','mahasiswa');
-            $this->session->set_userdata($sess_data);
+            $mhs = $this->Dosen->getMahasiswa($username);
+            $this->session->set_userdata('as','Kaprodi');
+            $this->session->set_userdata('Nama',$mhs->Nama);
             session_start();
             redirect('mahasiswa');
         } 
@@ -62,7 +61,7 @@ class Login extends CI_Controller{
                 $dosen = $this->Dosen->getDosen($username);
                 $this->session->set_userdata('as','Kaprodi');
                 $this->session->set_userdata('Nama',$dosen->Nama);
-                echo "<script>alert('Selamat datang Kaprodi');</script>";
+//                echo "<script>alert('Selamat datang Kaprodi');</script>";
                 session_start();
                 redirect('laporan');
             } else {

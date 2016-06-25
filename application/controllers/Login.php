@@ -37,7 +37,7 @@ class Login extends CI_Controller{
         $result = $this->login_model->validate('mahasiswa',$data);
         if($result->num_rows() == 1){
             $mhs = $this->Dosen->getMahasiswa($username);
-            $this->session->set_userdata('as','Kaprodi');
+            $this->session->set_userdata('as','Mahasiswa');
             $this->session->set_userdata('Nama',$mhs->Nama);
             session_start();
             redirect('mahasiswa');

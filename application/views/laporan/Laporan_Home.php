@@ -60,8 +60,10 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
                                  <h3> Selamat Datang!
-                                <br><br><?php echo $this->session->userdata('nama');?>
-                                <br><?php echo $this->session->userdata('nik');?></h3>
+                                     <br><br><div style='text-align:right'>
+                                         <?php echo $this->session->userdata('Nama');?></div>
+                                <br><?php // echo $this->session->userdata('nik');?></h3>
+                                <a href="http://localhost/MonitoringSkripsi/Dosen_pembimbing/">Menu Dosen</a>
                             </div>
                             
                             <!-- /input-group -->

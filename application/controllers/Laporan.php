@@ -47,7 +47,12 @@ class Laporan extends CI_Controller {
 	 */
         
         public function index(){
-            $this->load->view('laporan/Laporan_Home');
+            if($this->session->userdata('as') == 'Kaprodi'){
+                $this->load->view('laporan/Laporan_Home');
+            } else {
+                $this->load->view('Not_Found');
+            }
+            
 	}
         
         /**

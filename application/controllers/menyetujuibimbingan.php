@@ -20,9 +20,22 @@ class Menyetujuibimbingan extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('menyetujui_bimbingan/menyetujuibimbingan_Home');	
+		$this->load->view('Dosen_Pembimbing_Home');	
 
 		}
+	public function mahasiswabimbingan(){
+       
+		$this->load->model('m_Mahasiswadosbing');
+		$NIK = $this->session->userdata('nik');
+		
+		$mhsbim = $this->m_Mahasiswadosbing->getsemuamahadosbing($NIK);
+		$data = array(
+			'jumlah'=>sizeof($mhsbim),
+			'isitabel'=> $mhsbim
+			);
+			
+		$this->load->view('menyetujui_bimbingan/mahasiswa_dosen_pembimbing',$data);
+	}
 	public function bimbingan()
 	{
 		$this->load->model('menyetujui');
@@ -30,16 +43,14 @@ class Menyetujuibimbingan extends CI_Controller {
 		$this->load->model('Bimbingan');
 		$this->load->library('table');
 		$this->input->post('NIM');
-		//$this->load->model('m_Mahasiswadosbing');
-		$NIM = '081311633001'; 
+		
+	   $NIM = $this->input->get('NIM'); 
 		
 		$skripsi_id = 0;
 		$allSkripsi=$this->Skripsi->getAllSkripsi();
 			foreach ($allSkripsi as $skripsi){
 				if($skripsi['NIM']== $NIM){
 					$skripsi_id = $skripsi['id_skripsi'];
-					
-
 				}
 			}
 		//	$data['bimbingan'] = $skripsi_id;
@@ -59,37 +70,82 @@ class Menyetujuibimbingan extends CI_Controller {
 	
 	public function Edit()
 	{
+	
       $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
       $this->load->database();//memanggil pengaturan database dan mengaktifkannya
       $this->load->model('Bimbingan');//memanggil model m_data_jadwal.php
-      $data['id_bimbingan'] = $this->Bimbingan->getAllBimbingan();
+     // $data['id_skripsi'] = $this->Bimbingan->getAllBimbingan();
+	  //$id_bimbingan= $this->input->get('bimbingan');//mengambil param  dari get
+	  	//	$data['bimbingan'] = $this->Bimbingan->getEdit($id_bimbingan);
+			
+	  	
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
-	  
-	  
-	  
       $this->load->view('menyetujui_bimbingan/edit_bimbingan',$data);// memanggil view edit_bimbingan.php
 }
-	public function Delete(){
-	   $this->load->database();//memanggil pengaturan database dan mengaktifkannya
-	   $this->load->model('m_data_topik');//memanggil model m_data_topik.php
-	   $NIM= $this->input->get('skripsi');
-	   $this->m_data_topik->delete($NIM);
-	   $this->load->helper('url');
-	   redirect('skripsi','refresh');
-}	
 	
-/*	public function menyetujuitabel()
+	function detail_bimbingan(){
+			$NIM = $this->input->get('NIM');
+			$this->load->model('Skripsi');
+			$this->load->model('Bimbingan');
+
+            $allBimbingan = $this->Bimbingan->getAllBimbingan();
+			$allSkripsi = $this->Skripsi->getAllSkripsi();
+       
+            $data = array(
+                'detailBimbingan' => $this->generateDetail($allBimbingan, $allSkripsi, $NIM)
+                );
+            
+            $this->load->view('menyetujui_bimbingan/detail_bimbingan', $data);
+        }
+		
+	function generateDetail($allBimbingan, $allSkripsi, $NIM) {
+	
+	/**
+	
+	1. Ambil semua skripsi yang skripsi['nim'] = $NIM
+	*/
+	
+	$skripsiX = 0;
+	foreach ($allSkripsi as $skripsi){
+		if($skripsi['NIM'] == $NIM){
+			$skripsiX = $skripsi['id_skripsi'];
+			echo 'test';
+		}
+	}
+	
+	/**
+	2. Ambil bimbingan untuk setiap bimbingan['idskripsi'] = skripsi[id_skripsi]
+	*/
+	echo $skripsiX;
+	$allbimbX = array();
+	foreach($allBimbingan as $bimb){
+	echo 'bip';
+		if($bimb['id_skripsi'] == $skripsiX){
+			$bimbX = array();
+			$bimbX['id'] = $bimb['id_bimbingan'];
+			$bimbX['Tanggal'] = $bimb['Tanggal'];
+			$bimbX['Subjek'] = $bimb['Subjek'];
+			$bimbX['Jenis']= $bimb['Jenis'];
+			$bimbX['Persetuuan'] = $bimb['Persetujuan'];
+			$allbimbX[] = $bimbX;
+			echo 'test';
+		}
+	}
+	return $allbimbX;
+//	$data = array( 'generateDetail' => $bimbX);
+
+}
+	public function ubah_status_bimbingan()
 	{
+		$seStr = $this->input->get('array');
+       	$arr = explode('x', $seStr);
+       	$id_bimbingan = $arr[0];
+       	$persetujuan = $arr[1];
 			
-		$this->load->model('menyetujui');
-		
-		$allbimbingan = $this->menyetujui->getsemuabim("081311633058");
-		$data = array(
-			'jumlah'=>sizeof($allbimbingan),
-			'isitabel'=>$allbimbingan
-			);
-			
-		$this->load->view('menyetujui_bimbingan/menyetujuibimbingan_Page',$data);
-		
-	}	*/
+		$this->load->model('Bimbingan');
+		$persetujuan=$this->Bimbingan->menyetujui($id_bimbingan, $persetujuan);
+		redirect('Dosen_Pembimbing');
+	
+	}
+
 }

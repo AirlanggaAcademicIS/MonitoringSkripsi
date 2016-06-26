@@ -55,46 +55,6 @@
                 
             </div>
             
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                               <h3> Selamat Datang!
-                                <br><br>Mahasiswa
-                                <br>081313222773</h3>
-                            </div>
-                            
-                            <!-- /input-group -->
-                 
-         </li>
-					 <li>
-                         <a href="http://localhost/MonitoringSkripsi/index.php/mahasiswa"><i class="fa fa-dashboard fa-fw"></i> Usulan Topik</a>
-                    </li>
-                    
-                    <li>
-                        <a href="<?php echo base_url();?>kuotadosen/kuota"><i class="fa fa-dashboard fa-fw"></i> Kuota Dosen Pembimbing</a>
-                    </li>
-                    
-                         
-                    <li>
-                        <a href="<?php echo base_url();?>Bimbingan/bimbingantabel"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-edit fa-fw"></i> Progress</a>
-                    </li>
-                    <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
-                                               </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                      <!-- /.nav-second-level -->
-                        </li>
-                       
-                      
-                      
-                            </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                     </ul>
                 </div>
@@ -106,115 +66,38 @@
          <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">FORM USULAN TOPIK SKRIPSI</h1>
+                    <h1 class="page-header">CATATAN BIMBINGAN</h1>
                 </div>
            <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            FORM USULAN TOPIK SKRIPSI
+                            FORM BIMBINGAN
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form id="form1" name="formtopik" method="post" action="post">
 									
-	<?php echo form_open('data_topik/post'); ?>
+	<?php echo form_open('menyetujuibimbingan/post'); ?>
     <?php if ($type=="EDIT"){ 
-     echo form_hidden('NIM', $this->input->get('skripsi'));
+     echo form_hidden('id_bimbingan', $this->input->get('bimbingan'));
      }
      ?>
 									
-									
 <div class="form-group">
-  <label>Tanggal </label>
-   <input class="form-control" name="TanggalTopik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TanggalTopik;};?>"> 
+  <label> Catatan </label>
 </div>
-  
-<div class="form-group">
-  <label>Tahun Ajar </label>
-   <input class="form-control" name="TahunAjar" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->TahunAjar;};?>">
-</div>
- 
-<div class="form-group">
-     <label for="NIM">NIM</label>
-     <select name="NIM" class="form-control" name="NIM" id="NIM" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIM;};?>">  
-	 <?php
-$no = 1;
-
-foreach($NIM as $value)
-{
-echo "<option>".$value->NIM."</option>";
-
-if(isset($_GET['skripsi'])){
-	if($_GET['skripsi']==$value->NIM){
-		echo "<option selected>".$value->NIM."</option>";
-	}
-}
-}
-?>
-     </select>
-</div>
-  
-<div class="form-group">
-<label>KBK</label>
-<div class="">
-<select name="KBK" class="form-control" name="KBK" id="KBK">  
- 				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">Rekayasa Sistem Informasi</option>
-				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">Data Mining</option>
-				  <option value="<?php if ($type=="EDIT"){echo $skripsi[0]->KBK;};?>">Sistem Pendukung Keputusan</option>
-    </select>
-</div>
-</div>
-
-<div class="form-group">
-<label>Topik</label>
- <input class="form-control" name="Topik" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->Topik;};?>">
-</div>      
-	
-<div class="form-group">
-  <label>Judul</label>
-  <input class="form-control" name="Judul" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->Judul;};?>">
-</div>      
-                    
-<div class="form-group">
-<label>Dosen Pembimbing 1</label>
-<div class="">
-<select name="NIK" class="form-control" id="NIK1" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK1;};?>">  
-	 <?php
-$no = 1;
-
-foreach($NIK as $value)
-{
-echo "<option>".$value->Nama."</option>";
-
-if(isset($_GET['skripsi'])){
-	if($_GET['skripsi']==$value->Nama){
-		echo "<option selected>".$value->Nama."</option>";
-	}
-}
-}
-?>  
-    </select>
-</div>
-</div>
-
-<div class="form-group">
-<label>Dosen Pembimbing 2</label>
-<div class="">
-<select name="NIK" class="form-control" id="NIK2" placeholder="<?php if ($type=="EDIT"){echo $skripsi[0]->NIK2;};?>">  
-	 <?php
-$no = 1;
-
-foreach($NIK as $value)
-{
-echo "<option>".$value->Nama."</option>";
-if(isset($_GET['skripsi'])){
-	if($_GET['skripsi']==$value->Nama){
-		echo "<option selected>".$value->Nama."</option>";
-	}
-}}
-?>  
+	<?php 
+		
+	foreach($id_skripsi as $lihat){
+			?>
+			<tr>
+			<td><?php echo $lihat['Subjek']; ?></td>
+			 </tr>
+                  <?php
+				    }
+                ?>
     </select>
 </div>
 </div>

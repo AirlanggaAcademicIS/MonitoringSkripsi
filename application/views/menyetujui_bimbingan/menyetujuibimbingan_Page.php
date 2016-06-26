@@ -60,30 +60,27 @@
                     
                 </button>
                 
-            </div>
+           </div>
             
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-						<ul class="nav nav-sidebar">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                               <li><a href=""><img src="http://localhost/MonitoringSkripsi/assets/dosen.jpg"></a></li>
-                               
-                                <br><br>Dosen
-
+                               <h3> Selamat Datang!
+                                <br><br><?php echo $this->session->userdata('nama');?>
+                                <br><?php echo $this->session->userdata('nik');?></h3>
                             </div>
-                            
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href=""> Mahasiswa</a>
+                            <a href=""><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
                         </li>
                         
                              
                         <li>
-                            <a href=""> Bimbingan</a>
+                            <a href=""><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                         </li>
 						
                         	<a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
@@ -116,17 +113,22 @@
                                         <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 150px;">Tanggal</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 170px;">Catatan</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 170px;">Jenis</th><th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 170px;">Persetujuan</th><th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 130px;">Kontrol</th></tr>
                                     </thead>
                                     <tbody>         
-<?php 
-		
-			foreach($bimbingan as $lihat){
-			?>
+<?php foreach($bimbingan as $lihat){ 	?>
+	
 			<tr>
-		<!--	<td><?= $no;?></td>	-->
+		
 			<td><?php echo $lihat['Tanggal']; ?></td>
 			<td><?php echo $lihat['Subjek']; ?></td>
 			<td><?php echo $lihat['Jenis']; ?></td>
-			<td><?php echo $lihat['Persetujuan']; ?></td>
-			<td><a href="<?= site_url("menyetujuibimbingan/edit")."?bimbingan=".$value->id_bimbingan;?>"> Edit </a> </td>
+			<?php if($lihat['Persetujuan'] == 0){ ?>
+			<?php $belum = '<a href="http://localhost/MonitoringSkripsi/index.php/menyetujuibimbingan/ubah_status_bimbingan/?array='.$lihat['id_bimbingan'].'x1"> BELUM </a>'; ?>
+			 <td><?php echo $belum; ?></td>
+			<?php } else { ?>
+			<?php $sudah = '<a href="http://localhost/MonitoringSkripsi/index.php/menyetujuibimbingan/ubah_status_bimbingan/?array='.$lihat['id_bimbingan'].'x0"> SUDAH </a>'; ?>
+			 <td><?php echo $sudah; ?></td> 
+			 <?php } ?>
+			 
+			<td><a href="http://localhost/MonitoringSkripsi/index.php/menyetujuibimbingan/Edit"><div class="col-lg-12" style="text-align:center;"> Edit Catatan </a> </td>
                   </tr>
                   <?php
 				    }

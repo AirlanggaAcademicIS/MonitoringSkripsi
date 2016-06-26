@@ -70,7 +70,7 @@
                             <a href="http://localhost/MonitoringSkripsi/mahasiswa_dosbing/mahasiswabimbingan"><i class="fa fa-dashboard fa-fw"></i> Mahasiswa</a>
                         </li>
                         <li>
-                            <a href="http://localhost/MonitoringSkripsi/menyetujuibimbingan/mahasiswabimbingan"><i class="fa fa-table fa-fw"></i> Bimbingan</a>
+                            <a href=""><i class="fa fa-table fa-fw"></i> Bimbingan</a>
                         </li>
                         <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         
@@ -93,9 +93,48 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Homepage Dosen Pembimbing</h1>
+                    <h1 class="page-header">Mahasiswa bimbingan</h1>
                 </div>
                 <!-- /.col-lg-12 -->
+                  <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Monitoring Skripsi
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>NIM</th>
+                                            <th>Nama</th>
+                                            <th>Judul</th>
+                                            <th>Status</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                     <tbody>
+                                    <?php 
+									for($i=0; $i<$jumlah; $i++){
+                                      echo "<tr>";
+                                      echo "<td>".($i+1)."</td>";
+									   echo "<td>".$isitabel[$i]['NIM']."</td>";
+									   $isitabel[$i]['nama'] = '<a href = "'.base_url().'menyetujuibimbingan/bimbingan/'
+                                                    ."?NIM=".$isitabel[$i]['NIM'].'">'
+                                                    .'<font color="red">'.$isitabel[$i]['nama'].'</font>'.'</a>';
+									    echo "<td>".$isitabel[$i]['nama']."</td>";
+										echo "<td>".$isitabel[$i]['judul']."</td>";
+										echo "<td>".$isitabel[$i]['status']."</td>";	
+									   echo "</tr>";
+									}
+									  ?>
+                                      </tbody>
+                                </table>
+                            </div>
             </div>
             <!-- /.row -->
            
@@ -118,8 +157,7 @@
     <!-- Morris Charts JavaScript -->
     <script src="http://localhost/MonitoringSkripsi/assets/bower_components/raphael/raphael-min.js"></script>
     <script src="http://localhost/MonitoringSkripsi/assets/bower_components/morrisjs/morris.min.js"></script>
-    <script src="http://localhost/MonitoringSkripsi/assets/js/morris-data.js"></script>
-
+    
     <!-- Custom Theme JavaScript -->
     <script src="http://localhost/MonitoringSkripsi/assets/dist/js/sb-admin-2.js"></script>
 

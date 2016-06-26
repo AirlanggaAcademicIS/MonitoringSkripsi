@@ -8,15 +8,15 @@ class Menyetujui extends CI_Model {
 		$this->load->database();
     }
      
-    function m_lihat(){
-        
-		$query = $this->db->get("mahasiswa");
-		return $query->result();
-    }	
-	function tampil(){
-        
-		$query = $this->db->get("skripsi");
-		return $query->result();
-    }	
+    public function ubah_status_bimbingan($id, $status)
+    {
+        if ($status == '0') {
+            $this->db->set('Persetujuan', '1');
+        } else {
+            $this->db->set('Persetujuan', '0');
+        }
+        $this->db->where('id', $id);
+        return $this->db->update($this->_tabel);
+    }
 
 }

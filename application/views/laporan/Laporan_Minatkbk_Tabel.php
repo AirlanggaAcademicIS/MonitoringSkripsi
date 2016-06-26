@@ -67,6 +67,7 @@
                             <h3> Selamat Datang!
                                 <br><br><?php echo $this->session->userdata('nama');?>
                                 <br><?php echo $this->session->userdata('nik');?></h3>
+                                                         <a href="http://localhost/MonitoringSkripsi/Dosen_pembimbing/">Menu Dosen</a>
                             </div>
                             
                             <!-- /input-group -->
@@ -102,7 +103,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Laporan Minat KBK</h1>
+                    <h1 class="page-header"><?php echo 'Minat '.$kbk.' Dan '.$tahun;?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -188,7 +189,7 @@
         ]);
 
         var options = {
-          title: 'Minat KBK',
+          title: '<?php echo 'Minat '.$kbk.' Dan '.$tahun;?>',
           is3D: true,
         };
 

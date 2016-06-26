@@ -10,6 +10,7 @@ class Login_model extends CI_Model{
       return $query;
     }
     
+     
     function getRoles($jabatan){
         $sql = "SELECT id_roles FROM `roles` WHERE Jabatan='".$jabatan."'";
     	$query = $this->db->query($sql);

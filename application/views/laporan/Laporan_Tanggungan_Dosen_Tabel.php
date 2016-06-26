@@ -56,8 +56,10 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
-                               <h3> Selamat Datang!</h3>
-                                <br><br>
+                               <h3> Selamat Datang!
+                                <br><br><?php echo $this->session->userdata('nama');?>
+                                <br><?php echo $this->session->userdata('nik');?></h3>
+                                                         <a href="http://localhost/MonitoringSkripsi/Dosen_pembimbing/">Menu Dosen</a>
                             </div>
                             
                             <!-- /input-group -->
@@ -73,6 +75,7 @@
                         <li>
                             <a href="http://localhost/MonitoringSkripsi/laporan/statusmahasiswa"> Status Mahasiswa</a>
                         </li>
+						<li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                                                    </ul>
                             <!-- /.nav-second-level -->
                         </li>

@@ -154,16 +154,20 @@ class Laporan extends CI_Controller {
 		if($jeniskbk==0 && $tahun==0){
 		$allkbkalltahun = $this->skripsi->getallkbkalltahun();
 		$data = array(
+                        'tahun'=>'Semua Tahun',
+                        'kbk'=>'Semua KBK',
 			'jumlah'=>sizeof($allkbkalltahun),
 			'isitabel'=> $allkbkalltahun
 			);
 			}
 			else if($jeniskbk!=0 && $tahun==0){
-				if($jeniskbk==1){$kbkalltahun = $this->skripsi->getkbkalltahun("'Data Mining'");}
-				else if($jeniskbk==2){$kbkalltahun = $this->skripsi->getkbkalltahun("'Sistem Pendukung Keputusan'");}
-				else if($jeniskbk==3){$kbkalltahun = $this->skripsi->getkbkalltahun("'Rekayasa Sistem Informasi'");}
+				if($jeniskbk==1){$jeniskbk='Data Mining';$kbkalltahun = $this->skripsi->getkbkalltahun("'Data Mining'");}
+				else if($jeniskbk==2){$jeniskbk='Sistem Pendukung Keputusan';$kbkalltahun = $this->skripsi->getkbkalltahun("'Sistem Pendukung Keputusan'");}
+				else if($jeniskbk==3){$jeniskbk='Rekayasa Sistem Informasi';$kbkalltahun = $this->skripsi->getkbkalltahun("'Rekayasa Sistem Informasi'");}
 		
 		$data = array(
+                        'tahun'=>'Semua Tahun',
+                        'kbk'=>$jeniskbk,
 			'jumlah'=>sizeof($kbkalltahun),
 			'isitabel'=> $kbkalltahun
 			);
@@ -171,16 +175,20 @@ class Laporan extends CI_Controller {
 			else if($jeniskbk==0 && $tahun!=0){
 				$allkbktahun = $this->skripsi->getallkbktahun($tahun);
 		$data = array(
+                        'tahun'=>'Tahun '.$tahun,
+                        'kbk'=>'Semua KBK',
 			'jumlah'=>sizeof($allkbktahun),
 			'isitabel'=> $allkbktahun
 			);
 			}
 			else if($jeniskbk!=0 && $tahun!=0){
-				if($jeniskbk==1){$kbktahun = $this->skripsi->getkbktahun("'Data Mining'", $tahun );}
-				else if($jeniskbk==2){$kbktahun = $this->skripsi->getkbktahun("'Sistem Pendukung Keputusan'", $tahun);}
-				else if($jeniskbk==3){$kbktahun = $this->skripsi->getkbktahun("'Rekayasa Sistem Informasi'", $tahun);}
+				if($jeniskbk==1){$jeniskbk='Data Mining';$kbktahun = $this->skripsi->getkbktahun("'Data Mining'", $tahun );}
+				else if($jeniskbk==2){$jeniskbk='Sistem Pendukung Keputusan';$kbktahun = $this->skripsi->getkbktahun("'Sistem Pendukung Keputusan'", $tahun);}
+				else if($jeniskbk==3){$jeniskbk='Rekayasa Sistem Informasi';'Rekayasa Sistem Informasi';$kbktahun = $this->skripsi->getkbktahun("'Rekayasa Sistem Informasi'", $tahun);}
 		
 		$data = array(
+                        'tahun'=>'Tahun '.$tahun,
+                        'kbk'=>$jeniskbk,
 			'jumlah'=>sizeof($kbktahun),
 			'isitabel'=> $kbktahun
 			);

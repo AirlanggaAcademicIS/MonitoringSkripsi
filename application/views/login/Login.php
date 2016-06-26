@@ -80,23 +80,15 @@
                     
                         <label for='password'>Password</label>
                         <input type='password' name='password' id='password' size='25' /><br />   
-                        <label for='password'>Level</label>
-                        <select name="level">
-                            <option value="mahasiswa">Mahasiswa</option>
-                            <option value="kaprodi">Kaprodi</option>
-                            <option value="dosen">Dosen</option>
-                            <option value="koor">Koordinator Skripsi</option>
-                            <option value="tu">TU</option>
-                        </select>                          
-                        <br /> <br /> 
-                        <input type='Submit' value='Login' />            
+                      
+                        <input type='Submit' value='Login' />       
                     </form>
                 </div>
                </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-           
+          
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->

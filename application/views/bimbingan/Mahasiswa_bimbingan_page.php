@@ -60,7 +60,7 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
                                <h3> Selamat Datang!</h3>
-                            <h4><?php echo $this->session->userdata('nama');?>
+                            <h4><?php echo $this->session->userdata('Nama');?>
                             <br><?php echo $this->session->userdata('nim');?></h4>
                         </div>
                         

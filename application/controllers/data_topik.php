@@ -8,8 +8,9 @@ class Data_topik extends CI_Controller {
      	  $this->load->helper('url'); 
           $this->load->database();//memanggil pengaturan database dan mengaktifkannya 
           $this->load->model('m_data_topik');//memanggil model m_data_topik
+		  $this->load->model('Skripsi');
           $data['skripsi'] = $this->m_data_topik->list_data(); //memanggil fungsi di model dan menerima hasil fungsi yang dimasukan ke $data['skripsi']
-          $this->load->view('topik/v_data_topik1',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
+          $this->load->view('topik/Tabel_Usulan_Topik',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
 
  }
  
@@ -28,7 +29,7 @@ public function Input()
 		}
 	}
 	if ($cek == true){
-		$this->load->view('formTopik/usulan');
+		$this->load->view('topik/Sudah_Mengusulkan');
 	
 	}
 	else{	
@@ -38,7 +39,7 @@ public function Input()
 	  $data['NIK2'] = $this->m_data_topik->getDosen();
 	  $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
       $data['type']="INPUT";// definisi type, karena nanti juga ada edit
-      $this->load->view('formTopik/v_form_topik',$data);// memanggil view v_form_topik.php	
+      $this->load->view('topik/Form_Input_Usulan_Topik',$data);// memanggil view v_form_topik.php	
 }}
 
 
@@ -51,48 +52,51 @@ public function Edit()
       $NIM= $this->input->get('skripsi');//mengambil param  dari get
 	  $data['skripsi'] = $this->m_data_topik->getEdit($NIM);
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
-      $this->load->view('topik/v_form_topik1',$data);// memanggil view v_form_topik.php
+      $this->load->view('topik/Form_Edit_Usulan_Topik',$data);// memanggil view v_form_topik.php
 }
 
 public function Post(){
      $this->load->database();//memanggil pengaturan database dan mengaktifkannya
      $this->load->model('m_data_topik');//memanggil model m_data_topik.php
- 
+ 	$NIK1 = $this->input->post('NIK1');
+ 	$NIK2 = $this->input->post('NIK2');
+	$TahunAjar = $this->input->post('TahunAjar');
      //mengambil data dari post memasukan ke array agar lebih mudah 
      $param = array(
 	   'TanggalTopik' => $this->input->post('TanggalTopik'),
-       'TahunAjar' => $this->input->post('TahunAjar'),
+       'TahunAjar' => $TahunAjar,
 	   'NIM' => $this->input->post('NIM'),
        'KBK' => $this->input->post('KBK'),
        'Topik'=> $this->input->post('Topik'),
 	   'Judul' => $this->input->post('Judul'),
-       'NIK1' => $this->input->post('NIK1'),
-	   'NIK2' => $this->input->post('NIK2'),
+       'NIK1' => $NIK1,
+	   'NIK2' => $NIK2,
 	   'TanggalProp' => '0000-00-00',
 	   'TanggalSkripsi' => '0000-00-00',
 	   'id_jadwal' => '0',
        );
      //jika simpan == input 
      if($this->input->post('simpan')=="INPUT"){
-          $this->m_data_topik->input($param); 
-		    
-			$this->data_topik->kuota($NIK1);
+	 	if ($this->addSkripsi($NIK1, $NIK2, $TahunAjar)){
+         	$this->m_data_topik->input($param); 
+			//memanggil helper url untuk fungsi redirect
+      		$this->load->helper('url');
+		    //mengalihkan ke list data produk setelah input atau edit selesai
+      		redirect('mahasiswa','refresh');
+		} else {
+			echo 'kuota penuh';
+		}
+
 			
-			$this->data_topik->kuota($NIK2);
-			
-		//memanggil helper url untuk fungsi redirect
-      $this->load->helper('url');
-      //mengalihkan ke list data produk setelah input atau edit selesai
-      redirect('mahasiswa','refresh');
-     
      }else
-     if($this->input->post('simpan')=="EDIT"){
+     	 if($this->input->post('simpan')=="EDIT"){
          $NIM= $this->input->post('NIM');
-         $this->m_data_topik->edit($param,$NIM); 
+		  $this->m_data_topik->edit($param,$NIM); 
 		//memanggil helper url untuk fungsi redirect
-      $this->load->helper('url');
+      	 $this->load->helper('url');
+		
       //mengalihkan ke list data produk setelah input atau edit selesai
-      redirect('data_topik','refresh');
+     	redirect('data_topik','refresh');
      }
      }
    
@@ -108,18 +112,29 @@ public function Delete(){
   
 }
 
+function addSkripsi($NIK1,$NIK2,$TahunAjar){
+	$this->load->model('Skripsi');
+	$allSkripsi = $this->Skripsi->getAllSkripsi();
+	$count1=0;
+	$count2=0;
 
-public function kuota($NIK)
-	{
-		
-		$this->load->model('m_data_topik');
-		$kuota = $this->m_data_topik->getKuota($NIK);
-		$kuota= $kuota--;
-		// 
-		$this->m_data_topik->setKuota($NIK,$kuota);
-		
+	foreach($allSkripsi as $skripsi){
+		if(($skripsi['NIK1'] == $NIK1)||($skripsi['NIK2'] == $NIK1)){ // untuk dosen 1
+			$count1++;
+		}
+		if(($skripsi['NIK1'] == $NIK2)||($skripsi['NIK2'] == $NIK2)){ // untuk dosen 2
+			$count2++;
+		}
 	}
+	
+	$KuotaTahunAjar = $this->m_data_topik->KuotaTahunAjar($TahunAjar); 
+	
+	if(($count1<$KuotaTahunAjar)&&($count2<$KuotaTahunAjar)){
+	
+	
+		return true;
+	} else {
 
-
-
-}
+		return false;
+	}
+}}

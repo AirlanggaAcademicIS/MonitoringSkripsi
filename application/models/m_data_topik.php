@@ -26,10 +26,11 @@ function getEdit($NIM){
 }
  
 function edit($param,$NIM){
-   $this->db->where('NIM',$NIM);
-  $this->db->update('skripsi',$param); // coba pake sql biasa 
-   return true;
+  $this->db->where('NIM',$NIM);
+  return $this->db->update('skripsi',$param); 
+  
 }
+
 function delete($NIM){
    $this->db->where('NIM',$NIM);
    $this->db->delete('skripsi');
@@ -45,8 +46,8 @@ public function getDosen(){
 		return $query->result();
 		}	
 			
-function getKuota($NIK){
-		 $sql ="SELECT Kuota FROM dosen where NIK=".$NIK;
+function getKuota($Nama){
+		 $sql ="SELECT Kuota FROM dosen where Nama=".$Nama;
 		  
 		$query = $this->db->query($sql);
   // 		$this->db->update('dosen',$param);
@@ -63,6 +64,18 @@ function setKuota($NIK,$kuota){
 //   		$this->db->update('dosen',$param);
        
         return $query;
+		  
+		  }
+		  
+function KuotaTahunAjar($TahunAjar){
+    	$sql ="SELECT Kuota FROM tahunajar where TahunAjar=".$TahunAjar;
+		  
+		$query = $this->db->query($sql);
+foreach ($query->result_array() as $row){
+	$kuota=$row['Kuota'];
+}
+       
+        return $kuota;
 		  
 		  }
 

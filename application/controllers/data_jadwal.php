@@ -9,7 +9,7 @@ class Data_jadwal extends CI_Controller {
           $this->load->database();//memanggil pengaturan database dan mengaktifkannya 
           $this->load->model('m_data_jadwal');//memanggil model m_data_jadwal
           $data['jadwal'] = $this->m_data_jadwal->list_data();//memanggil fungsi di model dan menerima hasil fungsi yang dimasukan ke $data['jadwal']
-          $this->load->view('prodi/v_data_jadwal1',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
+          $this->load->view('prodi/Tabel_Jadwal_Sidang',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
 
  }
  
@@ -26,7 +26,7 @@ class Data_jadwal extends CI_Controller {
 	  $data['NIK1'] = $this->m_data_jadwal->getDosen();
 	  $data['NIK2'] = $this->m_data_jadwal->getDosen();
 	  $data['type']="INPUT";// definisi type, karena nanti juga ada edit
-      $this->load->view('prodi/v_form_jadwal',$data);// memanggil view v_form_jadwal.php
+      $this->load->view('prodi/Form_Input_Jadwal_Sidang',$data);// memanggil view v_form_jadwal.php
 }
 
 public function Edit()
@@ -35,11 +35,11 @@ public function Edit()
   
       $this->load->database();//memanggil pengaturan database dan mengaktifkannya
       $this->load->model('m_data_jadwal');//memanggil model m_data_jadwal.php
-      $data['NIM'] = $this->m_data_topik->getSkripsi();
+      $data['NIM'] = $this->m_data_jadwal->getSkripsi();
       $NIM= $this->input->get('jadwal');//mengambil param  dari get
-	  $data['jadwal'] = $this->m_data_topik->getEdit($NIM);
+	  $data['jadwal'] = $this->m_data_jadwal->getEdit($NIM);
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
-      $this->load->view('prodi/v_form_jadwal',$data);// memanggil view v_form_jadwal.php
+      $this->load->view('prodi/Form_Edit_Jadwal_Sidang',$data);// memanggil view v_form_jadwal.php
 }
 
 public function Post(){
@@ -77,7 +77,7 @@ public function Post(){
    $this->load->database();//memanggil pengaturan database dan mengaktifkannya
    $this->load->model('m_data_jadwal');//memanggil model m_data_jadwal.php
    $NIM= $this->input->get('jadwal');
-   $this->m_data_topik->delete($NIM);
+   $this->m_data_jadwal->delete($NIM);
  
    $this->load->helper('url');
    redirect('jadwal','refresh');

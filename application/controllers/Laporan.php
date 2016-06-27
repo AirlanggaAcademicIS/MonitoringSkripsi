@@ -60,7 +60,13 @@ class Laporan extends CI_Controller {
          */
         
         public function tanggungandosen(){
-            $this->load->view('laporan/Laporan_Tanggungan_Dosen');
+             if($this->session->userdata('as') == 'Kaprodi'){
+               $this->load->view('laporan/Laporan_Tanggungan_Dosen');
+            } else {
+                $this->load->view('Not_Found');
+            }
+            
+		   
         }
         
         public function tanggungandosentabel(){

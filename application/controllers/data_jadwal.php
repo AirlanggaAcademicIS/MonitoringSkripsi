@@ -9,7 +9,11 @@ class Data_jadwal extends CI_Controller {
           $this->load->database();//memanggil pengaturan database dan mengaktifkannya 
           $this->load->model('m_data_jadwal');//memanggil model m_data_jadwal
           $data['jadwal'] = $this->m_data_jadwal->list_data();//memanggil fungsi di model dan menerima hasil fungsi yang dimasukan ke $data['jadwal']
-          $this->load->view('prodi/Tabel_Jadwal_Sidang',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
+          if($this->session->userdata('as') == 'TU'){
+                $this->load->view('prodi/Tabel_Jadwal_Sidang',$data);
+            } else {
+                $this->load->view('Not_Found');
+            }   
 
  }
  
@@ -26,7 +30,11 @@ class Data_jadwal extends CI_Controller {
 	  $data['NIK1'] = $this->m_data_jadwal->getDosen();
 	  $data['NIK2'] = $this->m_data_jadwal->getDosen();
 	  $data['type']="INPUT";// definisi type, karena nanti juga ada edit
-      $this->load->view('prodi/Form_Input_Jadwal_Sidang',$data);// memanggil view v_form_jadwal.php
+      if($this->session->userdata('as') == 'TU'){
+                 $this->load->view('prodi/Form_Input_Jadwal_Sidang',$data);
+            } else {
+                $this->load->view('Not_Found');
+            }   // memanggil view v_form_jadwal.php
 }
 
 public function Edit()
@@ -39,7 +47,11 @@ public function Edit()
       $NIM= $this->input->get('jadwal');//mengambil param  dari get
 	  $data['jadwal'] = $this->m_data_jadwal->getEdit($NIM);
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
-      $this->load->view('prodi/Form_Edit_Jadwal_Sidang',$data);// memanggil view v_form_jadwal.php
+      if($this->session->userdata('as') == 'TU'){
+                $this->load->view('prodi/Form_Edit_Jadwal_Sidang',$data);
+            } else {
+                $this->load->view('Not_Found');
+            }   
 }
 
 public function Post(){

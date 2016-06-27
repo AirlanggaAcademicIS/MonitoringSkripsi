@@ -20,13 +20,22 @@ class Prodi_fix4 extends CI_Controller {
 	 */
 	public function index()
 	{
+	if($this->session->userdata('as') == 'TU'){
+              $this->load->view('Prodi_Home');
+		  } else {
+                $this->load->view('Not_Found');
+            }
 //            $this->load->view('header');
-            $this->load->view('Prodi_Home');
+          
 //            $this->load->view('footer');
 	}
 	public function mahasiswa_page()
 	{
-		$this->load->view('prodi/daftar_mahasiswa_fix');
+		if($this->session->userdata('as') == 'TU'){
+             $this->load->view('prodi/daftar_mahasiswa_fix');
+		  } else {
+                $this->load->view('Not_Found');
+            }	
 	}
         public function dosen_page()
 	{
@@ -34,11 +43,20 @@ class Prodi_fix4 extends CI_Controller {
 	}
 	public function tambah_mahasiswa_page()
 	{
-		$this->load->view('prodi/tambah_mahasiswa_fix');
+		if($this->session->userdata('as') == 'TU'){
+             $this->load->view('prodi/tambah_mahasiswa_fix');
 	}
-        public function tambah_dosen_page()
+		  } else {
+                $this->load->view('Not_Found');
+            }	
+    public function tambah_dosen_page()
 	{
-		$this->load->view('prodi/tambah_dosen_fix');
+		if($this->session->userdata('as') == 'TU'){
+          $this->load->view('prodi/tambah_dosen_fix');
+	}
+		  } else {
+                $this->load->view('Not_Found');
+            }
 	}
 	public function mahasiswa_insert()
 	{
@@ -59,8 +77,13 @@ $this->load->model('Prodimodel');
 			'jumlah'=>sizeof($allmahasiswa),
 			'isitabel'=>$allmahasiswa
 			);
-			
-		$this->load->view('prodi/daftar_mahasiswa_fix',$data);
+		if($this->session->userdata('as') == 'TU'){
+        $this->load->view('prodi/daftar_mahasiswa_fix',$data);
+	}
+		  } else {
+                $this->load->view('Not_Found');
+            }	
+		
         }
 		
         public function dosen_insert()
@@ -85,8 +108,13 @@ $this->load->model('Prodimodel');
 			'jumlah'=>sizeof($alldosen),
 			'isitabel'=>$alldosen
 			);
-			
-		$this->load->view('prodi/daftar_dosen_fix',$data);
+			if($this->session->userdata('as') == 'TU'){
+       $this->load->view('prodi/daftar_dosen_fix',$data);
+	}
+		  } else {
+                $this->load->view('Not_Found');
+            }		
+		
         }
        
 		
@@ -101,7 +129,13 @@ $this->load->model('Prodimodel');
 			'isitabel'=>$allbimbingan
 			);
 			
-		$this->load->view('prodi/daftar_mahasiswa_fix',$data);
+		if($this->session->userdata('as') == 'TU'){
+      $this->load->view('prodi/daftar_mahasiswa_fix',$data);
+	}
+		  } else {
+                $this->load->view('Not_Found');
+            }
+		
 		
 	} 
 	public function dosentabel()
@@ -115,7 +149,12 @@ $this->load->model('Prodimodel');
 			'isitabel'=>$allbimbingan
 			);
 			
-		$this->load->view('prodi/daftar_dosen_fix',$data);
+	if($this->session->userdata('as') == 'TU'){
+     $this->load->view('prodi/daftar_dosen_fix',$data);
+	}
+		  } else {
+                $this->load->view('Not_Found');
+            }	
 		
 	} 
 	}

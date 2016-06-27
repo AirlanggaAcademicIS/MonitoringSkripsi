@@ -12,7 +12,12 @@ class Mahasiswa extends CI_Controller {
 	public function index(){
 		$this->load->model('Skripsi');
 		$data['mhs'] = $this->Skripsi->getSkripsiMhs($this->session->userdata('nim'));
-		$this->load->view('Mahasiswa_Home',$data);
+	 if($this->session->userdata('as') == 'Mahasiswa'){
+                $this->load->view('Mahasiswa_Home',$data);
+            } else {
+                $this->load->view('Not_Found');
+            }   
+		
 	}
 	
 }

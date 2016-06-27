@@ -38,7 +38,7 @@ class Login extends CI_Controller{
         if($result->num_rows() == 1){
             $mhs = $this->Mahasiswa->getMahasiswa($username);
             $this->session->set_userdata('as','Mahasiswa');
-			$this->session->set_userdata('nim',$username);
+			$this->session->set_userdata('NIM',$username);
             $this->session->set_userdata('Nama',$mhs->Nama);
             session_start();
             redirect('mahasiswa');
@@ -56,33 +56,34 @@ class Login extends CI_Controller{
         if($result->num_rows() == 1){
             // check if kaprodi
             $resultRoles = $this->login_model->getRoles('Kaprodi');
-//            echo "<script>alert('".$resultRoles[0]['id_roles']."');history.go(-1);</script>";
             if($resultRoles[0]['id_roles'] == $username){
                 // berarti Kaprodi
                 $dosen = $this->Dosen->getDosen($username);
                 $this->session->set_userdata('as','Kaprodi');
+				 $this->session->set_userdata('NIK',$dosen->NIK);
                 $this->session->set_userdata('Nama',$dosen->Nama);
-//                echo "<script>alert('Selamat datang Kaprodi');</script>";
+
                 session_start();
                 redirect('laporan');
-            } else {
-                // check if koorSkripsi
+            } else {                // check if koorSkripsi
                 $resultRoles = $this->login_model->getRoles('KoorSkripsi');
-//            echo "<script>alert('".$resultRoles[0]['id_roles']."');history.go(-1);</script>";
+
             if($resultRoles[0]['id_roles'] == $username){
                     // berarti Kaprodi
                     $dosen = $this->Dosen->getDosen($username);
                     $this->session->set_userdata('as','KoorSkripsi');
+					 $this->session->set_userdata('NIK',$dosen->NIK);
                     $this->session->set_userdata('Nama',$dosen->Nama);
                     session_start();
                     redirect('data_topik');
                 } else {
                     // check if TU
                     $resultRoles = $this->login_model->getRoles('TU');
-//            echo "<script>alert('".$resultRoles[0]['id_roles']."');history.go(-1);</script>";
+
                     if($resultRoles[0]['id_roles'] == $username){    // berarti Kaprodi
                         $dosen = $this->Dosen->getDosen($username);
                         $this->session->set_userdata('as','TU');
+						$this->session->set_userdata('NIK',$dosen->NIK);
                         $this->session->set_userdata('Nama',$dosen->Nama);
                         session_start();
                         redirect('prodi_fix4');
@@ -91,6 +92,7 @@ class Login extends CI_Controller{
                 // login as usual dosen
                 $dosen = $this->Dosen->getDosen($username);
                 $this->session->set_userdata('as','Dosen');
+				$this->session->set_userdata('NIK',$dosen->NIK);
                 $this->session->set_userdata('Nama',$dosen->Nama);
                 session_start();
                 redirect('Dosen_pembimbing');

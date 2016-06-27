@@ -5,9 +5,13 @@ class Mahasiswa_dosbing extends CI_Controller {
  
  public function index()
  {
-     
-     
-    $this->load->view('Dosen_Pembimbing_Home');//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
+ 	if(($this->session->userdata('as') == 'Dosen')||($this->session->userdata('as') == 'KoorSkripsi')||($this->session->userdata('as') == 'Kaprodi')){
+                $this->load->view('Dosen_Pembimbing_Home');
+            } else {
+                $this->load->view('Not_Found');
+            } 
+  
+		
      
  }
  
@@ -15,7 +19,13 @@ class Mahasiswa_dosbing extends CI_Controller {
 {
       $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
       $data['type']="INPUT";// definisi type, karena nanti juga ada edit
-      $this->load->view('mahasiswa_dosen_pembimbing',$data);// memanggil view v_form_topik.php
+       if(($this->session->userdata('as') == 'Dosen')||($this->session->userdata('as') == 'KoorSkripsi')||($this->session->userdata('as') == 'Kaprodi')){
+                 $this->load->view('mahasiswa_dosen_pembimbing',$data);
+            } else {
+                $this->load->view('Not_Found');
+            } 
+	  
+		
 }
 
 public function Edit()
@@ -82,8 +92,12 @@ public function kuotatabel()
 			'jumlah'=>sizeof($allkuota),
 			'isitabel'=>$allkuota
 			);
-			
-		$this->load->view('mahasiswa_dosen_pembimbing/mahasiswa_dosen_pembimbing',$data);
+	if(($this->session->userdata('as') == 'Dosen')||($this->session->userdata('as') == 'KoorSkripsi')||($this->session->userdata('as') == 'Kaprodi')){
+               $this->load->view('mahasiswa_dosen_pembimbing/mahasiswa_dosen_pembimbing',$data);
+            } else {
+                $this->load->view('Not_Found');
+            } 		
+		
 		
 	}
     
@@ -98,13 +112,16 @@ public function kuotatabel()
 			'jumlah'=>sizeof($mhsbim),
 			'isitabel'=> $mhsbim
 			);
-			
-		$this->load->view('mahasiswa_dosen_pembimbing/mahasiswa_dosen_pembimbing',$data);
-	}
+	if(($this->session->userdata('as') == 'Dosen')||($this->session->userdata('as') == 'KoorSkripsi')||($this->session->userdata('as') == 'Kaprodi')){
+               $this->load->view('mahasiswa_dosen_pembimbing/mahasiswa_dosen_pembimbing',$data);
+            } else {
+                $this->load->view('Not_Found');
+            } 				
+	
         
     }
 
-
+}
 
 
 

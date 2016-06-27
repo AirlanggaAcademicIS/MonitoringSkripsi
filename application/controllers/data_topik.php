@@ -10,8 +10,11 @@ class Data_topik extends CI_Controller {
           $this->load->model('m_data_topik');//memanggil model m_data_topik
 		  $this->load->model('Skripsi');
           $data['skripsi'] = $this->m_data_topik->list_data(); //memanggil fungsi di model dan menerima hasil fungsi yang dimasukan ke $data['skripsi']
-          $this->load->view('topik/Tabel_Usulan_Topik',$data);//memanggil view yang nanti kita akan buat dan memasukan $data dari model tadi 
-
+        if($this->session->userdata('as') == 'KoorSkripsi'){
+                $this->load->view('topik/Tabel_Usulan_Topik',$data);
+            } else {
+                $this->load->view('Not_Found');
+            }  
  }
  
 
@@ -29,7 +32,11 @@ public function Input()
 		}
 	}
 	if ($cek == true){
-		$this->load->view('topik/Sudah_Mengusulkan');
+		if($this->session->userdata('as') == 'Mahasiswa'){
+                $this->load->view('topik/Sudah_Mengusulkan');
+            } else {
+                $this->load->view('Not_Found');
+            } 
 	
 	}
 	else{	
@@ -39,7 +46,11 @@ public function Input()
 	  $data['NIK2'] = $this->m_data_topik->getDosen();
 	  $this->load->helper('form');//memanggil helper form nanti penggunaannya di v_form_topik.php
       $data['type']="INPUT";// definisi type, karena nanti juga ada edit
-      $this->load->view('topik/Form_Input_Usulan_Topik',$data);// memanggil view v_form_topik.php	
+      if($this->session->userdata('as') == 'Mahasiswa'){
+                $this->load->view('topik/Form_Input_Usulan_Topik',$data);
+            } else {
+                $this->load->view('Not_Found');
+            } 
 }}
 
 
@@ -52,7 +63,11 @@ public function Edit()
       $NIM= $this->input->get('skripsi');//mengambil param  dari get
 	  $data['skripsi'] = $this->m_data_topik->getEdit($NIM);
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
-      $this->load->view('topik/Form_Edit_Usulan_Topik',$data);// memanggil view v_form_topik.php
+    if($this->session->userdata('as') == 'KoorSkripsi'){
+                $this->load->view('topik/Form_Edit_Usulan_Topik',$data);
+            } else {
+                $this->load->view('Not_Found');
+            }   // memanggil view v_form_topik.php
 }
 
 public function Post(){
@@ -84,7 +99,7 @@ public function Post(){
 		    //mengalihkan ke list data produk setelah input atau edit selesai
       		redirect('mahasiswa','refresh');
 		} else {
-			echo 'kuota penuh';
+			echo 'Kuota Penuh, Silahkan Pilih Dosen Pembimbing Lain';
 		}
 
 			
@@ -106,7 +121,7 @@ public function Delete(){
    $this->load->model('m_data_topik');//memanggil model m_data_produk.php
    $NIM = $this->input->get('skripsi');
    $this->m_data_topik->delete($NIM);
- 
+  
    $this->load->helper('url');
    redirect('data_topik','refresh');
   
@@ -131,7 +146,8 @@ function addSkripsi($NIK1,$NIK2,$TahunAjar){
 	
 	if(($count1<$KuotaTahunAjar)&&($count2<$KuotaTahunAjar)){
 	
-	
+	echo 'Pembimbing1='.$count1;
+	echo 'Pembimbing2='.$count2;
 		return true;
 	} else {
 

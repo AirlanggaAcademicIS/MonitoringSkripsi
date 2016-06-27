@@ -20,7 +20,11 @@ class Menyetujuibimbingan extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('Dosen_Pembimbing_Home');	
+	 		if(($this->session->userdata('as') == 'Dosen')||($this->session->userdata('as') == 'KoorSkripsi')||($this->session->userdata('as') == 'Kaprodi')){
+                $this->load->view('Dosen_Pembimbing_Home');
+            } else {
+                $this->load->view('Not_Found');
+            } 
 
 		}
 	public function mahasiswabimbingan(){
@@ -34,8 +38,15 @@ class Menyetujuibimbingan extends CI_Controller {
 			'isitabel'=> $mhsbim
 			);
 			
-		$this->load->view('menyetujui_bimbingan/mahasiswa_dosen_pembimbing',$data);
+	if(($this->session->userdata('as') == 'Dosen')||($this->session->userdata('as') == 'KoorSkripsi')||($this->session->userdata('as') == 'Kaprodi')){
+               $this->load->view('menyetujui_bimbingan/mahasiswa_dosen_pembimbing',$data);
+            } else {
+                $this->load->view('Not_Found');
+            } 
+	 
+			
 	}
+	
 	public function bimbingan()
 	{
 		$this->load->model('menyetujui');
@@ -64,7 +75,12 @@ class Menyetujuibimbingan extends CI_Controller {
 			}
 			$data = array( 'bimbingan' => $bimX);
 		
-		$this->load->view('menyetujui_bimbingan/menyetujuibimbingan_Page',$data);
+				
+	if(($this->session->userdata('as') == 'Dosen')||($this->session->userdata('as') == 'KoorSkripsi')||($this->session->userdata('as') == 'Kaprodi')){
+               $this->load->view('menyetujui_bimbingan/menyetujuibimbingan_Page',$data);
+            } else {
+                $this->load->view('Not_Found');
+            } 
 		
 	}	
 	
@@ -80,7 +96,13 @@ class Menyetujuibimbingan extends CI_Controller {
 			
 	  	
       $data['type']="EDIT";// definisi type, karena nanti juga ada edit
-      $this->load->view('menyetujui_bimbingan/edit_bimbingan',$data);// memanggil view edit_bimbingan.php
+    
+		if($this->session->userdata('as') == 'Dosen'){
+             $this->load->view('menyetujui_bimbingan/edit_bimbingan',$data);
+		  } else {
+                $this->load->view('Not_Found');
+            } 
+	  // memanggil view edit_bimbingan.php
 }
 	
 	function detail_bimbingan(){
@@ -95,7 +117,12 @@ class Menyetujuibimbingan extends CI_Controller {
                 'detailBimbingan' => $this->generateDetail($allBimbingan, $allSkripsi, $NIM)
                 );
             
-            $this->load->view('menyetujui_bimbingan/detail_bimbingan', $data);
+    if($this->session->userdata('as') == 'Dosen'){
+  $this->load->view('menyetujui_bimbingan/detail_bimbingan', $data);
+  		  } else {
+                $this->load->view('Not_Found');
+            }
+		  
         }
 		
 	function generateDetail($allBimbingan, $allSkripsi, $NIM) {

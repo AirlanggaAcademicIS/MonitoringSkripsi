@@ -42,26 +42,28 @@ function delete($NIK){
 		  
 		  $query = $this->db->query($sql);
         $i = 0;
-        foreach ($query->result_array() as $row)
-         {
-			$user[$i]['NIM'] = $row['NIM'];
-            $user[$i]['nama'] = $row['Nama'];
-            $user[$i]['judul'] = $row['Judul'];
-			if($row['TanggalSkripsi'] != 0000-00-00){
-				$user[$i]['status'] = "Lulus";			
-			}
-			else if($row['TanggalProp'] != 0000-00-00){
-				$user[$i]['status'] = "Skripsi";			
-			}
-			else if($row['TanggalTopik'] != 0000-00-00){
-				$user[$i]['status'] = "Proposal";			
-			}
-			else {
-				$user[$i]['status'] = "Belum usulan topik";
+        $allUser = array();
+        foreach ($query->result_array() as $row) {
+            $user = array();
+            $user['NIM'] = $row['NIM'];
+            $user['nama'] = $row['Nama'];
+            $user['judul'] = $row['Judul'];
+            if($row['TanggalSkripsi'] != 0000-00-00){
+		$user['status'] = "Lulus";			
+            }
+            else if($row['TanggalProp'] != 0000-00-00){
+		$user['status'] = "Skripsi";			
+            }
+            else if($row['TanggalTopik'] != 0000-00-00){
+                $user['status'] = "Proposal";			
+            }
+            else {
+		$user['status'] = "Belum usulan topik";
             }
 			
-        $i++;}
-        return $user;
+        $allUser[] = $user;
+        }
+        return $allUser;
 		  
 		  
 }

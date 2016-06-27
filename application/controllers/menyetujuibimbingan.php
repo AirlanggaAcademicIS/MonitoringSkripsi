@@ -20,18 +20,18 @@ class Menyetujuibimbingan extends CI_Controller {
 	 */
 	public function index()
 	{
-	 		if(($this->session->userdata('as') == 'Dosen')||($this->session->userdata('as') == 'KoorSkripsi')||($this->session->userdata('as') == 'Kaprodi')){
+            if(($this->session->userdata('as') == 'Dosen')||($this->session->userdata('as') == 'KoorSkripsi')||($this->session->userdata('as') == 'Kaprodi')){
                 $this->load->view('Dosen_Pembimbing_Home');
             } else {
                 $this->load->view('Not_Found');
             } 
-
-		}
+	}
+        
 	public function mahasiswabimbingan(){
        
 		$this->load->model('m_Mahasiswadosbing');
-		$NIK = $this->session->userdata('nik');
-		
+		$NIK = $this->session->userdata('NIK');
+		echo $NIK;
 		$mhsbim = $this->m_Mahasiswadosbing->getsemuamahadosbing($NIK);
 		$data = array(
 			'jumlah'=>sizeof($mhsbim),

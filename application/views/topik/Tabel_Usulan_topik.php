@@ -60,9 +60,11 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form" style="color:#39F; text-align:center;">
                                <h3> Selamat Datang!</h3>
+							    <br><br><div style='text-align:right'>
                                 <br><br>
-                                <h4>KOOR SKRIPSI
-                                <br>081313222773</h4>
+                                 <?php echo $this->session->userdata('Nama');?></div>
+								  <a href="http://localhost/MonitoringSkripsi/Dosen_pembimbing/">Menu Dosen</a>
+                            </div>
                             </div>
                             
                             <!-- /input-group -->

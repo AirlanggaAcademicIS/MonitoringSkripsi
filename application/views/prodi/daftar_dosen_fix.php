@@ -133,8 +133,21 @@
                                       </tbody>
                                 </table>
                                 <form name="form2" method="post" action="http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/tambah_dosen_page">
-  <input type="submit" name="tambahdosen" id="tambahdosen" value="Tambah Dosen">
-</form>
+                              <input type="submit" name="tambahdosen" id="tambahdosen" value="Tambah Dosen">
+                            <br> <br>
+                            <a href="http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/toExcelDosen"> Export to Excel </a>
+                            <br>
+                                
+                                </form>
+                                
+                                
+		
+                                <form action = "http://localhost/MonitoringSkripsi/index.php/Prodi_fix4/do_upload" method = "post">
+                                   <input type = "file" name = "userfile" size = "20" /> 
+                                   <br /><br /> 
+                                   <input type = "submit" value = "upload" /> 
+                                </form> 
+                            
                             </div>
                 </div>
                 <!-- /.col-lg-12 -->
